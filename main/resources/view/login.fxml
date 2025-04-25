@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="417.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.LoginController">
+   <children>
+      <AnchorPane layoutX="293.0" layoutY="22.0" prefHeight="378.0" prefWidth="313.0" />
+   </children>
+</AnchorPane>
