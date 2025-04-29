@@ -1,9 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="417.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to right, #11998e, #38ef7d);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.LoginController">
+
    <children>
-      <AnchorPane layoutX="293.0" layoutY="22.0" prefHeight="378.0" prefWidth="313.0" />
+
+      <VBox alignment="CENTER" layoutX="267.0" layoutY="19.333333333333332" prefHeight="361.0" prefWidth="307.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="19.0">
+
+         <effect>
+            <DropShadow color="#00000055" radius="10.0" />
+         </effect>
+
+         <Label text="Green Loop EMS" textFill="#11998e">
+            <font>
+               <Font size="24.0" />
+            </font>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </Label>
+
+         <Label text="Login to your account" textFill="#333">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+
+         <TextField fx:id="txtUsername" maxWidth="250.0" promptText="Username" />
+         <PasswordField fx:id="txtPassword" maxWidth="250.0" promptText="Password" />
+
+         <Button fx:id="btnLogin" onAction="#loginOnAction" prefWidth="250.0" style="-fx-background-color: #38ef7d; -fx-text-fill: white; -fx-background-radius: 10;" text="Login" />
+
+         <Label fx:id="lblError" textFill="red" visible="false" />
+         <padding>
+            <Insets bottom="5.0" right="5.0" top="5.0" />
+         </padding>
+
+      </VBox>
+
    </children>
 </AnchorPane>
