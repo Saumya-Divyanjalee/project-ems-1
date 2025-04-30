@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.LeavesController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="600.0" prefWidth="800.0">
 
+    <children>
+        <VBox spacing="20" alignment="TOP_CENTER" layoutX="30.0" layoutY="20.0" prefWidth="740">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Leave Management" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+            <!-- Form Area -->
+            <GridPane hgap="10" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT"/>
+                    <ColumnConstraints prefWidth="300"/>
+                </columnConstraints>
+
+                <Label text="Leave ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtLeaveId" promptText="L001" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Employee ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtEmployeeId" promptText="EMP001" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Status:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbStatus" promptText="Pending/Approved" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Leave Type:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbLeaveType" promptText="Sick, Annual, Casual" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Start Date:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dpStartDate" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="End Date:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dpEndDate" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- Button Controls -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Save" fx:id="btnSave" prefWidth="100"/>
+                <Button text="Update" fx:id="btnUpdate" prefWidth="100"/>
+                <Button text="Delete" fx:id="btnDelete" prefWidth="100"/>
+                <Button text="Clear" fx:id="btnClear" prefWidth="100"/>
+            </HBox>
+
+            <!-- Table View -->
+            <TableView fx:id="tblLeaves" prefHeight="250" prefWidth="700">
+                <columns>
+                    <TableColumn fx:id="colLeaveId" text="Leave ID" prefWidth="100"/>
+                    <TableColumn fx:id="colEmployeeId" text="Employee ID" prefWidth="100"/>
+                    <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+                    <TableColumn fx:id="colLeaveType" text="Leave Type" prefWidth="100"/>
+                    <TableColumn fx:id="colStartDate" text="Start Date" prefWidth="100"/>
+                    <TableColumn fx:id="colEndDate" text="End Date" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </children>
 </AnchorPane>

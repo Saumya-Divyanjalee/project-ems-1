@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.PositionsController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="500.0" prefWidth="700.0">
 
+    <children>
+        <VBox spacing="20" alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" prefWidth="660.0">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Manage Positions" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+            <!-- Input Form -->
+            <GridPane hgap="10" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT"/>
+                    <ColumnConstraints prefWidth="300"/>
+                </columnConstraints>
+
+                <Label text="Position ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtPositionId" promptText="POS001" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Position Title:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtPositionTitle" promptText="e.g. Software Engineer" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Salary Grade:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtSalaryGrade" promptText="e.g. Grade A" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- Button Controls -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Save" fx:id="btnSave" prefWidth="100"/>
+                <Button text="Update" fx:id="btnUpdate" prefWidth="100"/>
+                <Button text="Delete" fx:id="btnDelete" prefWidth="100"/>
+                <Button text="Clear" fx:id="btnClear" prefWidth="100"/>
+            </HBox>
+
+            <!-- Table View -->
+            <TableView fx:id="tblPositions" prefHeight="250" prefWidth="650">
+                <columns>
+                    <TableColumn fx:id="colPositionId" text="Position ID" prefWidth="150"/>
+                    <TableColumn fx:id="colPositionTitle" text="Position Title" prefWidth="250"/>
+                    <TableColumn fx:id="colSalaryGrade" text="Salary Grade" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </children>
 </AnchorPane>

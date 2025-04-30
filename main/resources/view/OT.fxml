@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.OTController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="600.0" prefWidth="800.0">
 
+    <children>
+        <VBox spacing="20" alignment="TOP_CENTER" layoutX="30.0" layoutY="20.0" prefWidth="740">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="OT Management" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+            <!-- Form Area -->
+            <GridPane hgap="10" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT"/>
+                    <ColumnConstraints prefWidth="300"/>
+                </columnConstraints>
+
+                <Label text="OT ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtOtId" promptText="OT001" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Employee ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtEmployeeId" promptText="EMP001" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Salary ID:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtSalaryId" promptText="SAL001" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="OT Hours:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtOtHours" promptText="e.g. 4.5" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Rate Per Hour:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtRatePerHour" promptText="e.g. 200.00" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="OT Date:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dpOtDate" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- Buttons -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Save" fx:id="btnSave" prefWidth="100"/>
+                <Button text="Update" fx:id="btnUpdate" prefWidth="100"/>
+                <Button text="Delete" fx:id="btnDelete" prefWidth="100"/>
+                <Button text="Clear" fx:id="btnClear" prefWidth="100"/>
+            </HBox>
+
+            <!-- Table View -->
+            <TableView fx:id="tblOtRecords" prefHeight="250" prefWidth="700">
+                <columns>
+                    <TableColumn fx:id="colOtId" text="OT ID" prefWidth="100"/>
+                    <TableColumn fx:id="colEmployeeId" text="Employee ID" prefWidth="100"/>
+                    <TableColumn fx:id="colSalaryId" text="Salary ID" prefWidth="100"/>
+                    <TableColumn fx:id="colOtHours" text="OT Hours" prefWidth="100"/>
+                    <TableColumn fx:id="colRatePerHour" text="Rate/Hour" prefWidth="100"/>
+                    <TableColumn fx:id="colOtDate" text="OT Date" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </children>
 </AnchorPane>

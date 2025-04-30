@@ -1,99 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DepartmentController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DepartmentController">
 
-    <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-background-color: #E8F5E9;" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+    <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-background-color: #2980b9;"
+          AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0"
+          AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
 
         <!-- Logo -->
-        <ImageView fitHeight="39.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="39.0" fitWidth="63.0" preserveRatio="true" pickOnBounds="true">
             <VBox.margin>
-                <Insets left="600.0" top="5.0" />
+                <Insets left="600.0" top="5.0"/>
             </VBox.margin>
             <image>
-                <Image url="@../../../../../../Downloads/GREEN%20LOOP.png" />
+                <Image url="@../../../../../../Downloads/GREEN%20LOOP.png"/>
             </image>
         </ImageView>
 
         <!-- Title -->
-        <Label prefHeight="48.0" prefWidth="256.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Department Management" textFill="#057444">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
+        <Label text="Department Management" textFill="WHITE"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
 
         <!-- Input Fields -->
         <GridPane hgap="10.0" vgap="10.0">
             <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" minWidth="120.0" />
-                <ColumnConstraints minWidth="300.0" />
-            <ColumnConstraints minWidth="300.0" />
+                <ColumnConstraints halignment="RIGHT" minWidth="120.0"/>
+                <ColumnConstraints minWidth="300.0"/>
+                <ColumnConstraints minWidth="300.0"/>
             </columnConstraints>
 
             <!-- Department ID -->
-            <Label prefHeight="17.0" prefWidth="109.0" text="Employee ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="txtDepartmentId" promptText="Enter Employee ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="Department ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtDepartmentId" promptText="Enter Department ID"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
             <!-- Department Name -->
-            <Label prefHeight="17.0" prefWidth="111.0" text="Department ID:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="txtDepartmentName" promptText="Enter Department ID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Department Name:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtDepartmentName" promptText="Enter Department Name"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
             <!-- Employee ID -->
-            <Label prefHeight="17.0" prefWidth="109.0" text="Department Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField fx:id="txtEmployeeId" prefHeight="25.0" prefWidth="258.0" promptText="Enter Department Name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Employee ID:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtEmployeeId" promptText="Enter Employee ID"
+                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-            <!-- Search Button -->
-            <Button fx:id="btnSearch" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #FFC107;" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="2">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font></Button>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
-        </GridPane>
-
-        <!-- Action Buttons -->
-        <HBox alignment="CENTER" spacing="10.0">
-            <Button fx:id="btnAdd" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Add" textFill="WHITE">
+            <!-- Search -->
+            <Button fx:id="btnSearch" text="Search"
+                    style="-fx-background-color: #FFC107;"
+                    prefWidth="89.0" prefHeight="25.0"
+                    GridPane.rowIndex="2" GridPane.columnIndex="2">
                 <font>
-                    <Font name="System Bold" size="13.0" />
+                    <Font name="System Bold" size="13.0"/>
                 </font>
             </Button>
-            <Button fx:id="btnUpdate" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Update">
-            <font>
-               <Font size="13.0" />
-            </font></Button>
-            <Button fx:id="btnDelete" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Delete" textFill="WHITE">
-            <font>
-               <Font name="Arial Bold" size="13.0" />
-            </font></Button>
+        </GridPane>
+
+        <!-- Buttons -->
+        <HBox alignment="CENTER" spacing="10.0">
+            <Button fx:id="btnAdd" text="Add"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white;"
+                    prefWidth="89.0" prefHeight="25.0"/>
+            <Button fx:id="btnUpdate" text="Update"
+                    style="-fx-background-color: #2196F3; -fx-text-fill: white;"
+                    prefWidth="89.0" prefHeight="25.0"/>
+            <Button fx:id="btnDelete" text="Delete"
+                    style="-fx-background-color: #f44336; -fx-text-fill: white;"
+                    prefWidth="89.0" prefHeight="25.0"/>
         </HBox>
 
         <!-- Table -->
-        <TableView fx:id="tblDepartment" prefHeight="200.0" prefWidth="580.0" style="-fx-background-color: ;">
+        <TableView fx:id="tblDepartment" prefHeight="200.0" prefWidth="580.0">
             <columns>
-                <TableColumn fx:id="colDepartmentId" prefWidth="200.0" text="Department ID" />
-                <TableColumn fx:id="colDepartmentName" prefWidth="350.0" text="Department Name" />
+                <TableColumn fx:id="colDepartmentId" text="Department ID" prefWidth="200.0"/>
+                <TableColumn fx:id="colDepartmentName" text="Department Name" prefWidth="350.0"/>
             </columns>
         </TableView>
 
     </VBox>
-
 </AnchorPane>
