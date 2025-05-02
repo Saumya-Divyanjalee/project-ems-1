@@ -18,7 +18,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DepartmentController">
 
-    <VBox alignment="TOP_CENTER" layoutX="-2.0" prefHeight="399.0" prefWidth="740.0" spacing="15.0" style="-fx-background-color: #16a085;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
+    <VBox alignment="TOP_CENTER" layoutX="-2.0" prefHeight="463.0" prefWidth="740.0" spacing="15.0" style="-fx-background-color: #007a5e;" AnchorPane.bottomAnchor="-63.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
 
 
         <ImageView fitHeight="39.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
@@ -81,8 +81,14 @@
 
 
         <HBox alignment="CENTER" spacing="10.0">
-            <Button fx:id="btnAdd" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Add" />
-            <Button fx:id="btnUpdate" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Update" />
+            <Button fx:id="btnAdd" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #00cec9; -fx-text-fill: white;" text="Add">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
+            <Button fx:id="btnUpdate" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Update">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
             <Button fx:id="btnDelete" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Delete">
             <font>
                <Font name="System Bold" size="12.0" />
@@ -90,10 +96,10 @@
         </HBox>
 
 
-        <TableView fx:id="tblDepartment" prefHeight="200.0" prefWidth="580.0">
+        <TableView fx:id="tblDepartment" prefHeight="240.0" prefWidth="740.0">
             <columns>
                 <TableColumn fx:id="colDepartmentId" prefWidth="200.0" text="Department ID" />
-                <TableColumn fx:id="colDepartmentName" prefWidth="350.0" text="Department Name" />
+                <TableColumn fx:id="colDepartmentName" prefWidth="538.6666717529297" text="Department Name" />
             </columns>
         </TableView>
 

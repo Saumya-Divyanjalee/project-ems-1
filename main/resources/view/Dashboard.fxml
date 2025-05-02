@@ -11,11 +11,11 @@
 <AnchorPane prefHeight="478.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DashboardController">
    <children>
 
-      <VBox prefHeight="478.0" prefWidth="200.0" spacing="10" style="-fx-background-color: #16a085; -fx-padding: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="657.0" prefWidth="204.0" spacing="10" style="-fx-background-color: linear-gradient(to right, #11998e, #38ef7d); -fx-padding: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="117.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Downloads/GREEN%20LOOP.png" />
+                  <Image url="@../image/GREEN%20LOOP.png" />
                </image>
             </ImageView>
             <Label prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #ecf0f1;" text="Dashboard EMS" textFill="#17aa06">
@@ -76,9 +76,9 @@
       </VBox>
 
 
-      <AnchorPane fx:id="contentPane" layoutX="200.0" prefWidth="700.0" style="-fx-background-color: #ecf0f1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="contentPane" layoutX="201.33333333333334" prefHeight="657.0" prefWidth="489.0" style="-fx-background-color: #ecf0f1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="ancpanal" layoutX="86.0" layoutY="101.0" prefHeight="657.0" prefWidth="608.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="ancpanal" layoutY="101.0" prefHeight="657.0" prefWidth="490.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #16a085;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.AttendanceController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.AttendanceController">
     <children>
         <Label layoutX="20" layoutY="20" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Attendance Management" textFill="WHITE">
          <font>
@@ -84,20 +84,20 @@
             <font>
                <Font name="System Bold" size="12.0" />
             </font></Button>
-            <Button fx:id="btnClear" prefWidth="80" style="-fx-background-color: #95a5a6;" text="Clear">
+            <Button fx:id="btnClear" prefWidth="80" style="-fx-background-color: #b2bec3;" text="Reset">
             <font>
                <Font name="System Bold" size="12.0" />
             </font></Button>
         </HBox>
 
 
-        <TableView fx:id="tblAttendance" layoutX="20" layoutY="350" prefHeight="130" prefWidth="760">
+        <TableView fx:id="tblAttendance" layoutX="28.0" layoutY="356.0" prefHeight="237.0" prefWidth="835.0">
             <columns>
-                <TableColumn fx:id="colAttendanceId" prefWidth="120" text="Attendance ID" />
-                <TableColumn fx:id="colEmployeeId" prefWidth="100" text="Employee ID" />
-                <TableColumn fx:id="colDate" prefWidth="120" text="Date" />
-                <TableColumn fx:id="colCheckIn" prefWidth="100" text="Check In" />
-                <TableColumn fx:id="colCheckOut" prefWidth="100" text="Check Out" />
+                <TableColumn fx:id="colAttendanceId" prefWidth="131.33331871032715" text="Attendance ID" />
+                <TableColumn fx:id="colEmployeeId" prefWidth="108.66670227050781" text="Employee ID" />
+                <TableColumn fx:id="colDate" prefWidth="182.00003051757812" text="Date" />
+                <TableColumn fx:id="colCheckIn" prefWidth="189.33334350585938" text="Check In" />
+                <TableColumn fx:id="colCheckOut" prefWidth="172.0" text="Check Out" />
             </columns>
         </TableView>
       <Label layoutX="400.0" layoutY="254.0" text="Status:" textFill="WHITE">
