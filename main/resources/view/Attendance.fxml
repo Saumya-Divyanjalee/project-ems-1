@@ -7,15 +7,21 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.AttendanceController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #16a085;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.AttendanceController">
     <children>
-        <Label layoutX="20" layoutY="20" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Attendance Management" />
+        <Label layoutX="20" layoutY="20" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Attendance Management" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
 
         <GridPane hgap="20" layoutX="20" layoutY="70" vgap="15">
             <columnConstraints>
@@ -32,32 +38,59 @@
             </rowConstraints>
 
             <children>
-                <Label text="Attendance ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="Attendance ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
                 <TextField fx:id="txtAttendanceId" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Label text="Employee ID:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label text="Employee ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
                 <ComboBox fx:id="cmbEmployeeId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label text="Date:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label text="Date:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
                 <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                <Label text="Check In Time:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Label text="Check In Time:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
                 <TextField fx:id="txtCheckIn" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                <Label text="Check Out Time:" GridPane.rowIndex="4" />
+                <Label text="Check Out Time:" textFill="WHITE" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
                 <TextField fx:id="txtCheckOut" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
         </GridPane>
 
-              <!-- Buttons -->
-        <HBox layoutX="20" layoutY="300" spacing="15">
-            <Button fx:id="btnSave" prefWidth="80" text="Save" />
-            <Button fx:id="btnUpdate" prefWidth="80" text="Update" />
-            <Button fx:id="btnDelete" prefWidth="80" text="Delete" />
-            <Button fx:id="btnClear" prefWidth="80" text="Clear" />
+
+        <HBox layoutX="20" layoutY="300" spacing="15" style="-fx-background-color: ;">
+            <Button fx:id="btnSave" prefWidth="80" style="-fx-background-color: #ffeaa7;" text="Save" textFill="#1b0000">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
+            <Button fx:id="btnUpdate" prefWidth="80" style="-fx-background-color: #00cec9;" text="Update">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
+            <Button fx:id="btnDelete" prefWidth="80" style="-fx-background-color: #ff7675;" text="Delete">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
+            <Button fx:id="btnClear" prefWidth="80" style="-fx-background-color: #95a5a6;" text="Clear">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
         </HBox>
 
-        <!-- TableView -->
+
         <TableView fx:id="tblAttendance" layoutX="20" layoutY="350" prefHeight="130" prefWidth="760">
             <columns>
                 <TableColumn fx:id="colAttendanceId" prefWidth="120" text="Attendance ID" />
@@ -67,7 +100,15 @@
                 <TableColumn fx:id="colCheckOut" prefWidth="100" text="Check Out" />
             </columns>
         </TableView>
-      <Label layoutX="400.0" layoutY="254.0" text="Status:" />
+      <Label layoutX="400.0" layoutY="254.0" text="Status:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <ComboBox layoutX="455.0" layoutY="250.0" prefWidth="150.0" />
+      <ImageView fitHeight="51.0" fitWidth="55.0" layoutX="725.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/GREEN%20LOOP.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

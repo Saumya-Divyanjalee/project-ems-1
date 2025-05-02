@@ -5,58 +5,83 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2980b9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DeductionsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #16a085;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DeductionsController">
 
     <children>
 
-        <!-- Title -->
+
         <Label layoutX="20.0" layoutY="14.0" text="Deductions Management" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
 
-        <!-- Form Fields -->
+
         <VBox layoutX="20.0" layoutY="50.0" spacing="10.0">
             <children>
 
-                <!-- Deduction ID -->
+
                 <HBox spacing="10.0">
                     <children>
-                        <Label minWidth="100" text="Deduction ID" />
+                        <Label minWidth="100" text="Deduction ID" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                         <TextField fx:id="txtDeductionId" prefWidth="200" />
                     </children>
                 </HBox>
 
-                <!-- Deduction Name -->
+
                 <HBox spacing="10.0">
                     <children>
-                        <Label minWidth="100" text="Deduction Name" />
+                        <Label minWidth="100" text="Deduction Name" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                         <TextField fx:id="txtDeductionName" prefWidth="200" promptText=" " />
                     </children>
                 </HBox>
 
-                <!-- Action Buttons -->
+
                 <HBox alignment="CENTER_LEFT" spacing="10.0" />
             </children>
         </VBox>
 
-        <!-- Deductions Table -->
+
         <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="198.0" prefHeight="182.0" prefWidth="560.0">
             <columns>
                 <TableColumn fx:id="colDeductionId" prefWidth="200.0" text="Deduction ID" />
                 <TableColumn fx:id="colDeductionName" prefWidth="350.0" text="Deduction Name" />
             </columns>
         </TableView>
-            <Button fx:id="btnAdd" layoutX="25.0" layoutY="145.0" text="Add" />
-            <Button fx:id="btnUpdate" layoutX="89.0" layoutY="146.0" text="Update" />
-            <Button fx:id="btnDelete" layoutX="175.0" layoutY="145.0" text="Delete" />
-            <Button fx:id="btnClear" layoutX="256.0" layoutY="146.0" text="Clear" />
+            <Button fx:id="btnAdd" layoutX="25.0" layoutY="145.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ffeaa7;" text="Add">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+            <Button fx:id="btnUpdate" layoutX="119.0" layoutY="146.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #00cec9;" text="Update">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+            <Button fx:id="btnDelete" layoutX="214.0" layoutY="146.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ff7675;" text="Delete">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+            <Button fx:id="btnClear" layoutX="308.0" layoutY="146.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #fab1a0;" text="Clear">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <ImageView fitHeight="48.0" fitWidth="45.0" layoutX="535.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/GREEN%20LOOP.png" />
+         </image>
+      </ImageView>
 
     </children>
 

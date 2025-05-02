@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,14 +10,19 @@
 
 <AnchorPane prefHeight="478.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DashboardController">
    <children>
-      <!-- Sidebar -->
+
       <VBox prefHeight="478.0" prefWidth="200.0" spacing="10" style="-fx-background-color: #16a085; -fx-padding: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="134.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="117.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../Downloads/GREEN%20LOOP.png" />
                </image>
             </ImageView>
+            <Label prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #ecf0f1;" text="Dashboard EMS" textFill="#17aa06">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
             <Button fx:id="btnEmployee" onAction="#employeeOnAction" prefWidth="160" style="-fx-background-color: #16a085;" text="Employee" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -41,15 +47,27 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Button fx:id="btnDepartment" prefWidth="160" style="-fx-background-color: #16a085;" text="Department" textFill="WHITE">
+            <Button fx:id="btnDepartment" onAction="#departmentOnAction" prefWidth="160" style="-fx-background-color: #16a085;" text="Department" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Button fx:id="btnPosition" prefWidth="160" style="-fx-background-color: #16a085;" text="Position" />
-            <Button fx:id="btnEmployeeEquipment" prefWidth="160" style="-fx-background-color: #16a085;" text="Employee Equipment" />
-            <Button fx:id="btnAttendance" prefWidth="160" style="-fx-background-color: #16a085;" text="Attendance" />
-            <Button fx:id="btnUser" prefWidth="160" style="-fx-background-color: #16a085;" text="User" />
-            <Button mnemonicParsing="false" prefWidth="160.0" style="-fx-background-color: #16a085;" text=" Settings" textFill="#e4ff37">
+            <Button fx:id="btnPosition" onAction="#positionOnAction" prefWidth="160" style="-fx-background-color: #16a085;" text="Position" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button fx:id="btnEmployeeEquipment" onAction="#emeqOnAction" prefWidth="160" style="-fx-background-color: #16a085;" text="Employee Equipment" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button fx:id="btnAttendance" onAction="#attendanceOnAction" prefWidth="160" style="-fx-background-color: #16a085;" text="Attendance" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button fx:id="btnUser" onAction="#userOnAction" prefWidth="160" style="-fx-background-color: #16a085;" text="User" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button fx:id="btnSetting" mnemonicParsing="false" onAction="#settingOnAction" prefWidth="160.0" style="-fx-background-color: #16a085;" text=" Setting" textFill="#e4ff37">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -57,8 +75,10 @@
          </children>
       </VBox>
 
-      <!-- Main Content Area (to be loaded dynamically in Controller) -->
+
       <AnchorPane fx:id="contentPane" layoutX="200.0" prefWidth="700.0" style="-fx-background-color: #ecf0f1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      </AnchorPane>
+         <children>
+            <AnchorPane fx:id="ancpanal" layoutX="86.0" layoutY="101.0" prefHeight="657.0" prefWidth="608.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>

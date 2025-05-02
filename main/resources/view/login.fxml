@@ -16,12 +16,35 @@
 
    <children>
 
-      <VBox alignment="CENTER" layoutX="267.0" layoutY="19.333333333333332" prefHeight="361.0" prefWidth="307.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="19.0">
+      <!-- Left side image -->
+      <ImageView fitHeight="378.0" fitWidth="257.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <!-- Replace with your actual image path -->
+            <Image url="@assets/login-image.png" />
+         </image>
+      </ImageView>
+
+      <!-- Optional label (if needed) -->
+      <Label layoutX="49.0" layoutY="19.0" text="EMS System" textFill="#fdfdfd">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+      </Label>
+
+      <!-- Login Form Box -->
+      <VBox alignment="CENTER" layoutX="267.0" layoutY="19.0" prefHeight="361.0" prefWidth="307.0" spacing="15.0"
+            style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20;"
+            AnchorPane.topAnchor="19.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="14.0">
 
          <effect>
             <DropShadow color="#00000055" radius="10.0" />
          </effect>
-         <Label text="Welcome Back" />
+
+         <Label text="Welcome Back">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
 
          <Label text="Login to your account" textFill="#333">
             <font>
@@ -32,25 +55,15 @@
          <TextField fx:id="txtUsername" maxWidth="250.0" promptText="Username" />
          <PasswordField fx:id="txtPassword" maxWidth="250.0" promptText="Password" />
 
-         <Button fx:id="btnLogin" onAction="#loginOnAction" prefWidth="250.0" style="-fx-background-color: #38ef7d; -fx-text-fill: white; -fx-background-radius: 10;" text="Login" />
+         <Button fx:id="btnLogin" onAction="#loginOnAction" prefWidth="250.0"
+                 style="-fx-background-color: #38ef7d; -fx-text-fill: white; -fx-background-radius: 10;" text="Login" />
 
          <Label fx:id="lblError" textFill="red" visible="false" />
+
          <padding>
-            <Insets bottom="5.0" right="5.0" top="5.0" />
+            <Insets top="5.0" right="5.0" bottom="5.0" />
          </padding>
-
       </VBox>
-
-      <Label layoutX="49.0" layoutY="19.0" textFill="#fdfdfd">
-         <font>
-            <Font name="Calibri Bold" size="24.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="378.0" fitWidth="257.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image />
-         </image>
-      </ImageView>
 
    </children>
 </AnchorPane>
