@@ -47,7 +47,7 @@
         <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" prefHeight="299.0" prefWidth="732.0">
             <columns>
                 <TableColumn fx:id="colDeductionId" prefWidth="168.66668701171875" text="Deduction ID" />
-                <TableColumn fx:id="colDeductionName" prefWidth="381.3332824707031" text="Deduction Name" />
+                <TableColumn fx:id="colDeductionName" prefWidth="561.3333282470703" text="Deduction Name" />
             </columns>
         </TableView>
             <Button fx:id="btnAdd" layoutX="20.0" layoutY="184.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ffeaa7;" text="Add">
