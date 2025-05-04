@@ -1,9 +1,7 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
+import javafx.scene.control.*;
 
 public class DeductionsController {
     public TextField txtDeductionName;
@@ -15,4 +13,27 @@ public class DeductionsController {
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnClear;
+    public Button btnReset;
+
+    public void tblOnAction(SortEvent<TableView> tableViewSortEvent) {
+    }
+
+    public void addOnAction(ActionEvent actionEvent) {
+    }
+
+    public void updateOnAction(ActionEvent actionEvent) {
+    }
+
+    public void deleteOnAction(ActionEvent actionEvent) {
+    }
+
+    public void resetOnAction(ActionEvent actionEvent) {
+    }
+
+    public void deductionNameOnAction(ActionEvent actionEvent) {
+    }
+
+    public void deductionOnAction(ActionEvent actionEvent) {
+
+    }
 }

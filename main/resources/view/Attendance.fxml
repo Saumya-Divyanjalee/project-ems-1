@@ -42,69 +42,69 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <TextField fx:id="txtAttendanceId" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="txtAttendanceId" onAction="#attendanceidOnAction" promptText="A001" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                 <Label text="Employee ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <ComboBox fx:id="cmbEmployeeId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                 <Label text="Date:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <DatePicker fx:id="datePicker" onAction="#dateOnAction" promptText="2025-04-01" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                 <Label text="Check In Time:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <TextField fx:id="txtCheckIn" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="txtCheckIn" onAction="#checkinOnAction" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                 <Label text="Check Out Time:" textFill="WHITE" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <TextField fx:id="txtCheckOut" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField fx:id="txtCheckOut" onAction="#checkoutOnAction" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtEmployeeId" onAction="#employeeidOnAction" promptText="E001" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </children>
         </GridPane>
 
 
         <HBox layoutX="20" layoutY="300" spacing="15" style="-fx-background-color: ;">
-            <Button fx:id="btnSave" prefWidth="80" style="-fx-background-color: #ffeaa7;" text="Save" textFill="#1b0000">
+            <Button fx:id="btnSave" onAction="#saveOnAction" prefWidth="80" style="-fx-background-color: #ffeaa7;" text="Save" textFill="#1b0000">
             <font>
                <Font name="System Bold" size="12.0" />
             </font></Button>
-            <Button fx:id="btnUpdate" prefWidth="80" style="-fx-background-color: #00cec9;" text="Update">
+            <Button fx:id="btnUpdate" onAction="#updateOnAction" prefWidth="80" style="-fx-background-color: #00cec9;" text="Update">
             <font>
                <Font name="System Bold" size="12.0" />
             </font></Button>
-            <Button fx:id="btnDelete" prefWidth="80" style="-fx-background-color: #ff7675;" text="Delete">
+            <Button fx:id="btnDelete" onAction="#deleteOnAction" prefWidth="80" style="-fx-background-color: #ff7675;" text="Delete">
             <font>
                <Font name="System Bold" size="12.0" />
             </font></Button>
-            <Button fx:id="btnClear" prefWidth="80" style="-fx-background-color: #b2bec3;" text="Reset">
+            <Button fx:id="btnClear" onAction="#resetOnAction" prefWidth="80" style="-fx-background-color: #b2bec3;" text="Reset">
             <font>
                <Font name="System Bold" size="12.0" />
             </font></Button>
         </HBox>
 
 
-        <TableView fx:id="tblAttendance" layoutX="28.0" layoutY="356.0" prefHeight="237.0" prefWidth="835.0">
+        <TableView fx:id="tblAttendance" layoutX="28.0" layoutY="356.0" onSort="#tblOnAction" prefHeight="237.0" prefWidth="1179.0">
             <columns>
-                <TableColumn fx:id="colAttendanceId" prefWidth="131.33331871032715" text="Attendance ID" />
-                <TableColumn fx:id="colEmployeeId" prefWidth="108.66670227050781" text="Employee ID" />
-                <TableColumn fx:id="colDate" prefWidth="182.00003051757812" text="Date" />
-                <TableColumn fx:id="colCheckIn" prefWidth="189.33334350585938" text="Check In" />
-                <TableColumn fx:id="colCheckOut" prefWidth="172.0" text="Check Out" />
+                <TableColumn fx:id="colAttendanceId" prefWidth="283.9999694824219" text="Attendance ID" />
+                <TableColumn fx:id="colEmployeeId" prefWidth="250.0" text="Employee ID" />
+                <TableColumn fx:id="colDate" prefWidth="246.66668701171875" text="Date" />
+                <TableColumn fx:id="colCheckIn" prefWidth="194.0" text="Check In" />
+                <TableColumn fx:id="colCheckOut" prefWidth="203.3333740234375" text="Check Out" />
             </columns>
         </TableView>
       <Label layoutX="400.0" layoutY="254.0" text="Status:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <ComboBox layoutX="455.0" layoutY="250.0" prefWidth="150.0" />
+      <ComboBox fx:id="statusId" layoutX="455.0" layoutY="250.0" onAction="#statusOnAction" prefWidth="150.0" />
       <ImageView fitHeight="51.0" fitWidth="55.0" layoutX="725.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../Downloads/GREEN%20LOOP.png" />

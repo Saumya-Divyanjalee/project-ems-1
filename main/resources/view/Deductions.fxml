@@ -44,25 +44,25 @@
         </VBox>
 
 
-        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" prefHeight="299.0" prefWidth="732.0">
+        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" onSort="#tblOnAction" prefHeight="299.0" prefWidth="779.0">
             <columns>
                 <TableColumn fx:id="colDeductionId" prefWidth="168.66668701171875" text="Deduction ID" />
-                <TableColumn fx:id="colDeductionName" prefWidth="561.3333282470703" text="Deduction Name" />
+                <TableColumn fx:id="colDeductionName" prefWidth="608.6666615804037" text="Deduction Name" />
             </columns>
         </TableView>
-            <Button fx:id="btnAdd" layoutX="20.0" layoutY="184.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ffeaa7;" text="Add">
+            <Button fx:id="btnAdd" layoutX="20.0" layoutY="184.0" onAction="#addOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ffeaa7;" text="Add">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-            <Button fx:id="btnUpdate" layoutX="120.0" layoutY="184.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #00cec9;" text="Update">
+            <Button fx:id="btnUpdate" layoutX="120.0" layoutY="184.0" onAction="#updateOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #00cec9;" text="Update">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-            <Button fx:id="btnDelete" layoutX="215.0" layoutY="184.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ff7675;" text="Delete">
+            <Button fx:id="btnDelete" layoutX="215.0" layoutY="184.0" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ff7675;" text="Delete">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-            <Button fx:id="btnClear" layoutX="309.0" layoutY="184.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #b2bec3;" text="Reset">
+            <Button fx:id="btnReset" layoutX="309.0" layoutY="184.0" onAction="#resetOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #b2bec3;" text="Reset">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -71,13 +71,13 @@
             <Image url="@../../../../../../Downloads/GREEN%20LOOP.png" />
          </image>
       </ImageView>
-            <TextField fx:id="txtDeductionName" layoutX="120.0" layoutY="113.0" prefWidth="200" promptText=" " />
+            <TextField fx:id="txtDeductionName" layoutX="120.0" layoutY="113.0" onAction="#deductionNameOnAction" prefHeight="25.0" prefWidth="383.0" promptText=" " />
             <Label layoutX="20.0" layoutY="117.0" minWidth="100" text="Deduction Name" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-            <TextField fx:id="txtDeductionId" layoutX="117.0" layoutY="71.0" prefWidth="200" />
+            <TextField fx:id="txtDeductionId" layoutX="117.0" layoutY="71.0" onAction="#deductionOnAction" prefHeight="25.0" prefWidth="383.0" promptText="D001" />
 
     </children>
 
