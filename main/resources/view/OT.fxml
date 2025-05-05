@@ -1,65 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.OTController"
-            prefHeight="600.0" prefWidth="800.0">
+<AnchorPane prefHeight="656.0" prefWidth="915.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.OTController">
 
     <children>
-        <VBox spacing="20" alignment="TOP_CENTER" layoutX="30.0" layoutY="20.0" prefWidth="740">
+        <VBox alignment="TOP_CENTER" layoutX="30.0" layoutY="20.0" prefHeight="636.0" prefWidth="876.0" spacing="20">
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
-            <Label text="OT Management" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="OT Management" textFill="WHITE" />
 
-            <!-- Form Area -->
+
             <GridPane hgap="10" vgap="15">
                 <columnConstraints>
-                    <ColumnConstraints halignment="RIGHT"/>
-                    <ColumnConstraints prefWidth="300"/>
+                    <ColumnConstraints halignment="RIGHT" />
+                    <ColumnConstraints prefWidth="300" />
                 </columnConstraints>
 
-                <Label text="OT ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtOtId" promptText="OT001" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="OT ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <TextField fx:id="txtOtId" onAction="#otIdOnAction" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Label text="Employee ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtEmployeeId" promptText="EMP001" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Employee ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <TextField fx:id="txtEmployeeId" onAction="#eIdOnAction" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label text="Salary ID:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtSalaryId" promptText="SAL001" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Salary ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <TextField fx:id="txtSalaryId" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                <Label text="OT Hours:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtOtHours" promptText="e.g. 4.5" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <Label text="OT Hours:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <TextField fx:id="txtOtHours" promptText="e.g. 4.5" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                <Label text="Rate Per Hour:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtRatePerHour" promptText="e.g. 200.00" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <Label text="Rate Per Hour:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <TextField fx:id="txtRatePerHour" promptText="e.g. 200.00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-                <Label text="OT Date:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-                <DatePicker fx:id="dpOtDate" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                <Label text="OT Date:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <DatePicker fx:id="dpOtDate" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
             </GridPane>
 
-            <!-- Buttons -->
-            <HBox spacing="15" alignment="CENTER">
-                <Button text="Save" fx:id="btnSave" prefWidth="100"/>
-                <Button text="Update" fx:id="btnUpdate" prefWidth="100"/>
-                <Button text="Delete" fx:id="btnDelete" prefWidth="100"/>
-                <Button text="Clear" fx:id="btnClear" prefWidth="100"/>
+
+            <HBox alignment="CENTER" spacing="15">
+                <Button fx:id="btnSave" onAction="#saveOnAction" prefWidth="100" style="-fx-background-color: #ffeaa7;" text="Save">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+                <Button fx:id="btnUpdate" onAction="#updateOnAction" prefWidth="100" style="-fx-background-color: #00cec9;" text="Update">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+                <Button fx:id="btnDelete" onAction="#deleteOnAction" prefWidth="100" style="-fx-background-color: #ff7675;" text="Delete">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+                <Button fx:id="btnReset" onAction="#resetOnAction" prefWidth="100" style="-fx-background-color: #b2bec3;" text="Reset">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
             </HBox>
 
-            <!-- Table View -->
-            <TableView fx:id="tblOtRecords" prefHeight="250" prefWidth="700">
+
+            <TableView fx:id="tblOtRecords" prefHeight="250" prefWidth="754.0">
                 <columns>
-                    <TableColumn fx:id="colOtId" text="OT ID" prefWidth="100"/>
-                    <TableColumn fx:id="colEmployeeId" text="Employee ID" prefWidth="100"/>
-                    <TableColumn fx:id="colSalaryId" text="Salary ID" prefWidth="100"/>
-                    <TableColumn fx:id="colOtHours" text="OT Hours" prefWidth="100"/>
-                    <TableColumn fx:id="colRatePerHour" text="Rate/Hour" prefWidth="100"/>
-                    <TableColumn fx:id="colOtDate" text="OT Date" prefWidth="100"/>
+                    <TableColumn fx:id="colOtId" prefWidth="100" text="OT ID" />
+                    <TableColumn fx:id="colEmployeeId" prefWidth="123.33334350585938" text="Employee ID" />
+                    <TableColumn fx:id="colSalaryId" prefWidth="154.0" text="Salary ID" />
+                    <TableColumn fx:id="colOtHours" prefWidth="157.3333740234375" text="OT Hours" />
+                    <TableColumn fx:id="colRatePerHour" prefWidth="134.0" text="Rate/Hour" />
+                    <TableColumn fx:id="colOtDate" prefWidth="167.333251953125" text="OT Date" />
                 </columns>
             </TableView>
         </VBox>

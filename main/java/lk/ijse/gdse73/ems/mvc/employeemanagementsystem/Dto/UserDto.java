@@ -1,6 +1,6 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto;
 
-public class User {
+public class UserDto {
     private String user_id;
     private String user_name;
     private String u_mobile;
@@ -8,7 +8,7 @@ public class User {
     private String u_role;
 
 
-    public User(String user_id, String user_name, String u_mobile, String u_email, String u_role) {
+    public UserDto(String user_id, String user_name, String u_mobile, String u_email, String u_role) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.u_mobile = u_mobile;

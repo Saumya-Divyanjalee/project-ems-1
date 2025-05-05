@@ -2,6 +2,7 @@ module lk.ijse.gdse73.ems.mvc.employeemanagementsystem {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires static lombok;
 
 
     opens lk.ijse.gdse73.ems.mvc.employeemanagementsystem to javafx.fxml;

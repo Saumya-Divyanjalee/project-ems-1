@@ -1,6 +1,6 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto;
 
-public class OT {
+public class OTDto {
     private String ot_id;
     private int ot_hours;
     private java.sql.Date ot_date;
@@ -9,7 +9,7 @@ public class OT {
     private String salary_id;
 
 
-    public OT(String ot_id, int ot_hours, java.sql.Date ot_date, double rate_per_hours, String employee_id, String salary_id) {
+    public OTDto(String ot_id, int ot_hours, java.sql.Date ot_date, double rate_per_hours, String employee_id, String salary_id) {
         this.ot_id = ot_id;
         this.ot_hours = ot_hours;
         this.ot_date = ot_date;

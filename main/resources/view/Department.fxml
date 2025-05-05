@@ -96,7 +96,7 @@
         </HBox>
 
 
-        <TableView fx:id="tblDepartment" onSort="#tblOnAction" prefHeight="240.0" prefWidth="740.0">
+        <TableView fx:id="tblDepartment" onSort="#tblOnAction" prefHeight="204.0" prefWidth="718.0">
             <columns>
                 <TableColumn fx:id="colDepartmentId" prefWidth="200.0" text="Department ID" />
                 <TableColumn fx:id="colDepartmentName" prefWidth="538.6666717529297" text="Department Name" />

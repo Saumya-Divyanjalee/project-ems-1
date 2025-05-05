@@ -32,7 +32,47 @@ public class EmployeeController {
     public TableColumn colEmail;
     public TableColumn colContact;
     public TableColumn colPositionId;
+    public void initialize() throws SQLException, ClassNotFoundException {
+        setCellValueFactory();
+        setNextId();
+        loadtable();
+    }
 
+    private void loadtable() throws SQLException, ClassNotFoundException {
+        ArrayList<EmployeeDTO> employees = Emodel.getAllEmployee();
+        ObservableList<EmployeeTM> obc = FXCollections.observableArrayList();
+        for (EmployeeDTO employee : employees) {
+            EmployeeTM ETM = new EmployeeTM(
+                    employee.getId(),
+                    employee.getName(),
+                    employee.getAddress(),
+                    employee.getGender(),
+                    employee.getDob(),
+                    employee.getEmail(),
+                    employee.getContact()
+            );
+            obc.add(ETM);
+        }
+        tblEmployee.setItems(obc);
+    }
+
+
+    private void setNextId() throws SQLException, ClassNotFoundException {
+        String nextiD = Emodel.getNextEmployee();
+        lblEmployeeid.setText(nextiD);
+
+    }
+
+    private void setCellValueFactory() {
+        clmEmployeeId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        clmName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        clmAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        clmGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        clmDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        clmEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        clmContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+
+    }
     public void tblOnAction(SortEvent<TableView> tableViewSortEvent) {
     }
 
@@ -40,9 +80,11 @@ public class EmployeeController {
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
+
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+
     }
 
     public void saveOnAction(ActionEvent actionEvent) {

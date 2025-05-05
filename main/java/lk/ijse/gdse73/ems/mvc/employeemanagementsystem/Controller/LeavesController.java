@@ -55,5 +55,5 @@ public class LeavesController {
     public void leaveOnAction(ActionEvent actionEvent) {
     }
 
-    public   txtEmployeeId;
+
 }

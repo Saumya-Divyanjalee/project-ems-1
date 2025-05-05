@@ -1,6 +1,6 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto;
 
-public class Attendance {
+public class AttendanceDto {
     private String attendance_id;
     private java.sql.Date date;
     private java.sql.Time check_in;
@@ -9,7 +9,7 @@ public class Attendance {
     private String employee_id;
 
 
-    public Attendance(String attendance_id, java.sql.Date date, java.sql.Time check_in, java.sql.Time check_out, String status, String employee_id) {
+    public AttendanceDto(String attendance_id, java.sql.Date date, java.sql.Time check_in, java.sql.Time check_out, String status, String employee_id) {
         this.attendance_id = attendance_id;
         this.date = date;
         this.check_in = check_in;

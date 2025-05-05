@@ -1,6 +1,6 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto;
 
-public class Leaves {
+public class LeavesDto {
     private String leave_id;
     private String leave_type;
     private java.sql.Date start_date;
@@ -9,7 +9,7 @@ public class Leaves {
     private String employee_id;
 
 
-    public Leaves(String leave_id, String leave_type, java.sql.Date start_date, java.sql.Date end_date, String status, String employee_id) {
+    public LeavesDto(String leave_id, String leave_type, java.sql.Date start_date, java.sql.Date end_date, String status, String employee_id) {
         this.leave_id = leave_id;
         this.leave_type = leave_type;
         this.start_date = start_date;
