@@ -19,6 +19,9 @@ public class UserController {
     public TableColumn colMobile;
     public TableColumn colEmail;
     public TableColumn colRole;
+    public TextField txtRole;
+    public Button btnAdd;
+    public Button btnreset;
 
     public void resetOnAction(ActionEvent actionEvent) {
     }
@@ -30,6 +33,10 @@ public class UserController {
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
+
+    }
+
+    public void addOnAction(ActionEvent actionEvent) {
 
     }
 }

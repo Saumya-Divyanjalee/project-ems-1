@@ -20,7 +20,6 @@ public class DashboardController implements Initializable {
     public Button btnDeduction;
     public Button btnDepartment;
     public Button btnPosition;
-    public Button btnEmployeeEquipment;
     public Button btnAttendance;
     public Button btnUser;
     public Button btnSetting;
@@ -62,36 +61,40 @@ public class DashboardController implements Initializable {
         nevigateTo("/view/Attendance.fxml");
     }
 
-    public void emeqOnAction(ActionEvent actionEvent) {
-        nevigateTo("/view/Employee_Equipment.fxml");
-    }
 
     public void positionOnAction(ActionEvent actionEvent) {
+
         nevigateTo("/view/Positions.fxml");
     }
 
     public void departmentOnAction(ActionEvent actionEvent) {
+
         nevigateTo("/view/Department.fxml");
     }
 
     public void deductionOnAction(ActionEvent actionEvent) {
+
         nevigateTo("/view/Deductions.fxml");
     }
 
     public void otOnAction(ActionEvent actionEvent) {
+
         nevigateTo("/view/OT.fxml");
     }
 
     public void leaveOnAction(ActionEvent actionEvent) {
+
         nevigateTo("/view/Leaves.fxml");
     }
 
     public void taskOnAction(ActionEvent actionEvent) {
+
         nevigateTo("/view/Task.fxml");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         nevigateTo("/view/Employee.fxml");
     }
 }

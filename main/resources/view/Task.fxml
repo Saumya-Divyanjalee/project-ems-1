@@ -2,8 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -55,14 +53,16 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <DatePicker fx:id="dpDeadline" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                <Label text="Status:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                <Label text="Status:" textFill="WHITE" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <ComboBox fx:id="cmbStatus" promptText="Pending / Done" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtStatus" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtDeadline" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
                <RowConstraints />
                <RowConstraints />
                <RowConstraints />
@@ -73,6 +73,11 @@
 
 
             <HBox alignment="CENTER" spacing="15">
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addOnAction" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #a29bfe;" text="Add">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
                 <Button fx:id="btnSave" onAction="#saveOnAction" prefWidth="100" style="-fx-background-color: #ffeaa7;" text="Save">
                <font>
                   <Font name="System Bold" size="12.0" />

@@ -13,16 +13,16 @@
 
       <VBox prefHeight="657.0" prefWidth="204.0" spacing="10" style="-fx-background-color: linear-gradient(to right, #11998e, #38ef7d); -fx-padding: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="117.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/GREEN%20LOOP.png" />
-               </image>
-            </ImageView>
             <Label prefHeight="27.0" prefWidth="117.0" style="-fx-background-color: #ecf0f1;" text="Dashboard EMS" textFill="#17aa06">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
+            <ImageView fitHeight="117.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/GREEN%20LOOP.png" />
+               </image>
+            </ImageView>
             <Button fx:id="btnEmployee" onAction="#employeeOnAction" prefWidth="160" style="-fx-background-color: #16a085;" text="Employee" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -52,10 +52,6 @@
                   <Font name="System Bold" size="14.0" />
                </font></Button>
             <Button fx:id="btnPosition" onAction="#positionOnAction" prefWidth="160" style="-fx-background-color: #16a085;" text="Position" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font></Button>
-            <Button fx:id="btnEmployeeEquipment" onAction="#emeqOnAction" prefWidth="160" style="-fx-background-color: #16a085;" text="Employee Equipment" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>

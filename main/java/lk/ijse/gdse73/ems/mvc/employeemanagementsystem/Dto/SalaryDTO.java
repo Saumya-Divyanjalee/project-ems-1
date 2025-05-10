@@ -1,6 +1,6 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto;
 
-public class SalaryDto {
+public class SalaryDTO {
     private String salary_id;
     private double basic_salary;
     private int ot_hours;
@@ -9,7 +9,7 @@ public class SalaryDto {
     private String dtype_id;
 
 
-    public SalaryDto(String salary_id, double basic_salary, int ot_hours, double deduction, String employee_id, String dtype_id) {
+    public SalaryDTO(String salary_id, double basic_salary, int ot_hours, double deduction, String employee_id, String dtype_id) {
         this.salary_id = salary_id;
         this.basic_salary = basic_salary;
         this.ot_hours = ot_hours;

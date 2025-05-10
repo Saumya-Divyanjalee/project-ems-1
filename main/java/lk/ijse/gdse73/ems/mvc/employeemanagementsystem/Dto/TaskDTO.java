@@ -1,6 +1,6 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto;
 
-public class TaskDto {
+public class TaskDTO {
     private String task_id;
     private String description;
     private java.sql.Date deadline;
@@ -8,7 +8,7 @@ public class TaskDto {
     private String employee_id;
 
 
-    public TaskDto(String task_id, String description, java.sql.Date deadline, String status, String employee_id) {
+    public TaskDTO(String task_id, String description, java.sql.Date deadline, String status, String employee_id) {
         this.task_id = task_id;
         this.description = description;
         this.deadline = deadline;

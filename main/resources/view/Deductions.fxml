@@ -44,7 +44,7 @@
         </VBox>
 
 
-        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" onSort="#tblOnAction" prefHeight="299.0" prefWidth="779.0">
+        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" onMouseClicked="#onClickTable" prefHeight="299.0" prefWidth="779.0">
             <columns>
                 <TableColumn fx:id="colDeductionId" prefWidth="168.66668701171875" text="Deduction ID" />
                 <TableColumn fx:id="colDeductionName" prefWidth="608.6666615804037" text="Deduction Name" />
@@ -71,13 +71,18 @@
             <Image url="@../../../../../../Downloads/GREEN%20LOOP.png" />
          </image>
       </ImageView>
-            <TextField fx:id="txtDeductionName" layoutX="120.0" layoutY="113.0" onAction="#deductionNameOnAction" prefHeight="25.0" prefWidth="383.0" promptText=" " />
+            <TextField fx:id="txtDeductionName" layoutX="120.0" layoutY="113.0" prefHeight="25.0" prefWidth="383.0" promptText=" " />
             <Label layoutX="20.0" layoutY="117.0" minWidth="100" text="Deduction Name" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-            <TextField fx:id="txtDeductionId" layoutX="117.0" layoutY="71.0" onAction="#deductionOnAction" prefHeight="25.0" prefWidth="383.0" promptText="D001" />
+            <TextField fx:id="txtDeductionId" layoutX="117.0" layoutY="71.0" prefHeight="25.0" prefWidth="383.0" promptText="D001" />
+      <Button fx:id="btnSaveId" layoutX="400.0" layoutY="184.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #fd79a8;" text="Save">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
 
     </children>
 

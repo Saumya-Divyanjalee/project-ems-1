@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 
 
-public class EmployeeDto {
+public class EmployeeDTO {
     private String employee_id;
     private String first_name;
     private String last_name;

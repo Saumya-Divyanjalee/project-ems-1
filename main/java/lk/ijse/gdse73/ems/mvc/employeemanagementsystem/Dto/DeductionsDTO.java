@@ -8,8 +8,9 @@ import lombok.*;
 @Getter
 @ToString
 
-public class DepartmentDto {
-    private String department_id;
-    private String d_name;
+public class DeductionsDTO {
+    private String deductionId;
+    private String deductionName;
+
 
 }

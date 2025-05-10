@@ -19,6 +19,9 @@ public class TaskController {
     public TableColumn colDescription;
     public TableColumn colDeadline;
     public TableColumn colStatus;
+    public TextField txtStatus;
+    public TextField txtDeadline;
+    public Button btnAdd;
 
     public void resetOnAction(ActionEvent actionEvent) {
     }
@@ -30,6 +33,10 @@ public class TaskController {
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
+
+    }
+
+    public void addOnAction(ActionEvent actionEvent) {
 
     }
 }

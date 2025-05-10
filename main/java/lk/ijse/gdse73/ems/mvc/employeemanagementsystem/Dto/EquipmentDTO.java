@@ -1,12 +1,12 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto;
 
-public class EquipmentDto {
+public class EquipmentDTO {
     private String equipment_id;
     private String equipment_name;
     private String employee_id;
 
 
-    public EquipmentDto(String equipment_id, String equipment_name, String employee_id) {
+    public EquipmentDTO(String equipment_id, String equipment_name, String employee_id) {
         this.equipment_id = equipment_id;
         this.equipment_name = equipment_name;
         this.employee_id = employee_id;

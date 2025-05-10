@@ -1,12 +1,12 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto;
 
-public class PositionsDto {
+public class PositionsDTO {
     private String position_id;
     private String p_title;
     private String salary_grade;
 
 
-    public PositionsDto(String position_id, String p_title, String salary_grade) {
+    public PositionsDTO(String position_id, String p_title, String salary_grade) {
         this.position_id = position_id;
         this.p_title = p_title;
         this.salary_grade = salary_grade;
