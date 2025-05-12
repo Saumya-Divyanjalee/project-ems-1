@@ -10,66 +10,75 @@ import java.util.ArrayList;
 public class UserModel {
 
     public static String getNextUserId() throws SQLException, ClassNotFoundException {
-        ResultSet rs = CrudUtil.execute("SELECT user_id FROM users ORDER BY user_id DESC LIMIT 1");
-        char prefix = 'U';
+        ResultSet rs = CrudUtil.execute("SELECT user_id FROM user ORDER BY user_id DESC LIMIT 1");
+        char tableCharacter= 'U';
 
         if (rs.next()) {
             String lastId = rs.getString(1);
-            int number = Integer.parseInt(lastId.substring(1));
-            number++;
-            return String.format(prefix + "%03d", number);
+            String lastIdNumberString = lastId.substring(1);
+            int lastIdNumber = Integer.parseInt(lastIdNumberString);
+            int nextId = lastIdNumber + 1;
+            String nextIdString = String.format(tableCharacter + "%03d",nextId);
+            return nextIdString;
         }
-        return prefix + "001";
+        return tableCharacter + "001";
     }
 
     public static boolean saveUser(UserDTO dto) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
-                "INSERT INTO users (user_id, user_name, u_mobile, u_email, u_role) VALUES (?, ?, ?, ?, ?)",
+                "INSERT INTO user VALUES (?, ?, ?, ?, ?)",
                 dto.getUser_id(), dto.getUser_name(), dto.getU_mobile(), dto.getU_email(), dto.getU_role()
         );
     }
 
+    public static ArrayList<UserDTO> getAllUsers() throws SQLException, ClassNotFoundException {
+        ResultSet rs = CrudUtil.execute("SELECT * FROM user");
+        ArrayList<UserDTO> userDTOArrayList = new ArrayList<>();
+
+        while (rs.next()) {
+            UserDTO userDTO = new UserDTO(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5)
+            );
+userDTOArrayList.add(userDTO);
+        }
+
+        return userDTOArrayList;
+    }
+
+
     public static boolean updateUser(UserDTO dto) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
-                "UPDATE users SET user_name = ?, u_mobile = ?, u_email = ?, u_role = ? WHERE user_id = ?",
+                "UPDATE user SET user_name = ?, u_mobile = ?, u_email = ?, u_role = ? WHERE user_id = ?",
                 dto.getUser_name(), dto.getU_mobile(), dto.getU_email(), dto.getU_role(), dto.getUser_id()
         );
     }
 
     public static boolean deleteUser(String userId) throws SQLException, ClassNotFoundException {
-        return CrudUtil.execute("DELETE FROM users WHERE user_id = ?", userId);
+        return CrudUtil.execute("DELETE FROM user WHERE user_id = ?", userId);
     }
 
-    public static ArrayList<UserDTO> getAllUsers() throws SQLException, ClassNotFoundException {
-        ResultSet rs = CrudUtil.execute("SELECT * FROM users");
-        ArrayList<UserDTO> userList = new ArrayList<>();
-
+    public ArrayList<String> getAllUserIds() throws SQLException, ClassNotFoundException {
+        ResultSet rs = CrudUtil.execute("SELECT user_id FROM user");
+        ArrayList<String> list = new ArrayList<>();
         while (rs.next()) {
-            userList.add(new UserDTO(
-                    rs.getString("user_id"),
-                    rs.getString("user_name"),
-                    rs.getString("u_mobile"),
-                    rs.getString("u_email"),
-                    rs.getString("u_role")
-            ));
+            String userId = rs.getString(1);
+            list.add(userId);
         }
-
-        return userList;
+        return list;
     }
 
 
 
-    public static UserDTO findUserById(String userId) throws SQLException, ClassNotFoundException {
-        ResultSet rs = CrudUtil.execute("SELECT * FROM users WHERE user_id = ?", userId);
+
+    public  String findUserById(String userId) throws SQLException, ClassNotFoundException {
+        ResultSet rs = CrudUtil.execute("SELECT * FROM user WHERE user_id = ?", userId);
 
         if (rs.next()) {
-            return new UserDTO(
-                    rs.getString("user_id"),
-                    rs.getString("user_name"),
-                    rs.getString("u_mobile"),
-                    rs.getString("u_email"),
-                    rs.getString("u_role")
-            );
+            return rs.getString(1);
         }
 
         return null;

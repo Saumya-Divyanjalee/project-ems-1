@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="647.0" prefWidth="765.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DeductionsController">
+<AnchorPane prefHeight="647.0" prefWidth="1242.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DeductionsController">
 
     <children>
 
@@ -42,25 +42,21 @@
         </VBox>
 
 
-        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" onMouseClicked="#onClickTable" prefHeight="299.0" prefWidth="779.0">
+        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" onMouseClicked="#onClickTable" prefHeight="299.0" prefWidth="1211.0">
             <columns>
-                <TableColumn fx:id="colDeductionId" prefWidth="168.66668701171875" text="Deduction ID" />
-                <TableColumn fx:id="colDeductionName" prefWidth="608.6666615804037" text="Deduction Name" />
+                <TableColumn fx:id="colDeductionId" prefWidth="194.00002479553223" text="Deduction ID" />
+                <TableColumn fx:id="colDeductionName" prefWidth="583.9999542236328" text="Deduction Name" />
             </columns>
         </TableView>
-            <Button fx:id="btnAdd" layoutX="20.0" layoutY="184.0" onAction="#addOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ffeaa7;" text="Add">
+            <Button fx:id="btnUpdate" layoutX="832.0" layoutY="184.0" onAction="#updateOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #00cec9;" text="Update">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-            <Button fx:id="btnUpdate" layoutX="120.0" layoutY="184.0" onAction="#updateOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #00cec9;" text="Update">
+            <Button fx:id="btnDelete" layoutX="969.0" layoutY="184.0" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #ff7675;" text="Delete">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-            <Button fx:id="btnDelete" layoutX="215.0" layoutY="184.0" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #ff7675;" text="Delete">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-            <Button fx:id="btnReset" layoutX="309.0" layoutY="184.0" onAction="#resetOnAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #b2bec3;" text="Reset">
+            <Button fx:id="btnReset" layoutX="1107.0" layoutY="184.0" onAction="#resetOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #b2bec3;" text="Reset">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -75,12 +71,16 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-            <TextField fx:id="txtDeductionId" layoutX="117.0" layoutY="71.0" prefHeight="25.0" prefWidth="383.0" promptText="D001" />
-      <Button fx:id="btnSaveId" layoutX="400.0" layoutY="184.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #fd79a8;" text="Save">
+      <Button fx:id="btnSaveId" layoutX="690.0" layoutY="184.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #ffeaa7;" text="Save">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Label fx:id="lblId" layoutX="120.0" layoutY="74.0" text="1" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
 
     </children>
 

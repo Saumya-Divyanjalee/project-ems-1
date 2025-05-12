@@ -16,6 +16,7 @@ public class AttendanceDTO {
     private String date;
     private String checkIn;
     private String checkOut;
+    private String status;
 
 
 

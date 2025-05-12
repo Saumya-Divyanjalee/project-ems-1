@@ -71,11 +71,6 @@
 
 
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="952.0" spacing="15">
-            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addOnAction" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #a29bfe;" text=" Add">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
                 <Button fx:id="btnSave" onAction="#saveOnAction" prefWidth="100" style="-fx-background-color: #ffeaa7;" text="Save">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -95,7 +90,7 @@
             </HBox>
 
 
-            <TableView fx:id="tblUser" prefHeight="250" prefWidth="750">
+            <TableView fx:id="tblUser" onMouseClicked="#onClickTable" prefHeight="250" prefWidth="750">
                 <columns>
                     <TableColumn fx:id="colUserId" prefWidth="127.33330917358398" text="User ID" />
                     <TableColumn fx:id="colUserName" prefWidth="294.6667022705078" text="User Name" />

@@ -44,8 +44,7 @@ public class DeductionsController implements Initializable {
         colDeductionName.setCellValueFactory(new PropertyValueFactory<>("deductionName"));
 
         try {
-            loadTableData();
-            loadNextId();
+             resetPage();
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
@@ -60,7 +59,7 @@ public class DeductionsController implements Initializable {
 //                        dto.getDeductionId(), dto.getDeductionName())).toList()
 //        ));
 
-        ArrayList<DeductionsDTO> deductionsDTOArrayList = deductionsModel.getAllDeductions();
+        ArrayList<DeductionsDTO> deductionsDTOArrayList = DeductionsModel.getAllDeductions();
         ObservableList<DeductionsTM> deductionsTMS = FXCollections.observableArrayList();
 
         for (DeductionsDTO dto : deductionsDTOArrayList) {
