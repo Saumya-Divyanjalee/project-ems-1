@@ -17,7 +17,7 @@ public class SalaryController {
     public Button btnSave;
     public Button btnUpdate;
     public Button btnDelete;
-    public Button btnClear;
+     
     public TableView tblSalary;
     public TableColumn colSalaryId;
     public TableColumn colEmployeeId;
@@ -26,6 +26,8 @@ public class SalaryController {
     public TableColumn colDeduction;
     public TableColumn colDeductionType;
     public TableColumn colNetSalary;
+    public Button btnReset;
+    public Button btnAdd;
 
     public void resetOnAction(ActionEvent actionEvent) {
     }
@@ -37,6 +39,10 @@ public class SalaryController {
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
+
+    }
+
+    public void addOnAction(ActionEvent actionEvent) {
 
     }
 }

@@ -1,6 +1,7 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -12,6 +13,7 @@ import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.DeductionsModel;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -53,10 +55,24 @@ public class DeductionsController implements Initializable {
     }
 
     private void loadTableData() throws SQLException, ClassNotFoundException {
-        tblDeductions.setItems(FXCollections.observableArrayList(
-                deductionsModel.getAllDeductions().stream().map(dto -> new DeductionsTM(
-                        dto.getDeductionId(), dto.getDeductionName())).toList()
-        ));
+//        tblDeductions.setItems(FXCollections.observableArrayList(
+//                deductionsModel.getAllDeductions().stream().map(dto -> new DeductionsTM(
+//                        dto.getDeductionId(), dto.getDeductionName())).toList()
+//        ));
+
+        ArrayList<DeductionsDTO> deductionsDTOArrayList = deductionsModel.getAllDeductions();
+        ObservableList<DeductionsTM> deductionsTMS = FXCollections.observableArrayList();
+
+        for (DeductionsDTO dto : deductionsDTOArrayList) {
+            DeductionsTM tm = new DeductionsTM(
+                    dto.getDeductionId(),
+                    dto.getDeductionName()
+            );
+            deductionsTMS.add(tm);
+        }
+
+        tblDeductions.setItems(deductionsTMS);
+
     }
 
 

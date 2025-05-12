@@ -12,7 +12,6 @@ import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.AttendanceModel;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class AttendanceController implements Initializable {

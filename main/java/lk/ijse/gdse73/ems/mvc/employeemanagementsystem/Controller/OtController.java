@@ -3,7 +3,7 @@ package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
-public class OTController {
+public class OtController {
     public TextField txtOtId;
     public TextField txtEmployeeId;
     public TextField txtSalaryId;

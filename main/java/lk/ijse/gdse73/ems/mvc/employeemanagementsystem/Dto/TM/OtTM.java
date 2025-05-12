@@ -8,12 +8,13 @@ import lombok.*;
 @Setter
 @ToString
 
-public class SalaryTM {
-    private String salary_id;
-    private double basic_salary;
+public class OtTM {
+    private String ot_id;
     private int ot_hours;
-    private double deduction;
+    private java.sql.Date ot_date;
+    private double rate_per_hours;
     private String employee_id;
-    private String dtype_id;
+    private String salary_id;
+
 
 }

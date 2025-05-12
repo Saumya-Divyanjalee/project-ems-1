@@ -12,7 +12,7 @@ public class DeductionsModel {
 
     public static String getNextDeductionId() throws SQLException, ClassNotFoundException {
         ResultSet rs = CrudUtil.execute("SELECT dtype_id FROM deductions ORDER BY dtype_id DESC LIMIT 1");
-        char tableCharacter = 'C';
+        char tableCharacter = 'D';
         if (rs.next()) {
             String lastId = rs.getString(1);
             String lastIdNumberString = lastId.substring(1);
@@ -39,16 +39,15 @@ public class DeductionsModel {
         ResultSet rs = CrudUtil.execute("SELECT * FROM deductions");
         ArrayList<DeductionsDTO> list = new ArrayList<>();
 
-        ArrayList<DeductionsDTO> deductionsDTOArrayList = null;
         while (rs.next()) {
             DeductionsDTO deductionsDTO = new DeductionsDTO(
                     rs.getString(1),
                     rs.getString(2)
             );
-            deductionsDTOArrayList.add(deductionsDTO);
+            list.add(deductionsDTO);
         }
 
-        return deductionsDTOArrayList;
+        return list;
     }
 
 
@@ -68,7 +67,7 @@ public class DeductionsModel {
     }
 
     public ArrayList<String> getAllDeductionIds() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtil.execute("SELECT dtype_id FROM Deductions ");
+        ResultSet resultSet = CrudUtil.execute("SELECT dtype_id FROM deductions ");
         ArrayList<String> list = new ArrayList<>();
         while (resultSet.next()) {
             String id = resultSet.getString(1);
@@ -80,7 +79,7 @@ public class DeductionsModel {
 
     public String findNameByDeductionId(String selectDeductionId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute(
-                "SELECT FROM Deductions WHERE dtype_id = ? ", selectDeductionId
+                "SELECT FROM deductions WHERE dtype_id = ? ", selectDeductionId
         );
         if (resultSet.next()) {
             return resultSet.getString(1);

@@ -12,4 +12,5 @@ import lombok.*;
 public class DeductionsTM {
     private String deductionId;
     private String deductionName;
+
 }

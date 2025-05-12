@@ -79,7 +79,7 @@ public class DashboardController implements Initializable {
 
     public void otOnAction(ActionEvent actionEvent) {
 
-        nevigateTo("/view/OT.fxml");
+        nevigateTo("/view/Ot.fxml");
     }
 
     public void leaveOnAction(ActionEvent actionEvent) {
