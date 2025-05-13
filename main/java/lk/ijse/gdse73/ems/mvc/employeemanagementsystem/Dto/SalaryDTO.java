@@ -9,12 +9,12 @@ import lombok.*;
 
 
 public class SalaryDTO {
-    private String salary_id;
-    private double basic_salary;
-    private int ot_hours;
-    private double deduction;
-    private String employee_id;
-    private String dtype_id;
+    private String salaryId;
+    private String basicSalary;
+    private String otHours;
+    private String deduction;
+    private String employeeId;
+    private String dtypeId;
 
 
 

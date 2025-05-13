@@ -35,7 +35,6 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <TextField fx:id="txtTaskId" promptText="T001" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                 <Label text="Employee ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
                <font>
@@ -60,6 +59,11 @@
                </font></Label>
             <TextField fx:id="txtStatus" promptText="complete/pending..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="txtDeadline" promptText="yyyy-mm-dd" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="lblTaskId" text="1" textFill="WHITE" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
             <rowConstraints>
                <RowConstraints />
                <RowConstraints />
@@ -73,11 +77,6 @@
 
 
             <HBox alignment="CENTER" spacing="15">
-            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addOnAction" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #a29bfe;" text="Add">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
                 <Button fx:id="btnSave" onAction="#saveOnAction" prefWidth="100" style="-fx-background-color: #ffeaa7;" text="Save">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -97,7 +96,7 @@
             </HBox>
 
 
-            <TableView fx:id="tblTask" prefHeight="250" prefWidth="750">
+            <TableView fx:id="tblTask" onMouseClicked="#onClickTable" prefHeight="250" prefWidth="750">
                 <columns>
                     <TableColumn fx:id="colTaskId" prefWidth="166.00000381469727" text="Task ID" />
                     <TableColumn fx:id="colEmployeeId" prefWidth="184.0000457763672" text="Employee ID" />

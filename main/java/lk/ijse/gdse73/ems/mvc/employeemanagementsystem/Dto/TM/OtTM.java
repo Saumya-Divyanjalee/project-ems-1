@@ -9,12 +9,12 @@ import lombok.*;
 @ToString
 
 public class OtTM {
-    private String ot_id;
-    private int ot_hours;
-    private java.sql.Date ot_date;
-    private double rate_per_hours;
-    private String employee_id;
-    private String salary_id;
+    private String otId;
+    private String otHours;
+    private String otDate;
+    private String ratePerHours;
+    private String employeeId;
+    private String salaryId;
 
 
 }

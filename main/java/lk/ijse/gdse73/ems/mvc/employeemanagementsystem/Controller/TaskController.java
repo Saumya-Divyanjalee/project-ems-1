@@ -2,6 +2,7 @@ package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 public class TaskController {
     public TextField txtTaskId;
@@ -22,6 +23,7 @@ public class TaskController {
     public TextField txtStatus;
     public TextField txtDeadline;
     public Button btnAdd;
+    public Label lblTaskId;
 
     public void resetOnAction(ActionEvent actionEvent) {
     }
@@ -38,5 +40,8 @@ public class TaskController {
 
     public void addOnAction(ActionEvent actionEvent) {
 
+    }
+
+    public void onClickTable(MouseEvent mouseEvent) {
     }
 }

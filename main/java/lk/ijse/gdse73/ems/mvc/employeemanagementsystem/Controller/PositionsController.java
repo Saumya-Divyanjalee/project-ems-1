@@ -1,10 +1,8 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 public class PositionsController {
     public TextField txtPositionId;
@@ -18,6 +16,7 @@ public class PositionsController {
     public TableColumn colPositionId;
     public TableColumn colPositionTitle;
     public TableColumn colSalaryGrade;
+    public Label lblPosition;
 
     public void resetOnAction(ActionEvent actionEvent) {
     }
@@ -29,6 +28,10 @@ public class PositionsController {
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
+
+    }
+
+    public void onClickTable(MouseEvent mouseEvent) {
 
     }
 }

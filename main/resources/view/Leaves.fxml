@@ -2,8 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -37,37 +35,41 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <TextField fx:id="txtLeaveId" onAction="#leaveOnAction" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                 <Label text="Employee ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <TextField fx:id="txtEmployeeId" onAction="#eIdOnAction" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="txtEmployeeId" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                 <Label text="Status:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <ComboBox fx:id="cmbStatus" onAction="#statusOnAction" promptText="Pending/Approved" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                 <Label text="Leave Type:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <ComboBox fx:id="cmbLeaveType" onAction="#ltypeOnAction" promptText="Sick, Annual, Casual" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                <Label text="Start Date:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                <Label text="Start Date:" textFill="WHITE" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <DatePicker fx:id="dpStartDate" onAction="#startdateOnAction" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-                <Label text="End Date:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                <Label text="End Date:" textFill="WHITE" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <DatePicker fx:id="dpEndDate" onAction="#enddateOnAction" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="lblLeaveId" text="1" textFill="WHITE" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtEndDate" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtStartDate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtLeaveType" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtStatus" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <rowConstraints>
                <RowConstraints />
                <RowConstraints />
@@ -79,7 +81,7 @@
             </GridPane>
 
 
-            <HBox alignment="CENTER" spacing="15">
+            <HBox alignment="CENTER" prefHeight="35.0" prefWidth="941.0" spacing="15">
                 <Button fx:id="btnSave" onAction="#saveOnAction" prefWidth="100" style="-fx-background-color: #ffeaa7;" text="Save">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -99,7 +101,7 @@
             </HBox>
 
 
-            <TableView fx:id="tblLeaves" onSort="#tblOnAction" prefHeight="250" prefWidth="731.0">
+            <TableView fx:id="tblLeaves" onMouseClicked="#onClickTable" prefHeight="250" prefWidth="731.0">
                 <columns>
                     <TableColumn fx:id="colLeaveId" prefWidth="100" text="Leave ID" />
                     <TableColumn fx:id="colEmployeeId" prefWidth="100" text="Employee ID" />

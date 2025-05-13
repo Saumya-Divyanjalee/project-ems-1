@@ -1,10 +1,8 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 public class SalaryController {
     public TextField txtSalaryId;
@@ -28,6 +26,7 @@ public class SalaryController {
     public TableColumn colNetSalary;
     public Button btnReset;
     public Button btnAdd;
+    public Label lblSalaryId;
 
     public void resetOnAction(ActionEvent actionEvent) {
     }
@@ -44,5 +43,8 @@ public class SalaryController {
 
     public void addOnAction(ActionEvent actionEvent) {
 
+    }
+
+    public void onClickTable(MouseEvent mouseEvent) {
     }
 }

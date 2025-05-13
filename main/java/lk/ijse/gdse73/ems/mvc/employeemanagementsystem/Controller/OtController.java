@@ -2,6 +2,7 @@ package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 public class OtController {
     public TextField txtOtId;
@@ -21,6 +22,8 @@ public class OtController {
     public TableColumn colRatePerHour;
     public TableColumn colOtDate;
     public Button btnReset;
+    public Label lblOt;
+    public TextField txtOtDate;
 
     public void resetOnAction(ActionEvent actionEvent) {
     }
@@ -32,5 +35,9 @@ public class OtController {
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
+    }
+
+    public void onClickTable(MouseEvent mouseEvent) {
+
     }
 }

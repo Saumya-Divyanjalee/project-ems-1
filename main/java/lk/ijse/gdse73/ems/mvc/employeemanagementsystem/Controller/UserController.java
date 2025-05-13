@@ -42,6 +42,7 @@ public class UserController implements Initializable {
     private final String namePattern = "^[A-Za-z ]+$";
     private final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     private final String mobilePattern = "^\\d{10}$";
+    public Label lblUserId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

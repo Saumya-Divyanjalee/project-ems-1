@@ -35,7 +35,6 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-                <TextField fx:id="txtUserId" prefHeight="25.0" prefWidth="338.0" promptText="U001" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                 <Label text="User Name:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
                <font>
@@ -60,6 +59,11 @@
                   <Font name="System Bold" size="12.0" />
                </font></Label>
             <TextField fx:id="txtRole" promptText="admin" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="lblUserId" text="1" textFill="WHITE" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
             <rowConstraints>
                <RowConstraints />
                <RowConstraints />

@@ -11,11 +11,11 @@ import lombok.*;
 
 
 public class TaskDTO {
-    private String task_id;
+    private String taskId;
     private String description;
-    private java.sql.Date deadline;
+    private String deadline;
     private String status;
-    private String employee_id;
+    private String employeeId;
 
 
 
