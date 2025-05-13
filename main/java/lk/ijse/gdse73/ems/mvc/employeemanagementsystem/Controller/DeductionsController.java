@@ -18,9 +18,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DeductionsController implements Initializable {
-
+    public Label lblId;
     public TextField txtDeductionName;
-    public TextField txtDeductionId;
+
 
     public TableView<DeductionsTM> tblDeductions;
     public TableColumn<DeductionsTM, String> colDeductionId;
@@ -30,13 +30,14 @@ public class DeductionsController implements Initializable {
 
     private final DeductionsModel deductionsModel = new DeductionsModel();
 
-    public Button btnAdd;
+
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
     public Button btnSaveId;
 
     private final String deductionNamePattern = "^[A-Za-z ]+$";
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,7 +48,7 @@ public class DeductionsController implements Initializable {
              resetPage();
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+            new Alert(Alert.AlertType.ERROR, "Oops!...Something went wrong!").show();
         }
 
 
@@ -83,21 +84,19 @@ public class DeductionsController implements Initializable {
 
             btnSaveId.setDisable(false);
             btnDelete.setDisable(true);
-            btnReset.setDisable(true);
-
             btnUpdate.setDisable(true);
 
-            txtDeductionId.setText("");
+
             txtDeductionName.setText("");
 
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+            new Alert(Alert.AlertType.ERROR, "Oops!...Something went wrong!").show();
         }
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
-        String deductionId = txtDeductionId.getText();
+        String deductionId = lblId.getText();
         String deductionName = txtDeductionName.getText();
 
         boolean isValidName = deductionName.matches(deductionNamePattern);
@@ -111,7 +110,7 @@ public class DeductionsController implements Initializable {
         DeductionsDTO dto = new DeductionsDTO(deductionId, deductionName);
 
         try {
-            boolean isSaved = deductionsModel.saveDeduction(dto);
+            boolean isSaved = DeductionsModel.saveDeduction(dto);
             if (isSaved) {
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "Deduction saved successfully!").show();
@@ -125,13 +124,13 @@ public class DeductionsController implements Initializable {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
-        String deductionId = txtDeductionId.getText();
+        String deductionId = lblId.getText();
         String deductionName = txtDeductionName.getText();
 
         DeductionsDTO dto = new DeductionsDTO(deductionId, deductionName);
 
         try {
-            boolean isUpdated = deductionsModel.updateDeduction(dto);
+            boolean isUpdated = DeductionsModel.updateDeduction(dto);
             if (isUpdated) {
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "Deduction updated successfully!").show();
@@ -145,14 +144,14 @@ public class DeductionsController implements Initializable {
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
-        String deductionId = txtDeductionId.getText();
+        String deductionId = lblId.getText();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to delete?", ButtonType.YES, ButtonType.NO);
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.YES) {
             try {
-                boolean isDeleted = deductionsModel.deleteDeduction(deductionId);
+                boolean isDeleted = DeductionsModel.deleteDeduction(deductionId);
                 if (isDeleted) {
                     resetPage();
                     new Alert(Alert.AlertType.INFORMATION, "Deduction deleted successfully!").show();
@@ -171,26 +170,23 @@ public class DeductionsController implements Initializable {
     }
 
     private void loadNextId() throws SQLException, ClassNotFoundException {
-        String nextId = deductionsModel.getNextDeductionId();
-        txtDeductionId.setText(nextId);
+        String nextId = DeductionsModel.getNextDeductionId();
+        lblId.setText(nextId);
     }
 
     public void onClickTable(MouseEvent mouseEvent) {
         DeductionsTM selected = tblDeductions.getSelectionModel().getSelectedItem();
 
         if (selected != null) {
-            txtDeductionId.setText(selected.getDeductionId());
+            lblId.setText(selected.getDeductionId());
             txtDeductionName.setText(selected.getDeductionName());
 
             btnSaveId.setDisable(true);
-            btnAdd.setDisable(true);
             btnUpdate.setDisable(false);
             btnDelete.setDisable(false);
-            btnReset.setDisable(false);
+
         }
     }
 
-    public void addOnAction(ActionEvent actionEvent) {
-        saveOnAction(actionEvent);
-    }
+
 }

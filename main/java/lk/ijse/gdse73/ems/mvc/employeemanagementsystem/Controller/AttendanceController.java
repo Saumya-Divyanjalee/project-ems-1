@@ -21,18 +21,18 @@ import java.util.ResourceBundle;
 public class AttendanceController implements Initializable {
 
     public Label lblAttendanceId;
+    public TextField txtEmployeeId;
     public TextField txtDate;
-    public TextField txtStatus;
     public TextField txtCheckIn;
     public TextField txtCheckOut;
-    public TextField txtEmployeeId;
+    public TextField txtStatus;
 
     public TableView<AttendanceTM> tblAttendance;
     public TableColumn<AttendanceTM, String> colAttendanceId;
-    public TableColumn<AttendanceTM, String> colCheckIn;
-    public TableColumn<AttendanceTM, String> colCheckOut;
     public TableColumn<AttendanceTM, String> colEmployeeId;
     public TableColumn<AttendanceTM, String> colDate;
+    public TableColumn<AttendanceTM, String> colCheckIn;
+    public TableColumn<AttendanceTM, String> colCheckOut;
     public TableColumn<AttendanceTM, String> colStatus;
 
 
@@ -47,10 +47,10 @@ public class AttendanceController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colAttendanceId.setCellValueFactory(new PropertyValueFactory<>("attendanceId"));
-        colCheckIn.setCellValueFactory(new PropertyValueFactory<>("checkIn"));
-        colCheckOut.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
         colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colCheckIn.setCellValueFactory(new PropertyValueFactory<>("checkIn"));
+        colCheckOut.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
 
@@ -63,7 +63,7 @@ public class AttendanceController implements Initializable {
         }
     }
 
-    private void loadTableData() throws SQLException {
+    private void loadTableData() throws SQLException, ClassNotFoundException {
         ArrayList<AttendanceDTO> attendanceDTOArrayList = attendanceModel.getAllAttendance();
         ObservableList<AttendanceTM> attendanceTMS = FXCollections.observableArrayList();
 
@@ -91,9 +91,9 @@ public class AttendanceController implements Initializable {
             btnUpdate.setDisable(true);
 
             txtEmployeeId.setText("");
+            txtDate.setText("");
             txtCheckIn.setText("");
             txtCheckOut.setText("");
-            txtDate.setText("");
             txtStatus.setText("");
 
         }catch (Exception e) {
@@ -106,10 +106,10 @@ public class AttendanceController implements Initializable {
 
     public void saveOnAction(ActionEvent actionEvent) {
         String attendanceId = lblAttendanceId.getText();
-        String checkIn = txtCheckIn.getText();
-        String checkOut = txtCheckOut.getText();
         String employeeId = txtEmployeeId.getText();
         String date = txtDate.getText();
+        String checkIn = txtCheckIn.getText();
+        String checkOut = txtCheckOut.getText();
         String status = txtStatus.getText();
 
 
@@ -201,10 +201,10 @@ public class AttendanceController implements Initializable {
 
         if (attendanceTM != null){
             lblAttendanceId.setText(attendanceTM.getAttendanceId());
-            txtCheckIn.setText(attendanceTM.getCheckIn());
-            txtCheckOut.setText(attendanceTM.getCheckOut());
             txtEmployeeId.setText(attendanceTM.getEmployeeId());
             txtDate.setText(attendanceTM.getDate());
+            txtCheckIn.setText(attendanceTM.getCheckIn());
+            txtCheckOut.setText(attendanceTM.getCheckOut());
             txtStatus.setText(attendanceTM.getStatus());
 
             btnSave.setDisable(true);

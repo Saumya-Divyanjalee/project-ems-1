@@ -42,21 +42,21 @@
         </VBox>
 
 
-        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" onMouseClicked="#onClickTable" prefHeight="299.0" prefWidth="1211.0">
+        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" onMouseClicked="#onClickTable" prefHeight="299.0" prefWidth="979.0">
             <columns>
                 <TableColumn fx:id="colDeductionId" prefWidth="194.00002479553223" text="Deduction ID" />
                 <TableColumn fx:id="colDeductionName" prefWidth="583.9999542236328" text="Deduction Name" />
             </columns>
         </TableView>
-            <Button fx:id="btnUpdate" layoutX="832.0" layoutY="184.0" onAction="#updateOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #00cec9;" text="Update">
+            <Button fx:id="btnUpdate" layoutX="569.0" layoutY="184.0" onAction="#updateOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #00cec9;" text="Update">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-            <Button fx:id="btnDelete" layoutX="969.0" layoutY="184.0" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #ff7675;" text="Delete">
+            <Button fx:id="btnDelete" layoutX="714.0" layoutY="184.0" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #ff7675;" text="Delete">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-            <Button fx:id="btnReset" layoutX="1107.0" layoutY="184.0" onAction="#resetOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #b2bec3;" text="Reset">
+            <Button fx:id="btnReset" layoutX="859.0" layoutY="184.0" onAction="#resetOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #b2bec3;" text="Reset">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -71,7 +71,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="btnSaveId" layoutX="690.0" layoutY="184.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #ffeaa7;" text="Save">
+      <Button fx:id="btnSaveId" layoutX="423.0" layoutY="184.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #ffeaa7;" text="Save">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
