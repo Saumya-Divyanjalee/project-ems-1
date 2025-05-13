@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="518.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DepartmentController">
+<AnchorPane prefHeight="578.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DepartmentController">
 
-    <VBox alignment="TOP_CENTER" layoutX="-4.0" prefHeight="518.0" prefWidth="819.0" spacing="15.0" style="-fx-background-color: #007a5e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+    <VBox alignment="TOP_CENTER" layoutX="-4.0" prefHeight="596.0" prefWidth="819.0" spacing="15.0" style="-fx-background-color: #007a5e;" AnchorPane.bottomAnchor="-51.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
       <Label text="Department Management" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -45,15 +45,15 @@
             <font>
                <Font name="System Bold" size="12.0" />
             </font></Label>
-            <TextField fx:id="txtDepartmentName" onAction="#dnameOnAction" promptText="Enter Department Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDepartmentName" promptText="Enter Department Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
 
             <Label text="Employee ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
             <font>
                <Font name="System Bold" size="12.0" />
             </font></Label>
-            <TextField fx:id="txtEmployeeId" onAction="#eIdOnAction" promptText="Enter Employee ID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <Label text="1" textFill="WHITE" GridPane.columnIndex="1">
+            <TextField fx:id="txtEmployeeId" promptText="Enter Employee ID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Label fx:id="lblDepartmentId" text="1" textFill="WHITE" GridPane.columnIndex="1">
             <font>
                <Font name="System Bold" size="12.0" />
             </font>
@@ -66,22 +66,22 @@
         </GridPane>
 
 
-        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="695.0" spacing="10.0">
-            <Button fx:id="btnAdd" onAction="#addOnAction" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: #00cec9; -fx-text-fill: white;" text="Save">
+        <HBox alignment="CENTER" prefHeight="23.0" prefWidth="719.0" spacing="10.0">
+            <Button fx:id="btnSave" onAction="#SaveOnAction" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: #ffeaa7;" text="Save">
             <font>
                <Font name="System Bold" size="13.0" />
             </font></Button>
-            <Button fx:id="btnUpdate" onAction="#updateOnAction" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Update">
+            <Button fx:id="btnUpdate" onAction="#updateOnAction" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: #00cec9;" text="Update">
             <font>
                <Font name="System Bold" size="13.0" />
             </font></Button>
-            <Button fx:id="btnDelete" onAction="#deleteOnAction" prefHeight="30.0" prefWidth="105.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Delete">
+            <Button fx:id="btnDelete" onAction="#deleteOnAction" prefHeight="30.0" prefWidth="105.0" style="-fx-background-color: #ff7675;" text="Delete">
             <font>
                <Font name="System Bold" size="13.0" />
             </font></Button>
 
 
-            <Button fx:id="btnSearch" onAction="#searchOnAction" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: #FFC107;" text="Search">
+            <Button fx:id="btnReset" onAction="#resetOnAction" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: #b2bec3;" text="Reset">
                 <font>
                     <Font name="System Bold" size="13.0" />
                 </font>
@@ -92,7 +92,7 @@
         </HBox>
 
 
-        <TableView fx:id="tblDepartment" prefHeight="256.0" prefWidth="759.0">
+        <TableView fx:id="tblDepartment" onMouseClicked="#onClickTable" prefHeight="325.0" prefWidth="759.0">
             <columns>
                 <TableColumn fx:id="colDepartmentId" prefWidth="126.666659116745" text="Department ID" />
                 <TableColumn fx:id="colEmployeeId" minWidth="0.0" prefWidth="159.99998474121094" text="Employee ID" />

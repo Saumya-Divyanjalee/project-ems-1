@@ -10,17 +10,17 @@ import lombok.*;
 
 
 public class EmployeeDTO {
-    private String employee_id;
-    private String first_name;
-    private String last_name;
-    private java.sql.Date dob;
-    private int age;
+    private String employeeId;
+    private String firstName;
+    private String lastName;
+    private String dob;
+    private String age;
     private String email;
     private String contact;
-    private String e_address;
-    private java.sql.Date join_date;
-    private String department_id;
-    private String position_id;
+    private String eAddress;
+    private String joinDate;
+    private String departmentId;
+    private String positionId;
 
 
   }

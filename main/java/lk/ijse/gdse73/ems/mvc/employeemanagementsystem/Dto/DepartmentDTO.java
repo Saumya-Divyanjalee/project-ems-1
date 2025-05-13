@@ -9,7 +9,8 @@ import lombok.*;
 @ToString
 
 public class DepartmentDTO {
-    private String department_id;
-    private String d_name;
+    private String departmentId;
+    private String departmentName;
+    private String employeeId;
 
 }

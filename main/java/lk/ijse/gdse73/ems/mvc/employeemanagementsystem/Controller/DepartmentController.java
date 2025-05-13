@@ -1,42 +1,193 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.DepartmentDTO;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.DepartmentTM;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.DepartmentModel;
 
-public class DepartmentController {
-    public TextField txtDepartmentId;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
+public class DepartmentController implements Initializable {
+
+    public Label lblDepartmentId;
     public TextField txtDepartmentName;
     public TextField txtEmployeeId;
-    public Button btnSearch;
-    public Button btnAdd;
+
+    public TableView<DepartmentTM> tblDepartment;
+    public TableColumn<DepartmentTM, String> colDepartmentId;
+    public TableColumn<DepartmentTM, String> colDepartmentName;
+    public TableColumn<DepartmentTM, String> colEmployeeId;
+
+    private final DepartmentModel departmentModel = new DepartmentModel();
+
+    public Button btnSave;
     public Button btnUpdate;
     public Button btnDelete;
-    public TableView tblDepartment;
-    public TableColumn colDepartmentId;
-    public TableColumn colDepartmentName;
+    public Button btnReset;
 
-    public void tblOnAction(SortEvent<TableView> tableViewSortEvent) {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        colDepartmentId.setCellValueFactory(new PropertyValueFactory<>("departmentId"));
+        colDepartmentName.setCellValueFactory(new PropertyValueFactory<>("departmentName"));
+        colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+
+        try {
+            resetPage();
+        }catch (Exception e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Oops!...Something went wrong!").show();
+        }
+    }
+    private void loadTableData() throws SQLException, ClassNotFoundException {
+        ArrayList<DepartmentDTO> departmentDTOArrayList = departmentModel.getAllDepartment();
+        ObservableList<DepartmentTM> departmentTMS = FXCollections.observableArrayList();
+
+        for (DepartmentDTO departmentDTO : departmentDTOArrayList) {
+            DepartmentTM departmentTM = new DepartmentTM(
+                    departmentDTO.getDepartmentId(),
+                    departmentDTO.getDepartmentName(),
+                    departmentDTO.getEmployeeId()
+            );
+            departmentTMS.add(departmentTM);
+        }
+        tblDepartment.setItems(departmentTMS);
     }
 
-    public void deleteOnAction(ActionEvent actionEvent) {
+    private void resetPage(){
+        try {
+            loadTableData();
+            loadNextId();
+
+            btnSave.setDisable(false);
+            btnDelete.setDisable(true);
+            btnUpdate.setDisable(true);
+
+            txtDepartmentName.setText("");
+            txtEmployeeId.setText("");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Oops!...Something went wrong!").show();
+        }
     }
+
+    public void SaveOnAction(ActionEvent actionEvent) {
+        String departmentId = lblDepartmentId.getText();
+        String departmentName = txtDepartmentName.getText();
+        String employeeId = txtEmployeeId.getText();
+
+        DepartmentDTO departmentDTO = new DepartmentDTO(departmentId, departmentName, employeeId);
+
+        try {
+            boolean isSaved = departmentModel.saveDepartment(departmentDTO);
+
+            if (isSaved) {
+                resetPage();
+                new Alert(Alert.AlertType.INFORMATION, "Department saved successfully!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Department could not be saved!").show();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Oops!...Department could not be saved!").show();
+        }
+    }
+
+
 
     public void updateOnAction(ActionEvent actionEvent) {
+        String departmentId = lblDepartmentId.getText();
+        String departmentName = txtDepartmentName.getText();
+        String employeeId = txtEmployeeId.getText();
+
+        DepartmentDTO departmentDTO = new DepartmentDTO(departmentId, departmentName, employeeId);
+
+        try {
+            boolean isUpdated = departmentModel.updatedepartment(departmentDTO);
+            if (isUpdated) {
+                resetPage();
+                new Alert(Alert.AlertType.INFORMATION, "Department updated successfully!").show();
+
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Department could not be updated!").show();
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Oops!...Department could not be updated!").show();
+
+        }
+
     }
 
-    public void addOnAction(ActionEvent actionEvent) {
+
+
+    public void deleteOnAction(ActionEvent actionEvent) {
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Are you sure ?",
+                ButtonType.YES,
+                ButtonType.NO
+        );
+
+        Optional<ButtonType> response = alert.showAndWait();
+
+        if (response.isPresent() && response.get() == ButtonType.YES) {
+            String departmentId = lblDepartmentId.getText();
+            try {
+                boolean isDeleted = departmentModel.deletedepartment(departmentId);
+                if (isDeleted) {
+                    resetPage();
+                    new Alert(Alert.AlertType.INFORMATION, "Department deleted successfully!").show();
+
+                }else {
+                    new Alert(Alert.AlertType.ERROR, "Department could not be deleted!").show();
+
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Oops!...Department could not be deleted!").show();
+
+            }
+        }
+    }
+    public void resetOnAction(ActionEvent actionEvent) {
+        resetPage();
+
     }
 
-    public void dnameOnAction(ActionEvent actionEvent) {
-    }
-
-    public void eIdOnAction(ActionEvent actionEvent) {
-    }
-
-    public void searchOnAction(ActionEvent actionEvent) {
-    }
-
-    public void departmentIdOnAction(ActionEvent actionEvent) {
+    private  void loadNextId() throws SQLException, ClassNotFoundException {
+        String nextId = departmentModel.getNextDepartmentId();
+        lblDepartmentId.setText(nextId);
 
     }
+
+    public void onClickTable(MouseEvent mouseEvent) {
+        DepartmentTM selectedItem = tblDepartment.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            lblDepartmentId.setText(selectedItem.getDepartmentId());
+            txtDepartmentName.setText(selectedItem.getDepartmentName());
+            txtEmployeeId.setText(selectedItem.getEmployeeId());
+
+            btnSave.setDisable(true);
+            btnUpdate.setDisable(false);
+            btnDelete.setDisable(false);
+        }
+    }
+
+
+
 }

@@ -1,39 +1,45 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.SortEvent;
-import javafx.scene.control.TableView;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.EmployeeTM;
 
-public class EmployeeController {
-        public void eidOnAction(ActionEvent actionEvent) {
-        }
+public class EmployeeController implements Initializable {
 
-    public void efirstnameOnAction(ActionEvent actionEvent) {
-    }
+    public Label lblEmployeeId;
+    public TextField txtFirstName;
+    public TextField txtLastName;
+    public TextField txtDeptId;
+    public TextField txtAddress;
+    public TextField txtAge;
+    public TextField txtEmail;
+    public TextField txtContact;
+    public TextField txtPositionId;
+    public TextField txtDob;
+    public TextField txtJoinDate;
 
-    public void elastnameOnAction(ActionEvent actionEvent) {
-    }
 
-    public void departmentOnAction(ActionEvent actionEvent) {
-    }
+    public TableView<EmployeeTM> tblEmployees;
+    public TableColumn colEmpId;
+    public TableColumn colFirstName;
+    public TableColumn colLastName;
+    public TableColumn colDeptId;
+    public TableColumn colDOB;
+    public TableColumn colAddress;
+    public TableColumn colJoinDate;
+    public TableColumn colAge;
+    public TableColumn colEmail;
+    public TableColumn colContact;
+    public TableColumn colPositionId;
 
-    public void dobOnAction(ActionEvent actionEvent) {
-    }
 
-    public void addressOnAction(ActionEvent actionEvent) {
-    }
 
-    public void jdOnAction(ActionEvent actionEvent) {
-    }
-
-    public void ageOnAction(ActionEvent actionEvent) {
-    }
-
-    public void contactOnAction(ActionEvent actionEvent) {
-    }
-
-    public void pidOnAction(ActionEvent actionEvent) {
-    }
+    public Button btnSave;
+    public Button btnUpdate;
+    public Button btnDelete;
+    public Button btnReset;
 
     public void saveOnAction(ActionEvent actionEvent) {
     }
@@ -47,7 +53,7 @@ public class EmployeeController {
     public void resetOnAction(ActionEvent actionEvent) {
     }
 
-    public void tblOnAction(SortEvent<TableView> tableViewSortEvent) {
+    public void onClickTable(MouseEvent mouseEvent) {
 
     }
 }
