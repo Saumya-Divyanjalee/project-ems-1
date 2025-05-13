@@ -13,13 +13,13 @@ public class EmployeeDTO {
     private String employeeId;
     private String firstName;
     private String lastName;
+    private String departmentId;
     private String dob;
+    private String eAddress;
+    private String joinDate;
     private String age;
     private String email;
     private String contact;
-    private String eAddress;
-    private String joinDate;
-    private String departmentId;
     private String positionId;
 
 

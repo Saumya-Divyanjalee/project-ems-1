@@ -63,6 +63,11 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
+            <Button fx:id="btnEquipment" mnemonicParsing="false" onAction="#equipmentOnAction" prefWidth="160.0" style="-fx-background-color: #16a085;" text="Equipment" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
             <Button fx:id="btnSetting" mnemonicParsing="false" onAction="#settingOnAction" prefWidth="160.0" style="-fx-background-color: #16a085;" text=" Setting" textFill="#e4ff37">
                <font>
                   <Font name="System Bold" size="14.0" />

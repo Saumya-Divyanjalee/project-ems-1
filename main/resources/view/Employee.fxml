@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="922.0" prefWidth="1233.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.EmployeeController">
+<AnchorPane prefHeight="697.0" prefWidth="1233.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.EmployeeController">
    <children>
-      <VBox layoutX="-12.0" layoutY="-2.0" prefHeight="1053.0" prefWidth="1248.0" spacing="15.0" style="-fx-background-color: #007a5e;" AnchorPane.bottomAnchor="-129.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0">
+      <VBox layoutX="-12.0" layoutY="-2.0" prefHeight="714.0" prefWidth="1248.0" spacing="15.0" style="-fx-background-color: #007a5e;" AnchorPane.bottomAnchor="-15.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0">
          <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
 
 
@@ -119,7 +119,7 @@
          </GridPane>
 
 
-         <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1176.0" spacing="10">
+         <HBox alignment="CENTER" prefHeight="30.0" prefWidth="1228.0" spacing="10">
             <Button fx:id="btnSave" onAction="#saveOnAction" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #ffeaa7;" text="Save">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -139,15 +139,15 @@
          </HBox>
 
 
-         <TableView fx:id="tblEmployees" onMouseClicked="#onClickTable" prefHeight="353.0" prefWidth="1190.0">
+         <TableView fx:id="tblEmployees" onMouseClicked="#onClickTable" prefHeight="325.0" prefWidth="759.0">
             <columns>
                <TableColumn fx:id="colEmpId" prefWidth="66.00000190734863" text="Emp ID" />
                <TableColumn fx:id="colFirstName" prefWidth="107.99999237060547" text="First Name" />
                <TableColumn fx:id="colLastName" prefWidth="110.00004577636719" text="Last Name" />
-               <TableColumn fx:id="colDeptId" prefWidth="71.33331298828125" text="Dept ID" />
-               <TableColumn fx:id="colDOB" prefWidth="82.66668701171875" text="DOB" />
-               <TableColumn fx:id="colAddress" prefWidth="110.66665649414062" text="Address" />
-               <TableColumn fx:id="colJoinDate" prefWidth="100.66668701171875" text="Join Date" />
+               <TableColumn fx:id="colDeptId" prefWidth="88.66668701171875" text="Dept ID" />
+               <TableColumn fx:id="colDOB" prefWidth="66.0" text="DOB" />
+               <TableColumn fx:id="colAddress" prefWidth="132.66659545898438" text="Address" />
+               <TableColumn fx:id="colJoinDate" prefWidth="79.3333740234375" text="Join Date" />
                <TableColumn fx:id="colAge" prefWidth="60.66656494140625" text="Age" />
                <TableColumn fx:id="colEmail" prefWidth="112.66668701171875" text="Email" />
                <TableColumn fx:id="colContact" minWidth="0.0" prefWidth="118.6666259765625" text="Contact" />

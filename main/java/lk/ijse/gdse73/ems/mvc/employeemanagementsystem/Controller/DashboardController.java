@@ -92,9 +92,15 @@ public class DashboardController implements Initializable {
         nevigateTo("/view/Task.fxml");
     }
 
+    public void equipmentOnAction(ActionEvent actionEvent) {
+        nevigateTo("/view/Equipment.fxml");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         nevigateTo("/view/Employee.fxml");
     }
+
+
 }
