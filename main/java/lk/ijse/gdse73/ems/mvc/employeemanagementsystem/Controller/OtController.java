@@ -13,7 +13,6 @@ import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.OtModel;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -72,34 +71,43 @@ public class OtController implements Initializable {
                     dto.getOtHours(),
                     dto.getRatePerHours(),
                     dto.getOtDate()
-            );otTMS.add(otTM);
+            );
+            otTMS.add(otTM);
         }
 
         tblOtRecords.setItems(otTMS);
     }
 
-    private void resetPage() throws SQLException, ClassNotFoundException {
-        txtOtId.setText(otModel.getNextOtId());
-        txtEmployeeId.clear();
-        txtSalaryId.clear();
-        txtOtHours.clear();
-        txtRatePerHour.clear();
-        dpOtDate.setValue(null);
+    private void resetPage(){
 
-        btnSave.setDisable(false);
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
+        try {
+            loadTableData();
+            loadNextId();
 
-        loadTableData();
+            btnSave.setDisable(false);
+            btnUpdate.setDisable(true);
+            btnDelete.setDisable(true);
+
+            txtEmployeeId.setText("");
+            txtSalaryId.setText("");
+            txtOtHours.setText("");
+            txtRatePerHour.setText("");
+            txtOtDate.setText("");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+        }
+
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
-        String otId = txtOtId.getText();
+        String otId = lblOt.getText();
         String employeeId = txtEmployeeId.getText();
         String salaryId = txtSalaryId.getText();
         String otHours = txtOtHours.getText();
         String ratePerHour = txtRatePerHour.getText();
-        String otDate = dpOtDate.getValue() != null ? dpOtDate.getValue().format(DateTimeFormatter.ISO_DATE) : "";
+        String otDate = txtOtDate.getText();
 
         OtDTO dto = new OtDTO(otId, otHours, otDate, ratePerHour, employeeId, salaryId);
 
@@ -118,12 +126,13 @@ public class OtController implements Initializable {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
-        String otId = txtOtId.getText();
+        String otId = lblOt.getText();
         String employeeId = txtEmployeeId.getText();
         String salaryId = txtSalaryId.getText();
         String otHours = txtOtHours.getText();
         String ratePerHour = txtRatePerHour.getText();
-        String otDate = dpOtDate.getValue() != null ? dpOtDate.getValue().format(DateTimeFormatter.ISO_DATE) : "";
+        String otDate = txtOtDate.getText();
+
 
         OtDTO dto = new OtDTO(otId, otHours, otDate, ratePerHour, employeeId, salaryId);
 
@@ -142,12 +151,15 @@ public class OtController implements Initializable {
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
-        String otId = txtOtId.getText();
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure to delete?", ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Are you sure to delete?",
+                ButtonType.YES,
+                ButtonType.NO);
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.YES) {
+           String otId = lblOt.getText();
             try {
                 boolean isDeleted = otModel.deleteOt(otId);
                 if (isDeleted) {
@@ -164,24 +176,25 @@ public class OtController implements Initializable {
     }
 
     public void resetOnAction(ActionEvent actionEvent) {
-        try {
-            resetPage();
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Failed to reset page!").show();
-        }
+        resetPage();
+
+    }
+
+    private void loadNextId() throws SQLException, ClassNotFoundException {
+        String nextId = otModel.getNextOtId();
+        lblOt.setText(nextId);
     }
 
     public void onClickTable(MouseEvent mouseEvent) {
         OtTM selected = tblOtRecords.getSelectionModel().getSelectedItem();
 
         if (selected != null) {
-            txtOtId.setText(selected.getOtId());
+            lblOt.setText(selected.getOtId());
             txtEmployeeId.setText(selected.getEmployeeId());
             txtSalaryId.setText(selected.getSalaryId());
             txtOtHours.setText(selected.getOtHours());
             txtRatePerHour.setText(selected.getRatePerHours());
-            dpOtDate.setValue(java.time.LocalDate.parse(selected.getOtDate()));
+            txtOtDate.setText(selected.getOtDate());
 
             btnSave.setDisable(true);
             btnUpdate.setDisable(false);

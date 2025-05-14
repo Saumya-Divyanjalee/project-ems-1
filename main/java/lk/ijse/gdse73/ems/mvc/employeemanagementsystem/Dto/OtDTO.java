@@ -10,11 +10,14 @@ import lombok.*;
 
 public class OtDTO{
     private String otId;
-    private String otHours;
-    private String otDate;
-    private String ratePerHours;
     private String employeeId;
     private String salaryId;
+    private String otHours;
+    private String ratePerHours;
+    private String otDate;
+
+
+
 
 
 }
