@@ -12,7 +12,7 @@ public class OtModel {
     public ArrayList<OtDTO> getAllOt() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM OT");
 
-        ArrayList<OtDTO> otArrayList = new ArrayList<>();
+        ArrayList<OtDTO> otDTOArrayList = new ArrayList<>();
         while (resultSet.next()) {
             OtDTO ot = new OtDTO(
                     resultSet.getString(1),
@@ -22,21 +22,21 @@ public class OtModel {
                     resultSet.getString(5),
                     resultSet.getString(6)
             );
-            otArrayList.add(ot);
+            otDTOArrayList.add(ot);
         }
 
-        return otArrayList;
+        return otDTOArrayList;
     }
 
     public boolean saveOt(OtDTO dto) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
-                "INSERT INTO OT (ot_id, ot_hours, ot_date, rate_per_hours, employee_id, salary_id) VALUES (?, ?, ?, ?, ?, ?)",
-                 dto.getOtId(),
-                dto.getOtHours(),
-                dto.getOtDate(),
-                dto.getRatePerHours(),
+                "INSERT INTO OT VALUES (?, ?, ?, ?, ?, ?)",
+                dto.getOtId(),
                 dto.getEmployeeId(),
-                dto.getSalaryId()
+                dto.getSalaryId(),
+                dto.getOtHours(),
+                dto.getRatePerHours(),
+                dto.getOtDate()
         );
     }
 
@@ -61,14 +61,16 @@ public class OtModel {
 
     public String getNextOtId() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT ot_id FROM OT ORDER BY ot_id DESC LIMIT 1");
-        char tablePrefix = 'T'; // 'O' for OT
+        char tableCharacter = 'T';
 
         if (resultSet.next()) {
-            String lastId = resultSet.getString("ot_id"); // e.g., O001
-            int numericPart = Integer.parseInt(lastId.substring(1));
-            String nextId = String.format("%s%03d", tablePrefix, numericPart + 1);
-            return nextId;
+            String lastId = resultSet.getString(1);
+            String lastIdNumberString = lastId.substring(1);
+            int lastIdNumber = Integer.parseInt(lastIdNumberString);
+            int nextIdNUmber = lastIdNumber + 1;
+            String nextIdString = String.format(tableCharacter + "%03d", nextIdNUmber);
+            return nextIdString;
         }
-        return tablePrefix + "001"; // default first ID
+        return tableCharacter + "001";
     }
 }

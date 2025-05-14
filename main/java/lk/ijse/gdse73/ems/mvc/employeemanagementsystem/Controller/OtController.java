@@ -109,6 +109,7 @@ public class OtController implements Initializable {
         String ratePerHour = txtRatePerHour.getText();
         String otDate = txtOtDate.getText();
 
+
         OtDTO dto = new OtDTO(otId, otHours, otDate, ratePerHour, employeeId, salaryId);
 
         try {

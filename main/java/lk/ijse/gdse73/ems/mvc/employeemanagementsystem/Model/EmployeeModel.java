@@ -25,7 +25,7 @@ public class EmployeeModel {
 
     public boolean saveEmployee(EmployeeDTO dto) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
-                "INSERT INTO Employee ( employee_id, first_name, last_name, department_id, dob, e_address, join_date, age, email, contact, position_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO Employee VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 dto.getEmployeeId(),
                 dto.getFirstName(),
                 dto.getLastName(),
