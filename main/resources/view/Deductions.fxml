@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,78 +11,72 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="647.0" prefWidth="1242.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DeductionsController">
+<AnchorPane prefHeight="647.0" prefWidth="1242.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DeductionsController">
 
     <children>
 
-
-        <Label layoutX="20.0" layoutY="14.0" text="Deductions Management" textFill="WHITE">
+        <!-- Title -->
+        <Label layoutX="20.0" layoutY="14.0" text="Deductions Management" textFill="#273c75">
             <font>
-                <Font name="System Bold" size="20.0" />
+                <Font name="System Bold" size="24.0" />
             </font>
         </Label>
 
-
-        <VBox layoutX="20.0" layoutY="50.0" spacing="10.0">
+        <!-- Form Fields -->
+        <VBox layoutX="20.0" layoutY="60.0" spacing="15.0">
             <children>
 
+                <!-- Deduction ID -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label minWidth="120" text="Deduction ID" textFill="black">
+                        <font><Font name="System Bold" size="14.0" /></font>
+                    </Label>
+                    <Label fx:id="lblId" text="1" textFill="black">
+                        <font><Font name="System Bold" size="14.0" /></font>
+                    </Label>
+                </HBox>
 
-                <HBox spacing="10.0" />
+                <!-- Deduction Name -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label minWidth="120" text="Deduction Name" textFill="black">
+                        <font><Font name="System Bold" size="14.0" /></font>
+                    </Label>
+                    <TextField fx:id="txtDeductionName" prefWidth="400.0" promptText="Enter deduction name" />
+                </HBox>
 
+                <!-- Buttons -->
+                <HBox alignment="CENTER_LEFT" layoutY="20.0" prefHeight="53.0" prefWidth="1474.0" spacing="10.0">
+                    <Button fx:id="btnSaveId" onAction="#saveOnAction" prefWidth="100.0" style="-fx-background-color: #44bd32;" text="Save" textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font></Button>
+                    <Button fx:id="btnUpdate" onAction="#updateOnAction" prefWidth="100.0" style="-fx-background-color: #2980b9;" text="Update" textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font></Button>
+                    <Button fx:id="btnDelete" onAction="#deleteOnAction" prefWidth="100.0" style="-fx-background-color: #e84118;" text="Delete" textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font></Button>
+                    <Button fx:id="btnReset" onAction="#resetOnAction" prefWidth="100.0" style="-fx-background-color: #8e44ad;" text="Reset" textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font></Button>
+               <padding>
+                  <Insets left="500.0" />
+               </padding>
+                </HBox>
 
-                <HBox spacing="10.0" />
-                  <Label minWidth="100" text="Deduction ID" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-
-
-                <HBox alignment="CENTER_LEFT" spacing="10.0" />
-             </children>
+            </children>
         </VBox>
 
-
-        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" onMouseClicked="#onClickTable" prefHeight="325.0" prefWidth="1125.0">
+        <!-- Table -->
+        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="219.0" onMouseClicked="#onClickTable" prefHeight="371.0" prefWidth="1180.0">
             <columns>
-                <TableColumn fx:id="colDeductionId" prefWidth="194.00002479553223" text="Deduction ID" />
-                <TableColumn fx:id="colDeductionName" prefWidth="583.9999542236328" text="Deduction Name" />
+                <TableColumn fx:id="colDeductionId" prefWidth="200.0" text="Deduction ID" />
+                <TableColumn fx:id="colDeductionName" prefWidth="600.0" text="Deduction Name" />
             </columns>
         </TableView>
-            <Button fx:id="btnUpdate" layoutX="569.0" layoutY="184.0" onAction="#updateOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #00cec9;" text="Update">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-            <Button fx:id="btnDelete" layoutX="714.0" layoutY="184.0" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #ff7675;" text="Delete">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-            <Button fx:id="btnReset" layoutX="859.0" layoutY="184.0" onAction="#resetOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #b2bec3;" text="Reset">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-      <!--<ImageView fitHeight="48.0" fitWidth="45.0" layoutX="535.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Downloads/GREEN%20LOOP.png" />
-         </image>
-      </ImageView>-->
-            <TextField fx:id="txtDeductionName" layoutX="120.0" layoutY="113.0" prefHeight="25.0" prefWidth="383.0" promptText=" " />
-            <Label layoutX="20.0" layoutY="117.0" minWidth="100" text="Deduction Name" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnSaveId" layoutX="423.0" layoutY="184.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #ffeaa7;" text="Save">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Label fx:id="lblId" layoutX="120.0" layoutY="74.0" text="1" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
 
     </children>
-
 </AnchorPane>
