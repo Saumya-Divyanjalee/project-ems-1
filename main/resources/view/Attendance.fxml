@@ -12,94 +12,73 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="589.0" prefWidth="1124.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.AttendanceController">
+<AnchorPane prefHeight="732.0" prefWidth="1124.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.AttendanceController">
     <children>
 
-        <Label layoutX="20" layoutY="20" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Attendance Management" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="14.0" />
-            </font>
-        </Label>
-
-        <GridPane hgap="20" layoutX="20" layoutY="70" vgap="15">
+        <GridPane hgap="20" layoutX="20.0" layoutY="70.0" vgap="15">
             <columnConstraints>
-                <ColumnConstraints minWidth="120.0" />
-                <ColumnConstraints minWidth="200.0" />
+                <ColumnConstraints minWidth="150.0" />
+                <ColumnConstraints minWidth="220.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="30.0" />
-                <RowConstraints minHeight="30.0" />
-                <RowConstraints minHeight="30.0" />
-                <RowConstraints minHeight="30.0" />
-                <RowConstraints minHeight="30.0" />
+                <RowConstraints minHeight="35.0" />
+                <RowConstraints minHeight="35.0" />
+                <RowConstraints minHeight="35.0" />
+                <RowConstraints minHeight="35.0" />
+                <RowConstraints minHeight="35.0" />
             </rowConstraints>
             <children>
-                <Label text="Attendance ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                    <font><Font name="System Bold" size="12.0" /></font>
-                </Label>
+                <Label style="-fx-font-weight: bold;" text="Attendance ID:" textFill="#000000" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label fx:id="lblAttendanceId" text="1" textFill="#000000" GridPane.columnIndex="1" />
 
-                <Label text="Employee ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                    <font><Font name="System Bold" size="12.0" /></font>
-                </Label>
-                <TextField fx:id="txtEmployeeId" promptText="E001" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label style="-fx-font-weight: bold;" text="Date:" textFill="#000000" GridPane.rowIndex="2" />
+                <TextField fx:id="txtDate" promptText="yyyy-mm-dd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                <Label text="Date:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                    <font><Font name="System Bold" size="12.0" /></font>
-                </Label>
-
-                <Label text="Check In Time:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                    <font><Font name="System Bold" size="12.0" /></font>
-                </Label>
-                <TextField fx:id="txtCheckIn" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
-                <Label text="Check Out Time:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">
-                    <font><Font name="System Bold" size="12.0" /></font>
-                </Label>
-                <TextField fx:id="txtCheckOut" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label fx:id="lblAttendanceId" prefHeight="17.0" prefWidth="221.0" text="1" textFill="WHITE" GridPane.columnIndex="1">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtDate" promptText="yyyy-mm-dd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label style="-fx-font-weight: bold;" text="Check In Time:" textFill="#000000" GridPane.rowIndex="1" />
+                <TextField fx:id="txtCheckIn" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </children>
         </GridPane>
 
-        <Label layoutX="400.0" layoutY="254.0" text="Status:" textFill="WHITE">
-            <font><Font name="System Bold" size="12.0" /></font>
-        </Label>
+        <Label layoutX="452.0" layoutY="180.0" style="-fx-font-weight: bold;" text="Status:" textFill="#000000" />
+        <TextField fx:id="txtStatus" layoutX="558.0" layoutY="176.0" promptText="Present / Absent" />
 
-        <HBox layoutX="298.0" layoutY="300" prefHeight="25.0" prefWidth="876.0" spacing="15">
-            <Button fx:id="btnSave" onAction="#saveOnAction" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: #ffeaa7;" text="Save" textFill="#1b0000">
-                <font><Font name="System Bold" size="12.0" /></font>
-            </Button>
-            <Button fx:id="btnUpdate" onAction="#updateOnAction" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #00cec9;" text="Update">
-                <font><Font name="System Bold" size="12.0" /></font>
-            </Button>
-            <Button fx:id="btnDelete" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: #ff7675;" text="Delete">
-                <font><Font name="System Bold" size="12.0" /></font>
-            </Button>
-            <Button fx:id="btnReset" onAction="#resetOnAction" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #b2bec3;" text="Reset">
-                <font><Font name="System Bold" size="12.0" /></font>
-            </Button>
+        <HBox layoutX="271.0" layoutY="221.0" prefHeight="17.0" prefWidth="441.0" spacing="15">
+            <Button fx:id="btnSave" onAction="#saveOnAction" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #44bd32;" text="Save" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
+            <Button fx:id="btnUpdate" onAction="#updateOnAction" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #2980b9;" text="Update" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
+            <Button fx:id="btnDelete" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #c0392b;" text="Delete" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
+            <Button fx:id="btnReset" onAction="#resetOnAction" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #8e44ad;" text="Reset" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
         </HBox>
 
-        <TableView fx:id="tblAttendance" layoutX="28.0" layoutY="356.0" onMouseClicked="#onClickTable" prefHeight="219.0" prefWidth="797.0">
+        <TableView fx:id="tblAttendance" layoutX="28.0" layoutY="286.0" onMouseClicked="#onClickTable" prefHeight="437.0" prefWidth="1060.0" style="-fx-background-color: white;">
             <columns>
-                <TableColumn fx:id="colAttendanceId" prefWidth="124.66665077209473" text="Attendance ID" />
-                <TableColumn fx:id="colEmployeeId" prefWidth="99.33334350585938" text="Employee ID" />
-                <TableColumn fx:id="colDate" prefWidth="142.66664123535156" text="Date" />
-                <TableColumn fx:id="colCheckIn" prefWidth="143.33334350585938" text="Check In" />
-                <TableColumn fx:id="colCheckOut" prefWidth="123.3333740234375" text="Check Out" />
-            <TableColumn fx:id="colStatus" prefWidth="160.6666259765625" text="Status" />
+                <TableColumn fx:id="colAttendanceId" prefWidth="140.0" text="Attendance ID" />
+                <TableColumn fx:id="colEmployeeId" prefWidth="120.0" text="Employee ID" />
+                <TableColumn fx:id="colDate" prefWidth="140.0" text="Date" />
+                <TableColumn fx:id="colCheckIn" prefWidth="181.33334350585938" text="Check In" />
+                <TableColumn fx:id="colCheckOut" prefWidth="180.0" text="Check Out" />
+                <TableColumn fx:id="colStatus" prefWidth="299.3333740234375" text="Status" />
             </columns>
         </TableView>
+          <TextField fx:id="txtEmployeeId" layoutX="558.0" layoutY="77.0" promptText="E001" />
 
-        <!--<ImageView fitHeight="51.0" fitWidth="55.0" layoutX="725.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-             <image>
-                <Image url="@../../../../../../Downloads/GREEN%20LOOP.png" />
-            </image>
-        </ImageView>-->
-      <TextField fx:id="txtStatus" layoutX="447.0" layoutY="250.0" promptText="Present/Absent" />
+          <Label layoutX="452.0" layoutY="81.0" style="-fx-font-weight: bold;" text="Employee ID:" textFill="#000000" />
+
+          <Label layoutX="452.0" layoutY="127.0" style="-fx-font-weight: bold;" text="Check Out Time:" textFill="#000000" />
+          <TextField fx:id="txtCheckOut" layoutX="558.0" layoutY="123.0" promptText="HH:mm" />
+
+              <Label layoutX="28.0" layoutY="14.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Attendance Management" textFill="#273c75" />
+
     </children>
 </AnchorPane>

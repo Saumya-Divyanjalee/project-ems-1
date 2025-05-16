@@ -14,10 +14,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="534.0" prefWidth="877.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.PositionsController">
+<AnchorPane prefHeight="612.0" prefWidth="1178.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.PositionsController">
 
     <children>
-        <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" prefHeight="514.0" prefWidth="849.0" spacing="20">
+        <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" prefHeight="579.0" prefWidth="1145.0" spacing="20">
             <padding>
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
@@ -83,7 +83,7 @@
             </HBox>
 
 
-            <TableView fx:id="tblPositions" onMouseClicked="#onClickTable" prefHeight="250" prefWidth="650">
+            <TableView fx:id="tblPositions" onMouseClicked="#onClickTable" prefHeight="325.0" prefWidth="759.0">
                 <columns>
                     <TableColumn fx:id="colPositionId" prefWidth="154.66668319702148" text="Position ID" />
                     <TableColumn fx:id="colPositionTitle" prefWidth="343.99998474121094" text="Position Title" />

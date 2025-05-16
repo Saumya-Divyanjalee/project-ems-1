@@ -14,10 +14,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="656.0" prefWidth="1022.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.LeavesController">
+<AnchorPane prefHeight="656.0" prefWidth="1103.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.LeavesController">
 
     <children>
-        <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="10.0" prefHeight="636.0" prefWidth="981.0" spacing="20">
+        <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="10.0" prefHeight="636.0" prefWidth="1081.0" spacing="20">
             <padding>
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
@@ -101,7 +101,7 @@
             </HBox>
 
 
-            <TableView fx:id="tblLeaves" onMouseClicked="#onClickTable" prefHeight="250" prefWidth="731.0">
+            <TableView fx:id="tblLeaves" onMouseClicked="#onClickTable" prefHeight="259.0" prefWidth="972.0">
                 <columns>
                     <TableColumn fx:id="colLeaveId" prefWidth="100" text="Leave ID" />
                     <TableColumn fx:id="colEmployeeId" prefWidth="100" text="Employee ID" />

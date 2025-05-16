@@ -42,7 +42,7 @@
         </VBox>
 
 
-        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" onMouseClicked="#onClickTable" prefHeight="299.0" prefWidth="979.0">
+        <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="240.0" onMouseClicked="#onClickTable" prefHeight="325.0" prefWidth="1125.0">
             <columns>
                 <TableColumn fx:id="colDeductionId" prefWidth="194.00002479553223" text="Deduction ID" />
                 <TableColumn fx:id="colDeductionName" prefWidth="583.9999542236328" text="Deduction Name" />

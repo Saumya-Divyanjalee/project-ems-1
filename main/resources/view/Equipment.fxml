@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="594.0" prefWidth="817.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.EquipmentController">
+<AnchorPane prefHeight="686.0" prefWidth="1198.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.EquipmentController">
 
     <children>
         <VBox alignment="TOP_CENTER" layoutX="50.0" layoutY="5.0" prefHeight="267.0" prefWidth="746.0" spacing="20">
@@ -82,7 +82,7 @@
                </font></Button>
             </HBox>
         </VBox>
-      <TableView fx:id="tblID" layoutX="32.0" layoutY="287.0" onMouseClicked="#onClickTable" prefHeight="289.0" prefWidth="762.0">
+      <TableView fx:id="tblID" layoutX="32.0" layoutY="287.0" onMouseClicked="#onClickTable" prefHeight="379.0" prefWidth="1116.0">
         <columns>
           <TableColumn fx:id="colEqId" prefWidth="151.3333384990692" text="Equipment ID" />
           <TableColumn fx:id="colEqName" prefWidth="421.9999694824219" text="Equipment Name" />

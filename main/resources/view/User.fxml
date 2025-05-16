@@ -14,10 +14,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="602.0" prefWidth="1049.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.UserController">
+<AnchorPane prefHeight="677.0" prefWidth="1188.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.UserController">
 
     <children>
-        <VBox layoutX="20.0" layoutY="20.0" prefHeight="576.0" prefWidth="1009.0" spacing="20">
+        <VBox layoutX="20.0" layoutY="20.0" prefHeight="641.0" prefWidth="1166.0" spacing="20">
             <padding>
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
@@ -94,7 +94,7 @@
             </HBox>
 
 
-            <TableView fx:id="tblUser" onMouseClicked="#onClickTable" prefHeight="250" prefWidth="750">
+            <TableView fx:id="tblUser" onMouseClicked="#onClickTable" prefHeight="408.0" prefWidth="1126.0">
                 <columns>
                     <TableColumn fx:id="colUserId" prefWidth="127.33330917358398" text="User ID" />
                     <TableColumn fx:id="colUserName" prefWidth="294.6667022705078" text="User Name" />
