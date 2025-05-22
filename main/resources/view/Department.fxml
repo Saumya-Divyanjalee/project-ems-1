@@ -16,16 +16,16 @@
 
 <AnchorPane prefHeight="578.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DepartmentController">
 
-    <VBox alignment="TOP_CENTER" layoutX="-4.0" prefHeight="596.0" prefWidth="819.0" spacing="15.0" style="-fx-background-color: #007a5e;" AnchorPane.bottomAnchor="-51.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
-      <Label text="Department Management" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <VBox.margin>
-            <Insets left="5.0" top="10.0" />
-         </VBox.margin>
-      </Label>
+    <VBox alignment="TOP_CENTER" layoutX="-4.0" prefHeight="596.0" prefWidth="819.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="-51.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
 
+        <Label text="Department Management" textFill="#273c75">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+            <VBox.margin>
+                <Insets left="5.0" top="10.0" />
+            </VBox.margin>
+        </Label>
 
         <GridPane hgap="10.0" vgap="10.0">
             <columnConstraints>
@@ -34,73 +34,59 @@
                 <ColumnConstraints minWidth="300.0" />
             </columnConstraints>
 
+            <Label prefHeight="17.0" prefWidth="107.0" text="Department ID:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
 
-            <Label text="Department ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font></Label>
-
-
-            <Label text="Department Name:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font></Label>
+            <Label text="Department Name:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
             <TextField fx:id="txtDepartmentName" promptText="Enter Department Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-
-            <Label text="Employee ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font></Label>
+            <Label prefHeight="17.0" prefWidth="105.0" text="Employee ID:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
             <TextField fx:id="txtEmployeeId" promptText="Enter Employee ID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         <Label fx:id="lblDepartmentId" text="1" textFill="WHITE" GridPane.columnIndex="1">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font>
-         </Label>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
+
+            <Label fx:id="lblDepartmentId" text="1" textFill="black" GridPane.columnIndex="1">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
         </GridPane>
 
+        <HBox alignment="CENTER" prefHeight="32.0" prefWidth="719.0" spacing="10.0">
+            <Button fx:id="btnSave" onAction="#SaveOnAction" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: #44bd32; -fx-text-fill: white; -fx-font-weight: bold;" text="Save" />
+            <Button fx:id="btnUpdate" onAction="#updateOnAction" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: #6c5ce7; -fx-text-fill: white; -fx-font-weight: bold;" text="Update" />
+            <Button fx:id="btnDelete" onAction="#deleteOnAction" prefHeight="30.0" prefWidth="105.0" style="-fx-background-color: #d63031; -fx-text-fill: white; -fx-font-weight: bold;" text="Delete" />
+            <Button fx:id="btnReset" onAction="#resetOnAction" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-font-weight: bold;" text="Reset" />
 
-        <HBox alignment="CENTER" prefHeight="23.0" prefWidth="719.0" spacing="10.0">
-            <Button fx:id="btnSave" onAction="#SaveOnAction" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: #ffeaa7;" text="Save">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font></Button>
-            <Button fx:id="btnUpdate" onAction="#updateOnAction" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: #00cec9;" text="Update">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font></Button>
-            <Button fx:id="btnDelete" onAction="#deleteOnAction" prefHeight="30.0" prefWidth="105.0" style="-fx-background-color: #ff7675;" text="Delete">
-            <font>
-               <Font name="System Bold" size="13.0" />
-            </font></Button>
-
-
-            <Button fx:id="btnReset" onAction="#resetOnAction" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: #b2bec3;" text="Reset">
-                <font>
-                    <Font name="System Bold" size="13.0" />
-                </font>
-            </Button>
-         <VBox.margin>
-            <Insets left="100.0" top="10.0" />
-         </VBox.margin>
+            <VBox.margin>
+                <Insets left="100.0" top="10.0" />
+            </VBox.margin>
         </HBox>
 
-
-        <TableView fx:id="tblDepartment" onMouseClicked="#onClickTable" prefHeight="325.0" prefWidth="759.0">
+        <TableView fx:id="tblDepartment" onMouseClicked="#onClickTable" prefHeight="375.0" prefWidth="778.0">
             <columns>
-                <TableColumn fx:id="colDepartmentId" prefWidth="126.666659116745" text="Department ID" />
-                <TableColumn fx:id="colEmployeeId" minWidth="0.0" prefWidth="159.99998474121094" text="Employee ID" />
-            <TableColumn fx:id="colDepartmentName" prefWidth="498.0000305175781" text="Department Name" />
+                <TableColumn fx:id="colDepartmentId" prefWidth="126.66" text="Department ID" />
+                <TableColumn fx:id="colEmployeeId" prefWidth="160.0" text="Employee ID" />
+                <TableColumn fx:id="colDepartmentName" prefWidth="498.0" text="Department Name" />
             </columns>
-         <VBox.margin>
-            <Insets left="30.0" right="30.0" top="30.0" />
-         </VBox.margin>
+            <VBox.margin>
+                <Insets left="30.0" right="30.0" top="30.0" />
+            </VBox.margin>
         </TableView>
 
     </VBox>

@@ -91,6 +91,11 @@ public class DashboardController implements Initializable {
 
         nevigateTo("/view/Task.fxml");
     }
+    public void calOnAction(ActionEvent actionEvent) {
+        nevigateTo("/view/Calculator.fxml");
+    }
+
+
 
     public void equipmentOnAction(ActionEvent actionEvent) {
         nevigateTo("/view/Equipment.fxml");
@@ -101,6 +106,7 @@ public class DashboardController implements Initializable {
 
         nevigateTo("/view/Employee.fxml");
     }
+
 
 
 }

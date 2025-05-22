@@ -13,145 +13,95 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="697.0" prefWidth="1233.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.EmployeeController">
    <children>
-      <VBox layoutX="-12.0" layoutY="-2.0" prefHeight="714.0" prefWidth="1248.0" spacing="15.0" style="-fx-background-color: #007a5e;" AnchorPane.bottomAnchor="-15.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0">
-         <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+      <VBox layoutX="-12.0" layoutY="-2.0" prefHeight="714.0" prefWidth="1248.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="-15.0" AnchorPane.leftAnchor="-12.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0">
 
+         <padding>
+            <Insets bottom="10" left="10" right="10" top="10" />
+         </padding>
 
-         <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Employee Management System" textFill="WHITE" />
+         <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="Employee Management System" textFill="#273c75">
+            <VBox.margin>
+               <Insets left="190.0" right="5.0" />
+            </VBox.margin></Label>
 
-
-         <GridPane hgap="10" vgap="10">
+         <GridPane hgap="10" minHeight="80.0" prefHeight="200.0" prefWidth="80.0" vgap="10">
             <columnConstraints>
-               <ColumnConstraints halignment="RIGHT" minWidth="120" />
-               <ColumnConstraints minWidth="200" />
+               <ColumnConstraints halignment="RIGHT" minWidth="120.0" />
+               <ColumnConstraints maxWidth="200.0" minWidth="150.0" prefWidth="200.0" />
+               <ColumnConstraints minWidth="200.0" />
+               <ColumnConstraints minWidth="200.0" />
             </columnConstraints>
 
+            <rowConstraints>
+               <RowConstraints /><RowConstraints /><RowConstraints /><RowConstraints />
+               <RowConstraints /><RowConstraints /><RowConstraints /><RowConstraints />
+               <RowConstraints /><RowConstraints /><RowConstraints /><RowConstraints />
+               <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" /><RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+            </rowConstraints>
+
+            <VBox.margin>
+               <Insets bottom="5.0" />
+            </VBox.margin>
 
             <children>
-               <Label text="Employee ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
+               <Label prefHeight="17.0" prefWidth="101.0" style="-fx-font-weight: bold;" text="Employee ID:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+               <Label fx:id="lblEmployeeId" style="-fx-font-weight: bold;" text="1" textFill="black" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-               <Label text="First Name:" textFill="WHITE" GridPane.rowIndex="2">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
-               <TextField fx:id="txtFirstName" promptText="e.g.,Johne" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <Label prefHeight="17.0" prefWidth="101.0" style="-fx-font-weight: bold;" text="First Name:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+               <TextField fx:id="txtFirstName" promptText="e.g., Johne" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-               <Label text="Last Name:" textFill="WHITE" GridPane.rowIndex="3">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
-               <TextField fx:id="txtLastName" promptText="e.g.,Fernando" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               <Label style="-fx-font-weight: bold;" text="Last Name:" textFill="black" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+               <TextField fx:id="txtLastName" promptText="e.g., Fernando" GridPane.columnIndex="3" GridPane.rowIndex="1" />
 
-               <Label text="Department ID:" textFill="WHITE" GridPane.rowIndex="4">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
-               <TextField fx:id="txtDeptId" promptText="e.g.,D001" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               <Label prefHeight="17.0" prefWidth="101.0" style="-fx-font-weight: bold;" text="Department ID:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+               <TextField fx:id="txtDeptId" promptText="e.g., D001" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-               <Label text="Date of Birth:" textFill="WHITE" GridPane.rowIndex="5">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
+               <Label prefHeight="17.0" prefWidth="99.0" style="-fx-font-weight: bold;" text="Date of Birth:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+               <TextField fx:id="txtDob" promptText="yyyy-mm-dd" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-               <Label text="Address:" textFill="WHITE" GridPane.rowIndex="6">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
-               <TextField fx:id="txtAddress" prefHeight="25.0" prefWidth="285.0" promptText="Enter the full residential address of the employee" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+               <Label style="-fx-font-weight: bold;" text="Age:" textFill="black" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+               <TextField fx:id="txtAge" promptText="e.g., 35" GridPane.columnIndex="3" GridPane.rowIndex="3" />
 
-               <Label text="Join Date:" textFill="WHITE" GridPane.rowIndex="7">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
+               <Label prefHeight="17.0" prefWidth="98.0" style="-fx-font-weight: bold;" text="Address:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+               <TextField fx:id="txtAddress" prefHeight="25.0" prefWidth="285.0" promptText="Enter full residential address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-               <Label text="Age:" textFill="WHITE" GridPane.rowIndex="8">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
-               <TextField fx:id="txtAge" promptText="e.g.,35" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+               <Label style="-fx-font-weight: bold;" text="Email:" textFill="black" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+               <TextField fx:id="txtEmail" promptText="e.g., employee@email.com" GridPane.columnIndex="3" GridPane.rowIndex="4" />
 
-               <Label text="Email:" textFill="WHITE" GridPane.rowIndex="9">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
-               <TextField fx:id="txtEmail" promptText="e.g.,employee@email.com" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+               <Label prefHeight="17.0" prefWidth="96.0" style="-fx-font-weight: bold;" text="Join Date:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+               <TextField fx:id="txtJoinDate" promptText="yyyy-mm-dd" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-               <Label text="Contact:" textFill="WHITE" GridPane.rowIndex="10">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
-               <TextField fx:id="txtContact" promptText="0700000000" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+               <Label style="-fx-font-weight: bold;" text="Contact:" textFill="black" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+               <TextField fx:id="txtContact" promptText="0700000000" GridPane.columnIndex="3" GridPane.rowIndex="5" />
 
-               <Label text="Position ID:" textFill="WHITE" GridPane.rowIndex="11">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Label>
-               <TextField fx:id="txtPositionId" promptText="e.g.,P001" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-               <Label fx:id="lblEmployeeId" text="1" textFill="WHITE" GridPane.columnIndex="1">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font>
-               </Label>
-               <TextField fx:id="txtDob" promptText="yyyy-mm-dd" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-               <TextField fx:id="txtJoinDate" promptText="yyyy-mm-dd" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+               <Label style="-fx-font-weight: bold;" text="Position ID:" textFill="black" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               <TextField fx:id="txtPositionId" promptText="e.g., P001" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             </children>
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
          </GridPane>
 
-
-         <HBox alignment="CENTER" prefHeight="30.0" prefWidth="1228.0" spacing="10">
-            <Button fx:id="btnSave" onAction="#saveOnAction" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #ffeaa7;" text="Save">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="btnUpdate" onAction="#updateOnAction" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #00cec9;" text="Update">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="btnDelete" onAction="#deleteOnAction" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #ff7675;" text="Delete">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="btnReset" onAction="#resetOnAction" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #b2bec3;" text="Reset">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
+         <HBox alignment="CENTER" prefHeight="21.0" prefWidth="1228.0" spacing="10">
+            <Button fx:id="btnSave" onAction="#saveOnAction" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;" text="Save" />
+            <Button fx:id="btnUpdate" onAction="#updateOnAction" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" text="Update" />
+            <Button fx:id="btnDelete" onAction="#deleteOnAction" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" text="Delete" />
+            <Button fx:id="btnReset" onAction="#resetOnAction" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-font-weight: bold;" text="Reset" />
          </HBox>
 
-
-         <TableView fx:id="tblEmployees" onMouseClicked="#onClickTable" prefHeight="325.0" prefWidth="759.0">
+         <TableView fx:id="tblEmployees" onMouseClicked="#onClickTable" prefHeight="379.0" prefWidth="1213.0" style="-fx-border-color: lightgray;">
             <columns>
-               <TableColumn fx:id="colEmpId" prefWidth="66.00000190734863" text="Emp ID" />
-               <TableColumn fx:id="colFirstName" prefWidth="107.99999237060547" text="First Name" />
-               <TableColumn fx:id="colLastName" prefWidth="110.00004577636719" text="Last Name" />
-               <TableColumn fx:id="colDeptId" prefWidth="88.66668701171875" text="Dept ID" />
-               <TableColumn fx:id="colDOB" prefWidth="66.0" text="DOB" />
-               <TableColumn fx:id="colAddress" prefWidth="132.66659545898438" text="Address" />
-               <TableColumn fx:id="colJoinDate" prefWidth="79.3333740234375" text="Join Date" />
-               <TableColumn fx:id="colAge" prefWidth="60.66656494140625" text="Age" />
-               <TableColumn fx:id="colEmail" prefWidth="112.66668701171875" text="Email" />
-               <TableColumn fx:id="colContact" minWidth="0.0" prefWidth="118.6666259765625" text="Contact" />
-               <TableColumn fx:id="colPositionId" prefWidth="144.0" text="Position ID" />
+               <TableColumn fx:id="colEmpId" text="Emp ID" />
+               <TableColumn fx:id="colFirstName" text="First Name" />
+               <TableColumn fx:id="colLastName" text="Last Name" />
+               <TableColumn fx:id="colDeptId" text="Dept ID" />
+               <TableColumn fx:id="colDOB" text="DOB" />
+               <TableColumn fx:id="colAddress" text="Address" />
+               <TableColumn fx:id="colJoinDate" text="Join Date" />
+               <TableColumn fx:id="colAge" text="Age" />
+               <TableColumn fx:id="colEmail" text="Email" />
+               <TableColumn fx:id="colContact" text="Contact" />
+               <TableColumn fx:id="colPositionId" text="Position ID" />
             </columns>
             <cursor>
                <Cursor fx:constant="CROSSHAIR" />
