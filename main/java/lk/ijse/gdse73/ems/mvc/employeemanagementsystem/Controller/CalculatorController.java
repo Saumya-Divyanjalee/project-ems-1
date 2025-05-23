@@ -30,7 +30,7 @@ public class CalculatorController {
     private double num1 = 0;
     private boolean startNewNumber = true;
 
-    // Digit buttons
+
     public void handle1ButtonClick(ActionEvent actionEvent) {
         appendNumber("1");
     }
@@ -61,14 +61,20 @@ public class CalculatorController {
     public void handle0ButtonClick(ActionEvent actionEvent) {
         appendNumber("0");
     }
+    public void handleSumOnAction(ActionEvent actionEvent) {
+        handleOperator("+");
+    }
+    public void handleMinusButtonClick(ActionEvent actionEvent) {
+        handleOperator("-");
+    }
+    public void handleStarButtonClick(ActionEvent actionEvent) {
+        handleOperator("*");
+    }
+    public void handleDivideButtonClick(ActionEvent actionEvent) {
+        handleOperator("/");
+    }
 
-    // Operators
-    public void handleSumOnAction(ActionEvent actionEvent) { handleOperator("+"); }
-    public void handleMinuesButtonClick(ActionEvent actionEvent) { handleOperator("-"); }
-    public void handleStarButtonClick(ActionEvent actionEvent) { handleOperator("*"); }
-    public void handleDivideButtonClick(ActionEvent actionEvent) { handleOperator("/"); }
 
-    // Equal button
     public void handleEqualOnAction(ActionEvent actionEvent) {
         try {
             double num2 = Double.parseDouble(txtdisplay.getText());
@@ -86,7 +92,7 @@ public class CalculatorController {
         }
     }
 
-    // Clear button
+
     public void handleClearOnAction(ActionEvent actionEvent) {
         txtdisplay.clear();
         num1 = 0;
@@ -94,7 +100,7 @@ public class CalculatorController {
         startNewNumber = true;
     }
 
-    // Utility methods
+
     private void appendNumber(String num) {
         if (startNewNumber) {
             txtdisplay.setText(num);
@@ -113,4 +119,6 @@ public class CalculatorController {
             txtdisplay.setText("Error");
         }
     }
+
+
 }

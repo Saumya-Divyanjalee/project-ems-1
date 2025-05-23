@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.MailController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <children>
+        <VBox spacing="10.0" alignment="TOP_LEFT" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0"
+              AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+            <children>
+                <Label text="To:" />
+                <TextField fx:id="txtTo" promptText="Enter recipient email" />
+
+                <Label text="Subject:" />
+                <TextField fx:id="txtSubject" promptText="Enter subject" />
+
+                <Label text="Message:" />
+                <TextArea fx:id="txtMessage" promptText="Enter your message" prefHeight="150.0" wrapText="true" />
+
+                <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                    <children>
+                        <Button text="Send" fx:id="btnSend" onAction="#btnSendOnAction" />
+                        <Button text="Clear" fx:id="btnClear" onAction="#btnClearOnAction" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

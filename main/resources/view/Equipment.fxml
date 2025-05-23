@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="686.0" prefWidth="1198.0" style="-fx-background-color: #007a5e;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.EquipmentController">
+<AnchorPane prefHeight="686.0" prefWidth="1198.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.EquipmentController">
 
     <children>
         <VBox alignment="TOP_CENTER" layoutX="50.0" layoutY="5.0" prefHeight="267.0" prefWidth="746.0" spacing="20">
@@ -22,10 +22,11 @@
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
-            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Equipment Management" textFill="WHITE">
-            <font>
-               <Font size="18.0" />
-            </font></Label>
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: black;" text="Equipment Management" textFill="#1e1670">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
 
             <GridPane hgap="10" vgap="15">
                 <columnConstraints>
@@ -33,64 +34,43 @@
                     <ColumnConstraints prefWidth="300" />
                 </columnConstraints>
 
-                <Label text="Equipment ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
+                <Label style="-fx-font-weight: bold;" text="Equipment ID:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-                <Label text="Equipment Name:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
+                <Label style="-fx-font-weight: bold;" text="Equipment Name:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                 <TextField fx:id="txtEquipmentName" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label text="Employee ID:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
+                <Label style="-fx-font-weight: bold;" text="Employee ID:" textFill="black" GridPane.columnIndex="0" GridPane.rowIndex="2" />
                 <TextField fx:id="txtEmployeeId" promptText=" " GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="lblEquipment" text="1" textFill="WHITE" GridPane.columnIndex="1">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
+
+                <Label fx:id="lblEquipment" style="-fx-font-weight: bold;" text="1" textFill="black" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
             </GridPane>
 
             <HBox alignment="CENTER" prefHeight="59.0" prefWidth="738.0" spacing="15">
-                <Button fx:id="btnSave" onAction="#saveOnAction" prefWidth="100" style="-fx-background-color: #ffeaa7;" text="Save">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-                <Button fx:id="btnUpdate" onAction="#updateOnAction" prefWidth="100" style="-fx-background-color: #00cec9;" text="Update">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-                <Button fx:id="btnDelete" onAction="#deleteOnAction" prefWidth="100" style="-fx-background-color: #ff7675;" text="Delete">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-                <Button fx:id="btnReset" onAction="#resetOnAction" prefWidth="100" style="-fx-background-color: #b2bec3;" text="Reset">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
+                <Button fx:id="btnSave" onAction="#saveOnAction" prefWidth="100" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;" text="Save" />
+
+                <Button fx:id="btnUpdate" onAction="#updateOnAction" prefWidth="100" style="-fx-background-color: #0984e3; -fx-text-fill: white; -fx-font-weight: bold;" text="Update" />
+
+                <Button fx:id="btnDelete" onAction="#deleteOnAction" prefWidth="100" style="-fx-background-color: #d63031; -fx-text-fill: white; -fx-font-weight: bold;" text="Delete" />
+
+                <Button fx:id="btnReset" onAction="#resetOnAction" prefWidth="100" style="-fx-background-color: #6c5ce7; -fx-text-fill: white; -fx-font-weight: bold;" text="Reset" />
             </HBox>
         </VBox>
-      <TableView fx:id="tblID" layoutX="32.0" layoutY="287.0" onMouseClicked="#onClickTable" prefHeight="379.0" prefWidth="1116.0">
-        <columns>
-          <TableColumn fx:id="colEqId" prefWidth="151.3333384990692" text="Equipment ID" />
-          <TableColumn fx:id="colEqName" prefWidth="421.9999694824219" text="Equipment Name" />
-            <TableColumn fx:id="colEmployeeId" prefWidth="221.33331298828125" text="Employee ID" />
-        </columns>
-         <padding>
-            <Insets left="5.0" right="5.0" />
-         </padding>
-      </TableView>
+
+        <TableView fx:id="tblID" layoutX="27.0" layoutY="287.0" onMouseClicked="#onClickTable" prefHeight="379.0" prefWidth="1121.0">
+            <columns>
+                <TableColumn fx:id="colEqId" prefWidth="151.3333384990692" text="Equipment ID" />
+                <TableColumn fx:id="colEqName" prefWidth="421.9999694824219" text="Equipment Name" />
+                <TableColumn fx:id="colEmployeeId" prefWidth="221.33331298828125" text="Employee ID" />
+            </columns>
+            <padding>
+                <Insets left="5.0" right="5.0" />
+            </padding>
+        </TableView>
     </children>
 </AnchorPane>

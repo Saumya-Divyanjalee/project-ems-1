@@ -12,10 +12,10 @@
 
 <AnchorPane prefHeight="279.0" prefWidth="962.0" style="-fx-background-color: #192a56;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.CalculatorController">
     <VBox alignment="CENTER" layoutX="259.0" layoutY="42.0" prefHeight="458.0" prefWidth="501.0" spacing="20.0" style="-fx-background-color: #192a56;">
-        <!-- Display -->
+
         <TextField fx:id="txtdisplay" editable="false" prefHeight="57.0" prefWidth="520.0" style="-fx-font-size: 28px; -fx-font-weight: bold;" />
 
-        <!-- Buttons Grid -->
+
         <GridPane alignment="CENTER" hgap="10.0" prefHeight="400.0" prefWidth="412.0" vgap="10.0">
             <columnConstraints>
                 <ColumnConstraints percentWidth="25" />
@@ -31,74 +31,74 @@
                 <RowConstraints percentHeight="20" />
             </rowConstraints>
 
-            <!-- Row 1 -->
-            <Button fx:id="btnFirst" maxWidth="Infinity" onAction="#handle1ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="1" GridPane.columnIndex="0" GridPane.rowIndex="0">
+
+            <Button fx:id="btnFirst" maxWidth="Infinity" onAction="#handle1ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="1" GridPane.columnIndex="0" GridPane.rowIndex="0">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnSecond" maxWidth="Infinity" onAction="#handle2ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="2" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Button fx:id="btnSecond" maxWidth="Infinity" onAction="#handle2ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="2" GridPane.columnIndex="1" GridPane.rowIndex="0">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnThird" maxWidth="Infinity" onAction="#handle3ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="3" GridPane.columnIndex="2" GridPane.rowIndex="0">
+            <Button fx:id="btnThird" maxWidth="Infinity" onAction="#handle3ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="3" GridPane.columnIndex="2" GridPane.rowIndex="0">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnDivide" maxWidth="Infinity" onAction="#handleDivideButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="/" GridPane.columnIndex="3" GridPane.rowIndex="0">
+            <Button fx:id="btnDivide" maxWidth="Infinity" onAction="#handleDivideButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="/" GridPane.columnIndex="3" GridPane.rowIndex="0">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
 
-            <!-- Row 2 -->
-            <Button fx:id="btnFour" maxWidth="Infinity" onAction="#handle4ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
+
+            <Button fx:id="btnFour" maxWidth="Infinity" onAction="#handle4ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnFive" maxWidth="Infinity" onAction="#handle5ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="btnFive" maxWidth="Infinity" onAction="#handle5ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnSix" maxWidth="Infinity" onAction="#handle6ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="btnSix" maxWidth="Infinity" onAction="#handle6ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnStar" maxWidth="Infinity" onAction="#handleStarButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="*" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Button fx:id="btnStar" maxWidth="Infinity" onAction="#handleStarButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="*" GridPane.columnIndex="3" GridPane.rowIndex="1">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
 
-            <!-- Row 3 -->
-            <Button fx:id="btnSeven" maxWidth="Infinity" onAction="#handle7ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="7" GridPane.columnIndex="0" GridPane.rowIndex="2">
+
+            <Button fx:id="btnSeven" maxWidth="Infinity" onAction="#handle7ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="7" GridPane.columnIndex="0" GridPane.rowIndex="2">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnEight" maxWidth="Infinity" onAction="#handle8ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="btnEight" maxWidth="Infinity" onAction="#handle8ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnNine" maxWidth="Infinity" onAction="#handle9ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button fx:id="btnNine" maxWidth="Infinity" onAction="#handle9ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnMinus" maxWidth="Infinity" onAction="#handleMinuesButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <Button fx:id="btnMinus" maxWidth="Infinity" onAction="#handleMinusButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
 
-            <!-- Row 4 -->
-            <Button fx:id="btnZero" maxWidth="Infinity" onAction="#handle0ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+          
+            <Button fx:id="btnZero" maxWidth="Infinity" onAction="#handle0ButtonClick" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="0" GridPane.columnIndex="0" GridPane.rowIndex="3">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnClear" maxWidth="Infinity" onAction="#handleClearOnAction" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="C" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="btnClear" maxWidth="Infinity" onAction="#handleClearOnAction" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="C" GridPane.columnIndex="1" GridPane.rowIndex="3">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnEqual" maxWidth="Infinity" onAction="#handleEqualOnAction" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="=" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button fx:id="btnEqual" maxWidth="Infinity" onAction="#handleEqualOnAction" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="=" GridPane.columnIndex="2" GridPane.rowIndex="3">
             <font>
                <Font name="System Bold" size="24.0" />
             </font></Button>
-            <Button fx:id="btnSum" maxWidth="Infinity" onAction="#handleSumOnAction" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #48dbfb;" text="+" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <Button fx:id="btnSum" maxWidth="Infinity" onAction="#handleSumOnAction" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #ffffff;" text="+" GridPane.columnIndex="3" GridPane.rowIndex="3">
             <font>
                <Font name="System Bold" size="24.0" />
             </font>
