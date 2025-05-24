@@ -2,31 +2,24 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="647.0" prefWidth="1242.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DeductionsController">
-
     <children>
-
-        <!-- Title -->
         <Label layoutX="20.0" layoutY="14.0" text="Deductions Management" textFill="#273c75">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
-
-        <!-- Form Fields -->
         <VBox layoutX="20.0" layoutY="60.0" spacing="15.0">
             <children>
-
-                <!-- Deduction ID -->
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                     <Label minWidth="120" text="Deduction ID" textFill="black">
                         <font><Font name="System Bold" size="14.0" /></font>
@@ -35,16 +28,12 @@
                         <font><Font name="System Bold" size="14.0" /></font>
                     </Label>
                 </HBox>
-
-                <!-- Deduction Name -->
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                     <Label minWidth="120" text="Deduction Name" textFill="black">
                         <font><Font name="System Bold" size="14.0" /></font>
                     </Label>
-                    <TextField fx:id="txtDeductionName" prefWidth="400.0" promptText="Enter deduction name" />
+               <ComboBox fx:id="cmbDeductionName" prefHeight="25.0" prefWidth="219.0" />
                 </HBox>
-
-                <!-- Buttons -->
                 <HBox alignment="CENTER_LEFT" layoutY="20.0" prefHeight="53.0" prefWidth="1474.0" spacing="10.0">
                     <Button fx:id="btnSaveId" onAction="#saveOnAction" prefWidth="100.0" style="-fx-background-color: #44bd32;" text="Save" textFill="WHITE">
                   <font>
@@ -69,8 +58,6 @@
 
             </children>
         </VBox>
-
-        <!-- Table -->
         <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="219.0" onMouseClicked="#onClickTable" prefHeight="371.0" prefWidth="1180.0">
             <columns>
                 <TableColumn fx:id="colDeductionId" prefWidth="200.0" text="Deduction ID" />

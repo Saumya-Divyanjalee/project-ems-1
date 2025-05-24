@@ -2,6 +2,8 @@ package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM;
 
 import lombok.*;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -13,9 +15,9 @@ public class EmployeeTM {
     private String firstName;
     private String lastName;
     private String departmentId;
-    private String dob;
+    private Date dob;
     private String eAddress;
-    private String joinDate;
+    private Date joinDate;
     private String age;
     private String email;
     private String contact;

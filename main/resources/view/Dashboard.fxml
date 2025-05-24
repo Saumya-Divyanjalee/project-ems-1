@@ -95,7 +95,7 @@
                </VBox.margin></Button>
             <Button fx:id="calId" mnemonicParsing="false" onAction="#calOnAction" prefHeight="42.0" prefWidth="90.0" style="-fx-background-color: #f5f6fa;">
                <graphic>
-                  <ImageView fitHeight="44.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="41.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/icons8-calculator-48.png" />
                      </image>

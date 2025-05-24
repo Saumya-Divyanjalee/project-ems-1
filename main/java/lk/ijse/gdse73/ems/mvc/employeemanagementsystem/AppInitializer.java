@@ -10,13 +10,20 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class AppInitializer extends Application {
+    public static void main(String[] args) {
+
+        launch(args);
+    }
     @Override
     public void start(Stage primaryStage) throws IOException {
 
         primaryStage.setScene(
-                new FXMLLoader(getClass().getResource(
-                        "/view/LoadingScreen.fxml"
+                new Scene(
+                        new FXMLLoader(getClass().getResource(
+                                "/view/LoadingScreen.fxml"
+
                 )).load()
+                )
         );
         primaryStage.show();
 
@@ -24,7 +31,7 @@ public class AppInitializer extends Application {
             @Override
             protected Scene call() throws Exception {
                 Parent parent = FXMLLoader.load(
-                        Objects.requireNonNull(getClass().getResource("/view/Dashboard.fxml"))
+                        getClass().getResource("/view/Dashboard.fxml")
                 );
 
                 return new Scene(parent);
@@ -32,11 +39,14 @@ public class AppInitializer extends Application {
         };
         loadingTask.setOnSucceeded(event -> {
             Scene value = loadingTask.getValue();
+
+            primaryStage.setTitle("Employee Management System");
             primaryStage.setScene(value);
 
         });
         loadingTask.setOnFailed(event -> {
             System.out.println("Failed to load Application");
+            primaryStage.close();
 
         });
 
@@ -49,7 +59,5 @@ public class AppInitializer extends Application {
 //        primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
 }

@@ -32,45 +32,59 @@ public class CalculatorController {
 
 
     public void handle1ButtonClick(ActionEvent actionEvent) {
+
         appendNumber("1");
     }
     public void handle2ButtonClick(ActionEvent actionEvent) {
+
         appendNumber("2");
     }
     public void handle3ButtonClick(ActionEvent actionEvent) {
+
         appendNumber("3");
     }
     public void handle4ButtonClick(ActionEvent actionEvent) {
+
         appendNumber("4");
     }
     public void handle5ButtonClick(ActionEvent actionEvent) {
+
         appendNumber("5");
     }
     public void handle6ButtonClick(ActionEvent actionEvent) {
+
         appendNumber("6");
     }
     public void handle7ButtonClick(ActionEvent actionEvent) {
+
         appendNumber("7");
     }
     public void handle8ButtonClick(ActionEvent actionEvent) {
+
         appendNumber("8");
     }
     public void handle9ButtonClick(ActionEvent actionEvent) {
+
         appendNumber("9");
     }
     public void handle0ButtonClick(ActionEvent actionEvent) {
+
         appendNumber("0");
     }
     public void handleSumOnAction(ActionEvent actionEvent) {
+
         handleOperator("+");
     }
     public void handleMinusButtonClick(ActionEvent actionEvent) {
+
         handleOperator("-");
     }
     public void handleStarButtonClick(ActionEvent actionEvent) {
+
         handleOperator("*");
     }
     public void handleDivideButtonClick(ActionEvent actionEvent) {
+
         handleOperator("/");
     }
 

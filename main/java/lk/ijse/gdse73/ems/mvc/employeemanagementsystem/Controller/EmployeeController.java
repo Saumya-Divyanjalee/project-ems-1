@@ -3,19 +3,32 @@ package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.DBConnection.DBConnection;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.EmployeeDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.EmployeeTM;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EmployeeModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
 
 public class EmployeeController implements Initializable {
 
@@ -56,6 +69,8 @@ private  final EmployeeModel employeeModel = new EmployeeModel();
     private final String namePattern = "^[A-Za-z ]+$";
     private final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     private final String contactPattern = "^(\\d+)||((\\d+\\.)(\\d){2})$";
+    public Button btnMail;
+    public Button btnReport;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -261,6 +276,61 @@ private  final EmployeeModel employeeModel = new EmployeeModel();
             btnSave.setDisable(true);
             btnUpdate.setDisable(false);
             btnDelete.setDisable(false);
+        }
+    }
+
+
+
+    public void reportOnAction(ActionEvent actionEvent) {
+        try {
+            JasperReport report = JasperCompileManager.compileReport(
+                    getClass().getResourceAsStream("/report/employee.jrxml")
+            );
+            Connection connection = DBConnection.getInstance().getConnection();
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("P_DATE", LocalDate.now().toString());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    report,
+                    parameters,
+                    connection
+            );
+            JasperViewer.viewReport(jasperPrint, false);
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mailOnAction(ActionEvent actionEvent) {
+        EmployeeTM selected = tblEmployees.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            return;
+        }
+        try {
+            FXMLLoader loadedFxml = new FXMLLoader(
+                    getClass().getResource("/view/Mail.fxml")
+            );
+            Parent load = loadedFxml.load();
+
+            String email = selected.getEmail();
+            MailController mailController = loadedFxml.getController();
+            mailController.setEmployeeEmail(email);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(load));
+            stage.setTitle("Send mail");
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            Window window = txtEmail.getScene().getWindow();
+            stage.initOwner(window);
+            stage.showAndWait();
+
+
+        }catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to load ui...!").show();
+            e.printStackTrace();
+
         }
     }
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -32,15 +34,14 @@
                 <Label fx:id="lblAttendanceId" text="1" textFill="#000000" GridPane.columnIndex="1" />
 
                 <Label style="-fx-font-weight: bold;" text="Date:" textFill="#000000" GridPane.rowIndex="2" />
-                <TextField fx:id="txtDate" promptText="yyyy-mm-dd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                 <Label style="-fx-font-weight: bold;" text="Check In Time:" textFill="#000000" GridPane.rowIndex="1" />
                 <TextField fx:id="txtCheckIn" promptText="HH:mm" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="datePickerDate" prefHeight="25.0" prefWidth="235.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
 
         <Label layoutX="452.0" layoutY="180.0" style="-fx-font-weight: bold;" text="Status:" textFill="#000000" />
-        <TextField fx:id="txtStatus" layoutX="558.0" layoutY="176.0" promptText="Present / Absent" />
 
         <HBox layoutX="271.0" layoutY="221.0" prefHeight="17.0" prefWidth="441.0" spacing="15">
             <Button fx:id="btnSave" onAction="#saveOnAction" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #44bd32;" text="Save" textFill="WHITE">
@@ -79,6 +80,7 @@
           <TextField fx:id="txtCheckOut" layoutX="558.0" layoutY="123.0" promptText="HH:mm" />
 
               <Label layoutX="28.0" layoutY="14.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Attendance Management" textFill="#273c75" />
+      <ComboBox fx:id="comboboxStatus" layoutX="558.0" layoutY="176.0" prefWidth="150.0" promptText=" " />
 
     </children>
 </AnchorPane>

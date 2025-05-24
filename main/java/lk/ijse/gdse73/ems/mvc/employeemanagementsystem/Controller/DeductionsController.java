@@ -18,64 +18,48 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DeductionsController implements Initializable {
-    public Label lblId;
-    public TextField txtDeductionName;
 
+    public Label lblId;
+    public ComboBox<String> cmbDeductionName;
 
     public TableView<DeductionsTM> tblDeductions;
     public TableColumn<DeductionsTM, String> colDeductionId;
     public TableColumn<DeductionsTM, String> colDeductionName;
-
-
-
-    private final DeductionsModel deductionsModel = new DeductionsModel();
-
 
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
     public Button btnSaveId;
 
-    private final String deductionNamePattern = "^[A-Za-z ]+$";
-
+    private final DeductionsModel deductionsModel = new DeductionsModel();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colDeductionId.setCellValueFactory(new PropertyValueFactory<>("deductionId"));
         colDeductionName.setCellValueFactory(new PropertyValueFactory<>("deductionName"));
 
+        cmbDeductionName.setItems(FXCollections.observableArrayList("ETF", "EPF"));
+        cmbDeductionName.setValue("ETF");
+
         try {
-             resetPage();
+            resetPage();
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Oops!...Something went wrong!").show();
         }
-
-
     }
 
     private void loadTableData() throws SQLException, ClassNotFoundException {
-//        tblDeductions.setItems(FXCollections.observableArrayList(
-//                deductionsModel.getAllDeductions().stream().map(dto -> new DeductionsTM(
-//                        dto.getDeductionId(), dto.getDeductionName())).toList()
-//        ));
-
         ArrayList<DeductionsDTO> deductionsDTOArrayList = DeductionsModel.getAllDeductions();
         ObservableList<DeductionsTM> deductionsTMS = FXCollections.observableArrayList();
 
         for (DeductionsDTO dto : deductionsDTOArrayList) {
-            DeductionsTM tm = new DeductionsTM(
-                    dto.getDeductionId(),
-                    dto.getDeductionName()
-            );
+            DeductionsTM tm = new DeductionsTM(dto.getDeductionId(), dto.getDeductionName());
             deductionsTMS.add(tm);
         }
 
         tblDeductions.setItems(deductionsTMS);
-
     }
-
-
 
     private void resetPage() {
         try {
@@ -86,8 +70,7 @@ public class DeductionsController implements Initializable {
             btnDelete.setDisable(true);
             btnUpdate.setDisable(true);
 
-
-            txtDeductionName.setText("");
+            cmbDeductionName.setValue("ETF");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,15 +80,14 @@ public class DeductionsController implements Initializable {
 
     public void saveOnAction(ActionEvent actionEvent) {
         String deductionId = lblId.getText();
-        String deductionName = txtDeductionName.getText();
+        String deductionName = cmbDeductionName.getValue();
 
-        boolean isValidName = deductionName.matches(deductionNamePattern);
-        txtDeductionName.setStyle("-fx-border-color: #7367F0;");
-
-        if (!isValidName) {
-            txtDeductionName.setStyle("-fx-border-color: red;");
+        if (deductionName == null || deductionName.isEmpty()) {
+            cmbDeductionName.setStyle("-fx-border-color: red;");
             return;
         }
+
+        cmbDeductionName.setStyle("-fx-border-color: #7367F0;");
 
         DeductionsDTO dto = new DeductionsDTO(deductionId, deductionName);
 
@@ -125,7 +107,14 @@ public class DeductionsController implements Initializable {
 
     public void updateOnAction(ActionEvent actionEvent) {
         String deductionId = lblId.getText();
-        String deductionName = txtDeductionName.getText();
+        String deductionName = cmbDeductionName.getValue();
+
+        if (deductionName == null || deductionName.isEmpty()) {
+            cmbDeductionName.setStyle("-fx-border-color: red;");
+            return;
+        }
+
+        cmbDeductionName.setStyle("-fx-border-color: #7367F0;");
 
         DeductionsDTO dto = new DeductionsDTO(deductionId, deductionName);
 
@@ -156,7 +145,7 @@ public class DeductionsController implements Initializable {
                     resetPage();
                     new Alert(Alert.AlertType.INFORMATION, "Deduction deleted successfully!").show();
                 } else {
-                    new Alert(Alert.AlertType.ERROR, "Deduction deleted successfully!").show();
+                    new Alert(Alert.AlertType.ERROR, "Failed to delete deduction!").show();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -179,14 +168,11 @@ public class DeductionsController implements Initializable {
 
         if (selected != null) {
             lblId.setText(selected.getDeductionId());
-            txtDeductionName.setText(selected.getDeductionName());
+            cmbDeductionName.setValue(selected.getDeductionName());
 
             btnSaveId.setDisable(true);
             btnUpdate.setDisable(false);
             btnDelete.setDisable(false);
-
         }
     }
-
-
 }

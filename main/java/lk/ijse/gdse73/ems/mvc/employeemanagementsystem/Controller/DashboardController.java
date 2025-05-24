@@ -24,6 +24,9 @@ public class DashboardController implements Initializable {
     public Button btnUser;
     public Button btnSetting;
     public AnchorPane contentPane;
+    public Button btnMail;
+    public Button btnEquipment;
+    public Button calId;
 
     private void nevigateTo(String s) {
         try {
@@ -54,10 +57,12 @@ public class DashboardController implements Initializable {
     }
 
     public void settingOnAction(ActionEvent actionEvent) {
+
         nevigateTo("/view/Settings.fxml");
     }
 
     public void attendanceOnAction(ActionEvent actionEvent) {
+
         nevigateTo("/view/Attendance.fxml");
     }
 

@@ -66,8 +66,8 @@ public class EmployeeModel {
 
     public boolean updateEmployee(EmployeeDTO dto) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
-                "UPDATE Employee SET first_name = ?, last_name = ?, dob = ?, age = ?, email = ?, contact = ?, e_address = ?, join_date = ?, department_id = ?, position_id = ? WHERE employee_id = ?",
-                dto.getEmployeeId(),
+                "UPDATE Employee SET first_name = ?, last_name = ?, department_id = ?, dob = ?, e_address = ?, join_date = ?, age = ?, email = ?, contact = ?, position_id = ? WHERE employee_id = ?",
+
                 dto.getFirstName(),
                 dto.getLastName(),
                 dto.getDepartmentId(),
@@ -77,7 +77,8 @@ public class EmployeeModel {
                 dto.getAge(),
                 dto.getEmail(),
                 dto.getContact(),
-                dto.getPositionId()
+                dto.getPositionId(),
+                dto.getEmployeeId()
         );
     }
 
