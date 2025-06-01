@@ -15,9 +15,9 @@ public class EmployeeTM {
     private String firstName;
     private String lastName;
     private String departmentId;
-    private Date dob;
+    private String dob;
     private String eAddress;
-    private Date joinDate;
+    private String joinDate;
     private String age;
     private String email;
     private String contact;

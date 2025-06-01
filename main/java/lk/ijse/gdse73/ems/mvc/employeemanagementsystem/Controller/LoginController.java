@@ -15,6 +15,7 @@ public class LoginController {
     public PasswordField txtPassword;
     public Button btnLogin;
     public Label lblError;
+
     private User user = new User("sau", "1234");
 
     public void loginOnAction(ActionEvent actionEvent) {

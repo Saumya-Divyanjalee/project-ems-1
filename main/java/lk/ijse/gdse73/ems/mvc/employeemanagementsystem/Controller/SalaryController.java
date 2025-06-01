@@ -25,7 +25,7 @@ public class SalaryController {
     public TableColumn colDeductionType;
     public TableColumn colNetSalary;
     public Button btnReset;
-    public Button btnAdd;
+
     public Label lblSalaryId;
 
     public void resetOnAction(ActionEvent actionEvent) {
@@ -41,9 +41,7 @@ public class SalaryController {
 
     }
 
-    public void addOnAction(ActionEvent actionEvent) {
 
-    }
 
     public void onClickTable(MouseEvent mouseEvent) {
     }

@@ -7,13 +7,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import lombok.Setter;
 
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
 import java.util.Properties;
 
 public class MailController {
@@ -32,7 +28,6 @@ public class MailController {
 
     @FXML
     void btnSendOnAction(ActionEvent event) {
-
         System.out.println(employeeEmail);
         String toMail = employeeEmail;
         String subject = txtSubject.getText();
@@ -43,40 +38,42 @@ public class MailController {
         }
 
         String from = "saumyaz2020@gmail.com";
-        String password = "vatk dzdq eyqb dizt";
+        String password = "vatkdzdqeyqbdizt";
 
         Properties props = new Properties();
 
         props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port", "587");
+        props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
 
         Authenticator auth = new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(from, password.toCharArray());
-
+                return new PasswordAuthentication(from, password);
             }
-
-
         };
-        Session session = Session.getInstance(props);
+
+        Session session = Session.getInstance(props, auth);
         try {
             Message mimeMessage = new MimeMessage(session);
             mimeMessage.setFrom(new InternetAddress(from));
+            mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toMail));
             mimeMessage.setSubject(subject);
             mimeMessage.setText(message);
 
             Transport.send(mimeMessage);
             new Alert(Alert.AlertType.INFORMATION, "Mail Sent Successfully!").show();
 
-
-        }catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, "Fail to send Mail...!").show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to send Mail!").show();
             e.printStackTrace();
         }
-
-
     }
 
+
+    public void setReceiverDetails(String email, String s) {
+        this.employeeEmail = email;
+        txtTo.setText(email);
+        txtTo.setEditable(false);
+    }
 }

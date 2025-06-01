@@ -61,11 +61,11 @@ public class LeavesModel {
     public String getNextLeaveId() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT leave_id FROM Leaves ORDER BY leave_id DESC LIMIT 1");
 
-        char tableCharacter = 'L'; // L for Leaves
+        char tableCharacter = 'L';
         if (resultSet.next()) {
-            String lastId = resultSet.getString(1); // "L001"
-            int lastIdNumber = Integer.parseInt(lastId.substring(1)); // 1
-            return String.format("%c%03d", tableCharacter, lastIdNumber + 1); // "L002"
+            String lastId = resultSet.getString(1);
+            int lastIdNumber = Integer.parseInt(lastId.substring(1));
+            return String.format("%c%03d", tableCharacter, lastIdNumber + 1);
         }
         return tableCharacter + "001";
     }

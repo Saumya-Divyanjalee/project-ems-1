@@ -57,7 +57,7 @@ public class PositionsModel {
             String lastId = resultSet.getString(1);
             String lastIdNumberString = lastId.substring(1);
             int lastIdNumber = Integer.parseInt(lastIdNumberString);
-            int nextIdNUmber = lastIdNumber + 1; // 2
+            int nextIdNUmber = lastIdNumber + 1;
             return String.format(tableCharacter + "%03d", nextIdNUmber);
         }
 

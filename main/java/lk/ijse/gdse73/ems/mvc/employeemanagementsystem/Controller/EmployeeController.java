@@ -41,9 +41,8 @@ public class EmployeeController implements Initializable {
     public TextField txtEmail;
     public TextField txtContact;
     public TextField txtPositionId;
-    public TextField txtDob;
-    public TextField txtJoinDate;
-
+    public DatePicker cmbDob;
+    public DatePicker cmbJoinDate;
 
     public TableView<EmployeeTM> tblEmployees;
     public TableColumn<EmployeeTM, String> colEmpId;
@@ -58,22 +57,22 @@ public class EmployeeController implements Initializable {
     public TableColumn<EmployeeTM, String> colContact;
     public TableColumn<EmployeeTM, String> colPositionId;
 
-
-private  final EmployeeModel employeeModel = new EmployeeModel();
+    private final EmployeeModel employeeModel = new EmployeeModel();
 
     public Button btnSave;
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
-
-    private final String namePattern = "^[A-Za-z ]+$";
-    private final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-    private final String contactPattern = "^(\\d+)||((\\d+\\.)(\\d){2})$";
     public Button btnMail;
     public Button btnReport;
 
+    private final String namePattern = "^[A-Za-z ]+$";
+    private final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+    private final String contactPattern = "^(\\d+)|(\\d+\\.\\d{2})$";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         colEmpId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -123,21 +122,20 @@ private  final EmployeeModel employeeModel = new EmployeeModel();
             loadTableData();
             loadNextId();
 
-
             btnSave.setDisable(false);
             btnUpdate.setDisable(true);
             btnDelete.setDisable(true);
 
-            txtFirstName. setText("");
-            txtLastName.setText("");;
-            txtDeptId.setText("");
-            txtAddress.setText("");
-            txtAge.setText("");
-            txtEmail.setText("");
-            txtContact.setText("");
-            txtPositionId.setText("");
-            txtDob.setText("");
-            txtJoinDate.setText("");
+            txtFirstName.clear();
+            txtLastName.clear();
+            txtDeptId.clear();
+            txtAddress.clear();
+            txtAge.clear();
+            txtEmail.clear();
+            txtContact.clear();
+            txtPositionId.clear();
+            cmbDob.setValue(null);
+            cmbJoinDate.setValue(null);
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Oops!...Something went wrong.").show();
@@ -150,30 +148,28 @@ private  final EmployeeModel employeeModel = new EmployeeModel();
         String lastname = txtLastName.getText();
         String deptId = txtDeptId.getText();
         String address = txtAddress.getText();
-        String dob = txtDob.getText();
-        String joinDate = txtJoinDate.getText();
+        String dob = cmbDob.getValue() != null ? cmbDob.getValue().toString() : "";
+        String joinDate = cmbJoinDate.getValue() != null ? cmbJoinDate.getValue().toString() : "";
         String age = txtAge.getText();
         String email = txtEmail.getText();
         String contact = txtContact.getText();
         String positionId = txtPositionId.getText();
 
-
         boolean validName = firstname.matches(namePattern);
         boolean validEmail = email.matches(emailPattern);
         boolean validContact = contact.matches(contactPattern);
 
-        txtFirstName.setStyle(txtFirstName.getStyle() + "-fx-border-color:  #7367F0;;");
-        txtEmail.setStyle(txtEmail.getStyle() + "-fx-border-color:  #7367F0;");
-        txtContact.setStyle(txtContact.getStyle() + "-fx-border-color:  #7367F0;");
+        txtFirstName.setStyle("-fx-border-color: #7367F0;");
+        txtEmail.setStyle("-fx-border-color: #7367F0;");
+        txtContact.setStyle("-fx-border-color: #7367F0;");
 
-        if (!validName) txtFirstName.setStyle(txtFirstName.getStyle() + "-fx-border-color: red;");
-        if (!validEmail) txtEmail.setStyle(txtEmail.getStyle() + "-fx-border-color: red;");
-        if (!validContact) txtContact.setStyle(txtContact.getStyle() + "-fx-border-color: red;");
+        if (!validName) txtFirstName.setStyle("-fx-border-color: red;");
+        if (!validEmail) txtEmail.setStyle("-fx-border-color: red;");
+        if (!validContact) txtContact.setStyle("-fx-border-color: red;");
 
         EmployeeDTO dto = new EmployeeDTO(id, firstname, lastname, deptId, dob, address, joinDate, age, email, contact, positionId);
 
         if (validName && validEmail && validContact) {
-
             try {
                 boolean isSaved = employeeModel.saveEmployee(dto);
                 if (isSaved) {
@@ -190,24 +186,19 @@ private  final EmployeeModel employeeModel = new EmployeeModel();
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+        String employeeId = lblEmployeeId.getText();
+        String firstname = txtFirstName.getText();
+        String lastname = txtLastName.getText();
+        String deptId = txtDeptId.getText();
+        String address = txtAddress.getText();
+        String dob = cmbDob.getValue() != null ? cmbDob.getValue().toString() : "";
+        String joinDate = cmbJoinDate.getValue() != null ? cmbJoinDate.getValue().toString() : "";
+        String age = txtAge.getText();
+        String email = txtEmail.getText();
+        String contact = txtContact.getText();
+        String positionId = txtPositionId.getText();
 
-                String employeeId = lblEmployeeId.getText();
-                String firstname = txtFirstName.getText();
-                String lastname = txtLastName.getText();
-                String deptId = txtDeptId.getText();
-                String address = txtAddress.getText();
-                String dob = txtDob.getText();
-                String joinDate = txtJoinDate.getText();
-                String age = txtAge.getText();
-                String email = txtEmail.getText();
-                String contact = txtContact.getText();
-                String positionId = txtPositionId.getText();
-
-                EmployeeDTO employeeDTO = new EmployeeDTO(
-                        employeeId,firstname,lastname,deptId,dob,address,joinDate,age,email,contact,positionId
-                );
-
-
+        EmployeeDTO employeeDTO = new EmployeeDTO(employeeId, firstname, lastname, deptId, dob, address, joinDate, age, email, contact, positionId);
 
         try {
             boolean isUpdated = employeeModel.updateEmployee(employeeDTO);
@@ -224,12 +215,10 @@ private  final EmployeeModel employeeModel = new EmployeeModel();
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
-        Alert alert = new Alert(
-                Alert.AlertType.CONFIRMATION,
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                 "Are you sure?",
                 ButtonType.YES,
-                ButtonType.NO
-        );
+                ButtonType.NO);
         Optional<ButtonType> response = alert.showAndWait();
 
         if (response.isPresent() && response.get() == ButtonType.YES) {
@@ -253,7 +242,7 @@ private  final EmployeeModel employeeModel = new EmployeeModel();
         resetPage();
     }
 
-    private void loadNextId()throws Exception{
+    private void loadNextId() throws Exception {
         String nextId = employeeModel.getNextEmployeeId();
         lblEmployeeId.setText(nextId);
     }
@@ -265,9 +254,9 @@ private  final EmployeeModel employeeModel = new EmployeeModel();
             txtFirstName.setText(selected.getFirstName());
             txtLastName.setText(selected.getLastName());
             txtDeptId.setText(selected.getDepartmentId());
-            txtDob.setText(selected.getDob());
+            cmbDob.setValue(LocalDate.parse((CharSequence) selected.getDob()));
             txtAddress.setText(selected.getEAddress());
-            txtJoinDate.setText(selected.getJoinDate());
+            cmbJoinDate.setValue(LocalDate.parse((CharSequence) selected.getJoinDate()));
             txtAge.setText(selected.getAge());
             txtEmail.setText(selected.getEmail());
             txtContact.setText(selected.getContact());
@@ -279,8 +268,6 @@ private  final EmployeeModel employeeModel = new EmployeeModel();
         }
     }
 
-
-
     public void reportOnAction(ActionEvent actionEvent) {
         try {
             JasperReport report = JasperCompileManager.compileReport(
@@ -289,48 +276,44 @@ private  final EmployeeModel employeeModel = new EmployeeModel();
             Connection connection = DBConnection.getInstance().getConnection();
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("P_DATE", LocalDate.now().toString());
-            JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    report,
-                    parameters,
-                    connection
-            );
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, connection);
             JasperViewer.viewReport(jasperPrint, false);
-
-
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void mailOnAction(ActionEvent actionEvent) {
         EmployeeTM selected = tblEmployees.getSelectionModel().getSelectedItem();
-        if (selected != null) {
+        if (selected == null) {
+
             return;
         }
+
         try {
-            FXMLLoader loadedFxml = new FXMLLoader(
-                    getClass().getResource("/view/Mail.fxml")
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/view/MailForm.fxml")
             );
-            Parent load = loadedFxml.load();
+            Parent load =loader.load();
 
             String email = selected.getEmail();
-            MailController mailController = loadedFxml.getController();
-            mailController.setEmployeeEmail(email);
+            MailController sendMailController = loader.getController();
+            sendMailController.setEmployeeEmail(email);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(load));
-            stage.setTitle("Send mail");
+            stage.setTitle("Send Mail");
             stage.initModality(Modality.APPLICATION_MODAL);
 
             Window window = txtEmail.getScene().getWindow();
             stage.initOwner(window);
             stage.showAndWait();
 
+        } catch (IOException e) {
 
-        }catch (IOException e) {
-            new Alert(Alert.AlertType.ERROR, "Failed to load ui...!").show();
+            new Alert(Alert.AlertType.ERROR, "Failed to open mail window.").show();
             e.printStackTrace();
-
         }
     }
 }

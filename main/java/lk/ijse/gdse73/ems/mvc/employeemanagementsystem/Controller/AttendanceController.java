@@ -45,6 +45,7 @@ public class AttendanceController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         colAttendanceId.setCellValueFactory(new PropertyValueFactory<>("attendanceId"));
         colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -89,10 +90,10 @@ public class AttendanceController implements Initializable {
             btnDelete.setDisable(true);
             btnUpdate.setDisable(true);
 
-            txtEmployeeId.clear();
+            txtEmployeeId.setText("");
             datePickerDate.setValue(null);
-            txtCheckIn.clear();
-            txtCheckOut.clear();
+            txtCheckIn.setText("");
+            txtCheckOut.setText("");
             comboboxStatus.getSelectionModel().clearSelection();
 
         } catch (Exception e) {
@@ -121,7 +122,7 @@ public class AttendanceController implements Initializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Exception occurred while saving attendance!").show();
+            new Alert(Alert.AlertType.ERROR, "Failed to save attendance!").show();
         }
     }
 
@@ -145,7 +146,7 @@ public class AttendanceController implements Initializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Exception occurred while updating attendance!").show();
+            new Alert(Alert.AlertType.ERROR, "Failed to save attendance! ").show();
         }
     }
 

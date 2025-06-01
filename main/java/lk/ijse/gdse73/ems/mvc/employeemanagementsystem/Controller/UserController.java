@@ -1,3 +1,4 @@
+// UserController.java
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 
 import javafx.collections.FXCollections;
@@ -17,9 +18,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-
 public class UserController implements Initializable {
-    public TextField txtUserId;
+    public Label lblUserId;
     public TextField txtUserName;
     public TextField txtMobile;
     public TextField txtEmail;
@@ -32,8 +32,8 @@ public class UserController implements Initializable {
     public TableColumn<UserTM, String> colEmail;
     public TableColumn<UserTM, String> colRole;
 
-    private final UserModel userModel = new UserModel();
 
+    private final UserModel userModel = new UserModel();
     public Button btnSave;
     public Button btnUpdate;
     public Button btnDelete;
@@ -42,22 +42,18 @@ public class UserController implements Initializable {
     private final String namePattern = "^[A-Za-z ]+$";
     private final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     private final String mobilePattern = "^\\d{10}$";
-    public Label lblUserId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        colUserId.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        colUserName.setCellValueFactory(new PropertyValueFactory<>("userName"));
-        colMobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
-
-
+        colUserId.setCellValueFactory(new PropertyValueFactory<>("user_id"));
+        colUserName.setCellValueFactory(new PropertyValueFactory<>("user_name"));
+        colMobile.setCellValueFactory(new PropertyValueFactory<>("u_mobile"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("u_email"));
+        colRole.setCellValueFactory(new PropertyValueFactory<>("u_role"));
 
         try {
             loadTableData();
             loadNextId();
-
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Oops! Something went wrong").show();
@@ -65,18 +61,7 @@ public class UserController implements Initializable {
     }
 
     private void loadTableData() throws SQLException, ClassNotFoundException {
-//        tblUser.setItems(FXCollections.observableArrayList(
-//                UserModel.getAllUsers().stream().map(userDTO ->
-//                        new UserTM(
-//                                userDTO.getUser_id(),
-//                                userDTO.getUser_name(),
-//                                userDTO.getU_mobile(),
-//                                userDTO.getU_email(),
-//                                userDTO.getU_role()
-//                        )).collect(Collectors.toList())
-//        ));
-
-        ArrayList<UserDTO> userDTOArrayList = UserModel.getAllUsers();
+        ArrayList<UserDTO> userDTOArrayList = userModel.getAllUsers();
         ObservableList<UserTM> userTMS = FXCollections.observableArrayList();
 
         for (UserDTO userDTO : userDTOArrayList) {
@@ -106,7 +91,6 @@ public class UserController implements Initializable {
             txtMobile.setText("");
             txtEmail.setText("");
             txtRole.setText("");
-
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Oops! Something went wrong.").show();
@@ -123,21 +107,19 @@ public class UserController implements Initializable {
         boolean isValidEmail = email.matches(emailPattern);
         boolean isValidMobile = mobile.matches(mobilePattern);
 
+        txtUserName.setStyle("-fx-border-color: #7367F0;");
+        txtEmail.setStyle("-fx-border-color: #7367F0;");
+        txtMobile.setStyle("-fx-border-color: #7367F0;");
 
-        txtUserName.setStyle(txtUserName.getStyle() + "-fx-border-color: #7367F0;");
-        txtEmail.setStyle(txtEmail.getStyle() + "-fx-border-color: #7367F0;");
-        txtMobile.setStyle(txtMobile.getStyle() + "-fx-border-color: #7367F0;");
+        if (!isValidName) txtUserName.setStyle("-fx-border-color: red;");
+        if (!isValidEmail) txtEmail.setStyle("-fx-border-color: red;");
+        if (!isValidMobile) txtMobile.setStyle("-fx-border-color: red;");
 
-        if (!isValidName) txtUserName.setStyle("-fx-border-color:  red;");
-        if (!isValidEmail) txtEmail.setStyle("-fx-border-color:  red;");
-        if (!isValidMobile) txtMobile.setStyle("-fx-border-color:  red;");
+        UserDTO dto = new UserDTO(lblUserId.getText(), name, mobile, email, role);
 
-
-        UserDTO dto = new UserDTO(txtUserId.getText(), name, mobile, email, role);
         if (isValidName && isValidEmail && isValidMobile) {
-
             try {
-                boolean isSaved = UserModel.saveUser(dto);
+                boolean isSaved = userModel.saveUser(dto);
                 if (isSaved) {
                     resetPage();
                     new Alert(Alert.AlertType.INFORMATION, "User saved successfully.").show();
@@ -150,25 +132,18 @@ public class UserController implements Initializable {
             }
         }
     }
+
     public void updateOnAction(ActionEvent actionEvent) {
-        String userId = txtUserId.getText();
-        String name = txtUserName.getText();
-        String mobile = txtMobile.getText();
-        String email = txtEmail.getText();
-        String role = txtRole.getText();
-
-
         UserDTO dto = new UserDTO(
-                txtUserId.getText(),
+                lblUserId.getText(),
                 txtUserName.getText(),
                 txtMobile.getText(),
                 txtEmail.getText(),
                 txtRole.getText()
         );
 
-
         try {
-            boolean isUpdated = UserModel.updateUser(dto);
+            boolean isUpdated = userModel.updateUser(dto);
             if (isUpdated) {
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "User updated successfully.").show();
@@ -181,20 +156,16 @@ public class UserController implements Initializable {
         }
     }
 
-
-
-
     public void deleteOnAction(ActionEvent actionEvent) {
-
-        String userId = txtUserId.getText();
-
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this user?", ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to delete this user?",
+                ButtonType.YES,
+                ButtonType.NO);
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.YES) {
             try {
-                boolean isDeleted = UserModel.deleteUser(txtUserId.getText());
+                boolean isDeleted = userModel.deleteUser(lblUserId.getText());
                 if (isDeleted) {
                     resetPage();
                     new Alert(Alert.AlertType.INFORMATION, "User deleted successfully.").show();
@@ -213,17 +184,14 @@ public class UserController implements Initializable {
     }
 
     private void loadNextId() throws SQLException, ClassNotFoundException {
-         String nextId = userModel.getNextUserId();
-         txtUserId.setText(nextId);
+        String nextId = userModel.getNextUserId();
+        lblUserId.setText(nextId);
     }
-
-
-
 
     public void onClickTable(MouseEvent event) {
         UserTM selected = tblUser.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            txtUserId.setText(selected.getUser_id());
+            lblUserId.setText(selected.getUser_id());
             txtUserName.setText(selected.getUser_name());
             txtMobile.setText(selected.getU_mobile());
             txtEmail.setText(selected.getU_email());
@@ -235,6 +203,4 @@ public class UserController implements Initializable {
             btnReset.setDisable(false);
         }
     }
-
-
 }

@@ -101,7 +101,7 @@ public class DeductionsController implements Initializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Error occurred while saving!").show();
+            new Alert(Alert.AlertType.ERROR, "Failed to save deduction!").show();
         }
     }
 

@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
+
     public AnchorPane ancpanal;
     public Button btnEmployee;
     public Button btnOT;
@@ -24,7 +25,6 @@ public class DashboardController implements Initializable {
     public Button btnUser;
     public Button btnSetting;
     public AnchorPane contentPane;
-    public Button btnMail;
     public Button btnEquipment;
     public Button calId;
 
@@ -49,10 +49,12 @@ public class DashboardController implements Initializable {
     }
 
     public void salaryOnAction(ActionEvent actionEvent) {
+
         nevigateTo("/view/Salary.fxml");
     }
 
     public void userOnAction(ActionEvent actionEvent) {
+
         nevigateTo("/view/User.fxml");
     }
 

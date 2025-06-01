@@ -10,10 +10,11 @@ import lombok.*;
 
 public class SalaryTM {
     private String salaryId;
-    private String basicSalary;
-    private String otHours;
-    private String deduction;
     private String employeeId;
-    private String dtypeId;
+    private double basicSalary;
+    private double otPayment;
+    private double deduction;
+    private String deductionType;
+    private double netSalary;
 
 }
