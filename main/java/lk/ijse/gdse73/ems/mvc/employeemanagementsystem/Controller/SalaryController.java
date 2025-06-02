@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 public class SalaryController {
+    public Label lblSalaryId;
     public TextField txtSalaryId;
     public TextField txtEmployeeId;
     public TextField txtBasicSalary;
@@ -26,7 +27,7 @@ public class SalaryController {
     public TableColumn colNetSalary;
     public Button btnReset;
 
-    public Label lblSalaryId;
+
 
     public void resetOnAction(ActionEvent actionEvent) {
     }
