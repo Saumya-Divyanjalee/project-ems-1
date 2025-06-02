@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TaskDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.TaskTM;
@@ -39,14 +40,17 @@ public class TaskController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            loadTableData();
-            loadNextId();
 
-            btnUpdate.setDisable(true);
-            btnDelete.setDisable(true);
+        colTaskId.setCellValueFactory(new PropertyValueFactory<>("taskId"));
+        colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colDeadline.setCellValueFactory(new PropertyValueFactory<>("deadline"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        try {
+            resetPage();
         } catch (Exception e) {
             e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Something went wrong").show();
         }
     }
 
@@ -115,16 +119,18 @@ public class TaskController implements Initializable {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
-        TaskDTO dto = new TaskDTO(
-                lblTaskId.getText(),
-                txtEmployeeId.getText(),
-                txtDescription.getText(),
-                txtDeadline.getText(),
-                txtStatus.getText()
-        );
+         String taskId = lblTaskId.getText();
+         String employeeId = txtEmployeeId.getText();
+         String description = txtDescription.getText();
+         String deadline = txtDeadline.getText();
+         String status = txtStatus.getText();
+
+         TaskDTO taskDTO = new TaskDTO(
+                 taskId,employeeId,description,deadline,status
+         );
 
         try {
-            boolean isUpdated = taskModel.updateTask(dto);
+            boolean isUpdated = taskModel.updateTask(taskDTO);
             if (isUpdated) {
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "Task updated successfully.").show();

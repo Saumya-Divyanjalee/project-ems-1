@@ -16,7 +16,7 @@
 
 <AnchorPane prefHeight="677.0" prefWidth="1431.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.SalaryController">
     <children>
-        <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" prefHeight="657.0" prefWidth="1110.0" spacing="20">
+        <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="20.0" prefHeight="657.0" prefWidth="1163.0" spacing="20">
             <padding>
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
@@ -42,32 +42,38 @@
                     <font><Font name="System Bold" size="12.0" /></font>
                 </Label>
 
-                <Label prefHeight="17.0" prefWidth="104.0" text="Employee ID:" textFill="BLACK" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label prefHeight="17.0" prefWidth="103.0" text="Employee ID:" textFill="BLACK" GridPane.columnIndex="0" GridPane.rowIndex="1">
                     <font><Font name="System Bold" size="12.0" /></font>
                 </Label>
-                <TextField fx:id="txtEmployeeId" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="txtEmployeeId" prefHeight="39.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label prefHeight="17.0" prefWidth="101.0" text="Basic Salary:" textFill="BLACK" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label prefHeight="17.0" prefWidth="103.0" text="Basic Salary:" textFill="BLACK" GridPane.columnIndex="0" GridPane.rowIndex="2">
                     <font><Font name="System Bold" size="12.0" /></font>
                 </Label>
-                <TextField fx:id="txtBasicSalary" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="txtBasicSalary" prefHeight="28.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                <Label prefHeight="17.0" prefWidth="64.0" text="OT Hours:" textFill="BLACK" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <Label prefHeight="17.0" prefWidth="111.0" text="Overtime Payment:" textFill="BLACK" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <font><Font name="System Bold" size="12.0" /></font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
                 </Label>
                 <TextField fx:id="txtOtHours" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 
-                <Label prefHeight="17.0" prefWidth="100.0" text="Deduction:" textFill="BLACK" GridPane.rowIndex="5">
+                <Label prefHeight="17.0" prefWidth="103.0" text="Total Deductions:" textFill="BLACK" GridPane.rowIndex="5">
                     <font><Font name="System Bold" size="12.0" /></font>
                 </Label>
                 <TextField fx:id="txtDeduction" GridPane.columnIndex="3" GridPane.rowIndex="5" />
 
                 <Label text="Deduction Type:" textFill="BLACK" GridPane.columnIndex="2" GridPane.rowIndex="5">
                     <font><Font name="System Bold" size="12.0" /></font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
                 </Label>
-                <TextField fx:id="txtDeductionType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <TextField fx:id="txtDeductionType" prefHeight="84.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                <Label prefHeight="17.0" prefWidth="100.0" text="Net Salary:" textFill="BLACK" GridPane.rowIndex="9">
+                <Label prefHeight="17.0" prefWidth="103.0" text="Net Salary:" textFill="BLACK" GridPane.rowIndex="9">
                     <font><Font name="System Bold" size="12.0" /></font>
                 </Label>
                 <TextField fx:id="txtNetSalary" GridPane.columnIndex="1" GridPane.rowIndex="9" />
@@ -81,8 +87,8 @@
                     <RowConstraints />
                     <RowConstraints />
                     <RowConstraints />
-                    <RowConstraints />
-                    <RowConstraints />
+                    <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+                    <RowConstraints maxHeight="25.33333333333333" minHeight="25.33333333333333" prefHeight="25.33333333333333" />
                     <RowConstraints />
                <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
                <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
@@ -101,12 +107,12 @@
             <TableView fx:id="tblSalary" onMouseClicked="#onClickTable" prefHeight="329.0" prefWidth="1305.0">
                 <columns>
                     <TableColumn fx:id="colSalaryId" prefWidth="91.33" text="Salary ID" />
-                    <TableColumn fx:id="colEmployeeId" prefWidth="97.33331298828125" text="Employee ID" />
-                    <TableColumn fx:id="colBasicSalary" prefWidth="169.33326721191406" text="Basic Salary" />
-                    <TableColumn fx:id="colOtHours" prefWidth="89.33331298828125" text="OT Hours" />
-                    <TableColumn fx:id="colDeduction" prefWidth="131.33331298828125" text="Deduction" />
-                    <TableColumn fx:id="colDeductionType" prefWidth="103.33331298828125" text="Deduction Type" />
-                    <TableColumn fx:id="colNetSalary" prefWidth="234.66668701171875" text="Net Salary" />
+                    <TableColumn fx:id="colEmployeeId" prefWidth="151.33334350585938" text="Employee ID" />
+                    <TableColumn fx:id="colBasicSalary" prefWidth="181.99996948242188" text="Basic Salary" />
+                    <TableColumn fx:id="colOtHours" prefWidth="209.33334350585938" text="Overtime Payment" />
+                    <TableColumn fx:id="colDeduction" prefWidth="165.99993896484375" text="Total Deductions" />
+                    <TableColumn fx:id="colDeductionType" prefWidth="128.00006103515625" text="Deduction Type" />
+                    <TableColumn fx:id="colNetSalary" prefWidth="198.00006103515625" text="Net Salary" />
                 </columns>
             </TableView>
         </VBox>

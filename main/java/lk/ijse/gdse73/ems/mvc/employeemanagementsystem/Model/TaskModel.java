@@ -16,11 +16,11 @@ public class TaskModel {
 
         while (resultSet.next()) {
             TaskDTO taskDTO = new TaskDTO(
-                    resultSet.getString("task_id"),
-                    resultSet.getString("description"),
-                    resultSet.getString("deadline"),
-                    resultSet.getString("status"),
-                    resultSet.getString("employee_id")
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5)
             );
             taskList.add(taskDTO);
         }
@@ -37,18 +37,18 @@ public class TaskModel {
 
     public boolean updateTask(TaskDTO taskDTO) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
-                "UPDATE Task SET description = ?, deadline = ?, status = ?, employee_id = ? WHERE task_id = ?",
+                "UPDATE Task SET employee_id = ?, description = ?, deadline = ?, status = ? WHERE task_id = ?",
+                taskDTO.getEmployeeId(),
                 taskDTO.getDescription(),
                 taskDTO.getDeadline(),
                 taskDTO.getStatus(),
-                taskDTO.getEmployeeId(),
                 taskDTO.getTaskId()
         );
     }
 
     public boolean saveTask(TaskDTO taskDTO) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
-                "INSERT INTO Task (task_id, description, deadline, status, employee_id) VALUES (?, ?, ?, ?, ?)",
+                "INSERT INTO Task VALUES (?, ?, ?, ?, ?)",
                 taskDTO.getTaskId(),
                 taskDTO.getDescription(),
                 taskDTO.getDeadline(),
@@ -59,14 +59,18 @@ public class TaskModel {
 
     public String getNextTaskId() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT task_id FROM Task ORDER BY task_id DESC LIMIT 1");
-        char prefix = 'T';
+        char tableCharacter = 'T';
 
         if (resultSet.next()) {
-            String lastId = resultSet.getString("task_id");
-            int number = Integer.parseInt(lastId.substring(1));
-            number++;
-            return String.format("%c%03d", prefix, number);
+            String lastId = resultSet.getString(1);
+            String lastIdNumberString = lastId.substring(1);
+            int lastIdNumber = Integer.parseInt(lastIdNumberString);
+            int nextIdNUmber = lastIdNumber + 1;
+            String nextIdString = String.format(tableCharacter + "%03d", nextIdNUmber);
+            return nextIdString;
         }
-        return prefix + "001";
+
+
+        return tableCharacter + "001";
     }
-}
+    }

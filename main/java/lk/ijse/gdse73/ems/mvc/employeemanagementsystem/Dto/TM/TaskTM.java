@@ -10,8 +10,9 @@ import lombok.*;
 
 public class TaskTM {
     private String taskId;
+    private String employeeId;
     private String description;
     private String deadline;
     private String status;
-    private String employeeId;
+
 }
