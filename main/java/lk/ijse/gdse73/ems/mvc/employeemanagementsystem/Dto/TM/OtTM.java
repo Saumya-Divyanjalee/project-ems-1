@@ -11,10 +11,12 @@ import lombok.*;
 public class OtTM {
     private String otId;
     private String employeeId;
-    private String salaryId;
     private String otHours;
     private String ratePerHours;
     private String otDate;
+    private String overtimePayment;
 
 
+    public OtTM(String otId, String employeeId, String otHours, String ratePerHours, String otDate, double payment) {
+    }
 }

@@ -9,9 +9,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.LeavesDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.LeavesTM;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EmployeeModel;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.LeavesModel;
 
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -20,28 +22,27 @@ import java.util.ResourceBundle;
 public class LeavesController implements Initializable {
 
     public Label lblLeaveId;
-    public TextField txtEmployeeId;
-    public TextField txtLeaveType;
-    public TextField txtStartDate;
-    public TextField txtEndDate;
-    public TextField txtStatus;
+    public ComboBox<String> cmbEId;
+    public ComboBox<String> cmbLeaveType;
+    public ComboBox<String> cmbStatus;
 
     public TableView<LeavesTM> tblLeaves;
     public TableColumn<LeavesTM, String> colLeaveId;
     public TableColumn<LeavesTM, String> colEmployeeId;
     public TableColumn<LeavesTM, String> colLeaveType;
-    public TableColumn<LeavesTM, java.sql.Date> colStartDate;
-    public TableColumn<LeavesTM, java.sql.Date> colEndDate;
+    public TableColumn<LeavesTM, Date> colStartDate;
+    public TableColumn<LeavesTM, Date> colEndDate;
     public TableColumn<LeavesTM, String> colStatus;
-
-
-
-    private final LeavesModel leavesModel = new LeavesModel();
 
     public Button btnSave;
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
+
+    public DatePicker dateStart;
+    public DatePicker dateEnd;
+
+    private final LeavesModel leavesModel = new LeavesModel();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,20 +53,24 @@ public class LeavesController implements Initializable {
         colEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
+        cmbStatus.setItems(FXCollections.observableArrayList("Approved", "Rejected", "Pending"));
+        cmbLeaveType.setItems(FXCollections.observableArrayList("Annual Leave", "Casual Leave", "Sick Leave"));
+
         try {
+            cmbEId.setItems(EmployeeModel.getAllEmployeeid());
             resetPage();
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+            new Alert(Alert.AlertType.ERROR, "Initialization failed!").show();
         }
     }
 
     private void loadTableData() throws SQLException, ClassNotFoundException {
-        ArrayList<LeavesDTO> leavesDTOArrayList = leavesModel.getAllLeaves();
-        ObservableList<LeavesTM> leavesTMS = FXCollections.observableArrayList();
+        ArrayList<LeavesDTO> list = leavesModel.getAllLeaves();
+        ObservableList<LeavesTM> tmList = FXCollections.observableArrayList();
 
-        for (LeavesDTO dto : leavesDTOArrayList) {
-            LeavesTM leavesTM = new LeavesTM(
+        for (LeavesDTO dto : list) {
+            LeavesTM tm = new LeavesTM(
                     dto.getLeaveId(),
                     dto.getLeaveType(),
                     dto.getStartDate(),
@@ -73,10 +78,13 @@ public class LeavesController implements Initializable {
                     dto.getStatus(),
                     dto.getEmployeeId()
             );
-            leavesTMS.add(leavesTM);
+            tmList.add(tm);
         }
+        tblLeaves.setItems(tmList);
+    }
 
-        tblLeaves.setItems(leavesTMS);
+    private void loadNextLeaveId() throws SQLException, ClassNotFoundException {
+        lblLeaveId.setText(leavesModel.getNextLeaveId());
     }
 
     private void resetPage() throws SQLException, ClassNotFoundException {
@@ -87,23 +95,28 @@ public class LeavesController implements Initializable {
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
 
-        txtEmployeeId.setText("");
-        txtLeaveType.setText("");
-        txtStartDate.setText("");
-        txtEndDate.setText("");
-        txtStatus.setText("");
+        cmbLeaveType.getSelectionModel().clearSelection();
+        cmbStatus.getSelectionModel().clearSelection();
+        cmbEId.getSelectionModel().clearSelection();
 
-
+        dateStart.setValue(null);
+        dateEnd.setValue(null);
     }
+
     public void saveOnAction(ActionEvent actionEvent) {
         String leaveId = lblLeaveId.getText();
-        String leaveType = txtLeaveType.getText();
-        String startDate = txtStartDate.getText();
-        String endDate = txtEndDate.getText();
-        String status = txtStatus.getText();
-        String employeeId = txtEmployeeId.getText();
+        String leaveType = cmbLeaveType.getValue();
+        Date startDate = (dateStart.getValue() != null) ? Date.valueOf(dateStart.getValue()) : null;
+        Date endDate = (dateEnd.getValue() != null) ? Date.valueOf(dateEnd.getValue()) : null;
+        String status = cmbStatus.getValue();
+        String employeeId = cmbEId.getValue();
 
-        LeavesDTO dto = new LeavesDTO(leaveId,leaveType,startDate,endDate,status,employeeId);
+        if (leaveType == null || status == null || employeeId == null || startDate == null || endDate == null) {
+            new Alert(Alert.AlertType.WARNING, "Please fill all required fields!").show();
+            return;
+        }
+
+        LeavesDTO dto = new LeavesDTO(leaveId, leaveType, startDate, endDate, status, employeeId);
 
         try {
             boolean isSaved = leavesModel.saveLeave(dto);
@@ -116,21 +129,19 @@ public class LeavesController implements Initializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Invalid input or save error.").show();
+            new Alert(Alert.AlertType.ERROR, "Error while saving.").show();
         }
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
         String leaveId = lblLeaveId.getText();
-        String leaveType = txtLeaveType.getText();
-        String startDate = txtStartDate.getText();
-        String endDate = txtEndDate.getText();
-        String status = txtStatus.getText();
-        String employeeId = txtEmployeeId.getText();
+        String leaveType = cmbLeaveType.getValue();
+        Date startDate = (dateStart.getValue() != null) ? Date.valueOf(dateStart.getValue()) : null;
+        Date endDate = (dateEnd.getValue() != null) ? Date.valueOf(dateEnd.getValue()) : null;
+        String status = cmbStatus.getValue();
+        String employeeId = cmbEId.getValue();
 
-        LeavesDTO dto = new LeavesDTO(leaveId,leaveType,startDate,endDate,status,employeeId);
-
-
+        LeavesDTO dto = new LeavesDTO(leaveId, leaveType, startDate, endDate, status, employeeId);
 
         try {
             boolean isUpdated = leavesModel.updateLeave(dto);
@@ -143,22 +154,24 @@ public class LeavesController implements Initializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Error during update.").show();
+            new Alert(Alert.AlertType.ERROR, "Error while updating.").show();
         }
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
-        Alert alert = new Alert(
-                Alert.AlertType.CONFIRMATION,
-                "Are you sure to delete this record?",
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure to delete this leave?",
                 ButtonType.YES,
                 ButtonType.NO);
+
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.YES) {
             String leaveId = lblLeaveId.getText();
+
             try {
                 boolean isDeleted = leavesModel.deleteLeave(leaveId);
+
                 if (isDeleted) {
                     resetPage();
                     new Alert(Alert.AlertType.INFORMATION, "Leave deleted successfully!").show();
@@ -167,29 +180,25 @@ public class LeavesController implements Initializable {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Error during deletion.").show();
+                new Alert(Alert.AlertType.ERROR, "Error while deleting.").show();
             }
         }
     }
 
     public void resetOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-       resetPage();
-    }
-
-    private void loadNextLeaveId() throws SQLException, ClassNotFoundException {
-        String nextId = leavesModel.getNextLeaveId();
-        lblLeaveId.setText(nextId);
+        resetPage();
     }
 
     public void onClickTable(MouseEvent mouseEvent) {
         LeavesTM selected = tblLeaves.getSelectionModel().getSelectedItem();
+
         if (selected != null) {
             lblLeaveId.setText(selected.getLeaveId());
-            txtEmployeeId.setText(selected.getEmployeeId());
-            txtLeaveType.setText(selected.getLeaveType());
-            txtStartDate.setText(String.valueOf(selected.getStartDate()));
-            txtEndDate.setText(String.valueOf(selected.getEndDate()));
-            txtStatus.setText(selected.getStatus());
+            cmbEId.setValue(selected.getEmployeeId());
+            cmbLeaveType.setValue(selected.getLeaveType());
+            dateStart.setValue(selected.getStartDate().toLocalDate());
+            dateEnd.setValue(selected.getEndDate().toLocalDate());
+            cmbStatus.setValue(selected.getStatus());
 
             btnSave.setDisable(true);
             btnUpdate.setDisable(false);

@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.DepartmentDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.DepartmentTM;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.DepartmentModel;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EmployeeModel;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ public class DepartmentController implements Initializable {
 
     public Label lblDepartmentId;
     public TextField txtDepartmentName;
-    public TextField txtEmployeeId;
+    public ComboBox<String> cmbEID;
 
     public TableView<DepartmentTM> tblDepartment;
     public TableColumn<DepartmentTM, String> colDepartmentId;
@@ -42,12 +43,15 @@ public class DepartmentController implements Initializable {
         colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
 
         try {
-            resetPage();
-        }catch (Exception e){
+            cmbEID.setItems(EmployeeModel.getAllEmployeeid());
+        } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR,"Oops!...Something went wrong!").show();
+            new Alert(Alert.AlertType.ERROR, "Error loading employee IDs!").show();
         }
+
+        resetPage();
     }
+
     private void loadTableData() throws SQLException, ClassNotFoundException {
         ArrayList<DepartmentDTO> departmentDTOArrayList = departmentModel.getAllDepartment();
         ObservableList<DepartmentTM> departmentTMS = FXCollections.observableArrayList();
@@ -63,7 +67,7 @@ public class DepartmentController implements Initializable {
         tblDepartment.setItems(departmentTMS);
     }
 
-    private void resetPage(){
+    private void resetPage() {
         try {
             loadTableData();
             loadNextId();
@@ -72,31 +76,30 @@ public class DepartmentController implements Initializable {
             btnDelete.setDisable(true);
             btnUpdate.setDisable(true);
 
-            txtDepartmentName.setText("");
-            txtEmployeeId.setText("");
-
+            txtDepartmentName.clear();
+            cmbEID.getSelectionModel().clearSelection();
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR,"Oops!...Something went wrong!").show();
+            new Alert(Alert.AlertType.ERROR, "Oops!...Something went wrong during reset!").show();
         }
     }
 
     public void SaveOnAction(ActionEvent actionEvent) {
+        if (!validateInput()) return;
+
         String departmentId = lblDepartmentId.getText();
         String departmentName = txtDepartmentName.getText();
-        String employeeId = txtEmployeeId.getText();
+        String employeeId = cmbEID.getValue();
 
         DepartmentDTO departmentDTO = new DepartmentDTO(departmentId, departmentName, employeeId);
 
         try {
             boolean isSaved = departmentModel.saveDepartment(departmentDTO);
-
             if (isSaved) {
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "Department saved successfully!").show();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Department could not be saved!").show();
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,12 +107,12 @@ public class DepartmentController implements Initializable {
         }
     }
 
-
-
     public void updateOnAction(ActionEvent actionEvent) {
+        if (!validateInput()) return;
+
         String departmentId = lblDepartmentId.getText();
         String departmentName = txtDepartmentName.getText();
-        String employeeId = txtEmployeeId.getText();
+        String employeeId = cmbEID.getValue();
 
         DepartmentDTO departmentDTO = new DepartmentDTO(departmentId, departmentName, employeeId);
 
@@ -118,26 +121,19 @@ public class DepartmentController implements Initializable {
             if (isUpdated) {
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "Department updated successfully!").show();
-
-            }else {
+            } else {
                 new Alert(Alert.AlertType.ERROR, "Department could not be updated!").show();
-
             }
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Oops!...Department could not be updated!").show();
-
         }
-
     }
-
-
 
     public void deleteOnAction(ActionEvent actionEvent) {
         Alert alert = new Alert(
                 Alert.AlertType.CONFIRMATION,
-                "Are you sure ?",
+                "Are you sure you want to delete this department?",
                 ButtonType.YES,
                 ButtonType.NO
         );
@@ -151,27 +147,23 @@ public class DepartmentController implements Initializable {
                 if (isDeleted) {
                     resetPage();
                     new Alert(Alert.AlertType.INFORMATION, "Department deleted successfully!").show();
-
-                }else {
+                } else {
                     new Alert(Alert.AlertType.ERROR, "Department could not be deleted!").show();
-
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 new Alert(Alert.AlertType.ERROR, "Oops!...Department could not be deleted!").show();
-
             }
         }
     }
+
     public void resetOnAction(ActionEvent actionEvent) {
         resetPage();
-
     }
 
-    private  void loadNextId() throws SQLException, ClassNotFoundException {
+    private void loadNextId() throws SQLException, ClassNotFoundException {
         String nextId = departmentModel.getNextDepartmentId();
         lblDepartmentId.setText(nextId);
-
     }
 
     public void onClickTable(MouseEvent mouseEvent) {
@@ -180,7 +172,7 @@ public class DepartmentController implements Initializable {
         if (selectedItem != null) {
             lblDepartmentId.setText(selectedItem.getDepartmentId());
             txtDepartmentName.setText(selectedItem.getDepartmentName());
-            txtEmployeeId.setText(selectedItem.getEmployeeId());
+            cmbEID.setValue(selectedItem.getEmployeeId());
 
             btnSave.setDisable(true);
             btnUpdate.setDisable(false);
@@ -188,6 +180,17 @@ public class DepartmentController implements Initializable {
         }
     }
 
+    private boolean validateInput() {
+        if (txtDepartmentName.getText().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please enter department name.").show();
+            return false;
+        }
 
+        if (cmbEID.getValue() == null) {
+            new Alert(Alert.AlertType.WARNING, "Please select an Employee ID.").show();
+            return false;
+        }
 
+        return true;
+    }
 }

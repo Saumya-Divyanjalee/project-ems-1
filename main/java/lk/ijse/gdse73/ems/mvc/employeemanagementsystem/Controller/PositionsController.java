@@ -22,30 +22,35 @@ public class PositionsController implements Initializable {
     public Label lblPosition;
     public TextField txtPositionTitle;
     public TextField txtSalaryGrade;
-
+    public ComboBox<String> cmbBasic;
 
     public TableView<PositionsTM> tblPositions;
-    public TableColumn<PositionsTM ,String> colPositionId;
-    public TableColumn<PositionsTM ,String> colPositionTitle;
-    public TableColumn<PositionsTM ,String> colSalaryGrade;
+    public TableColumn<PositionsTM, String> colPositionId;
+    public TableColumn<PositionsTM, String> colPositionTitle;
+    public TableColumn<PositionsTM, String> colSalaryGrade;
+    public TableColumn<PositionsTM, String> colBasicSalary;
 
-private final PositionsModel positionsModel = new PositionsModel();
     public Button btnSave;
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
+
+    private final PositionsModel positionsModel = new PositionsModel();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colPositionId.setCellValueFactory(new PropertyValueFactory<>("positionId"));
         colPositionTitle.setCellValueFactory(new PropertyValueFactory<>("pTitle"));
         colSalaryGrade.setCellValueFactory(new PropertyValueFactory<>("salaryGrade"));
+        colBasicSalary.setCellValueFactory(new PropertyValueFactory<>("basicSalary"));
+
+        cmbBasic.setItems(FXCollections.observableArrayList("25000", "30000", "35000", "40000", "50000")); // Example values
 
         try {
             resetPage();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR,"Something went wrong").show();
+            new Alert(Alert.AlertType.ERROR, "Something went wrong during initialization").show();
         }
     }
 
@@ -53,53 +58,52 @@ private final PositionsModel positionsModel = new PositionsModel();
         ArrayList<PositionsDTO> positionsDTOArrayList = positionsModel.getAllPositions();
         ObservableList<PositionsTM> positionTMS = FXCollections.observableArrayList();
 
-        for (PositionsDTO positionsDTO : positionsDTOArrayList) {
-            PositionsTM positionsTM = new PositionsTM(
-                    positionsDTO.getPositionId(),
-                    positionsDTO.getPTitle(),
-                    positionsDTO.getSalaryGrade()
-
-            );positionTMS.add(positionsTM);
+        for (PositionsDTO dto : positionsDTOArrayList) {
+            positionTMS.add(new PositionsTM(
+                    dto.getPositionId(),
+                    dto.getPTitle(),
+                    dto.getSalaryGrade(),
+                    dto.getBasicSalary()
+            ));
         }
         tblPositions.setItems(positionTMS);
     }
-    private void resetPage()  {
+
+    private void loadNextId() throws SQLException, ClassNotFoundException {
+        String nextId = positionsModel.generateNextPositionId();
+        lblPosition.setText(nextId);
+    }
+
+    private void resetPage() {
         try {
             loadTableData();
             loadNextId();
 
-        btnSave.setDisable(false);
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
+            btnSave.setDisable(false);
+            btnUpdate.setDisable(true);
+            btnDelete.setDisable(true);
 
-        txtPositionTitle.setText("");
-        txtSalaryGrade.setText("");
-    }catch (Exception e){
-        e.printStackTrace();
-        new Alert(Alert.AlertType.ERROR,"Something went wrong").show();
-
+            txtPositionTitle.clear();
+            txtSalaryGrade.clear();
+            cmbBasic.getSelectionModel().clearSelection();
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Something went wrong while resetting").show();
         }
     }
 
     public void resetOnAction(ActionEvent actionEvent) {
         resetPage();
-
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
-        Alert alert = new Alert(
-                Alert.AlertType.CONFIRMATION,
-                "Are you sure?",
-                ButtonType.YES,
-                ButtonType.NO
-        );
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
         Optional<ButtonType> response = alert.showAndWait();
 
         if (response.isPresent() && response.get() == ButtonType.YES) {
             String positionId = lblPosition.getText();
             try {
                 boolean isDeleted = positionsModel.deletePosition(positionId);
-
                 if (isDeleted) {
                     resetPage();
                     new Alert(Alert.AlertType.INFORMATION, "Position deleted successfully.").show();
@@ -117,12 +121,17 @@ private final PositionsModel positionsModel = new PositionsModel();
         String positionId = lblPosition.getText();
         String title = txtPositionTitle.getText();
         String grade = txtSalaryGrade.getText();
+        String basicSalary = cmbBasic.getValue();
 
-        PositionsDTO dto = new PositionsDTO(positionId, title, grade);
+        if (title.isEmpty() || grade.isEmpty() || basicSalary == null) {
+            new Alert(Alert.AlertType.WARNING, "Please fill all fields!").show();
+            return;
+        }
+
+        PositionsDTO dto = new PositionsDTO(positionId, title, grade, basicSalary);
 
         try {
             boolean isUpdated = positionsModel.updatePosition(dto);
-
             if (isUpdated) {
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "Position updated successfully.").show();
@@ -139,12 +148,17 @@ private final PositionsModel positionsModel = new PositionsModel();
         String positionId = lblPosition.getText();
         String title = txtPositionTitle.getText();
         String grade = txtSalaryGrade.getText();
+        String basicSalary = cmbBasic.getValue();
 
-        PositionsDTO dto = new PositionsDTO(positionId, title, grade);
+        if (title.isEmpty() || grade.isEmpty() || basicSalary == null) {
+            new Alert(Alert.AlertType.WARNING, "Please fill all fields!").show();
+            return;
+        }
+
+        PositionsDTO dto = new PositionsDTO(positionId, title, grade, basicSalary);
 
         try {
             boolean isSaved = positionsModel.savePosition(dto);
-
             if (isSaved) {
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "Position saved successfully.").show();
@@ -157,11 +171,6 @@ private final PositionsModel positionsModel = new PositionsModel();
         }
     }
 
-    private void loadNextId() throws SQLException, ClassNotFoundException {
-        String nextId = positionsModel.getNextPositionId();
-        lblPosition.setText(nextId);
-    }
-
     public void onClickTable(MouseEvent mouseEvent) {
         PositionsTM selected = tblPositions.getSelectionModel().getSelectedItem();
 
@@ -169,6 +178,7 @@ private final PositionsModel positionsModel = new PositionsModel();
             lblPosition.setText(selected.getPositionId());
             txtPositionTitle.setText(selected.getPTitle());
             txtSalaryGrade.setText(selected.getSalaryGrade());
+            cmbBasic.setValue(selected.getBasicSalary());
 
             btnSave.setDisable(true);
             btnUpdate.setDisable(false);

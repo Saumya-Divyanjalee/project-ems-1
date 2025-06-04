@@ -31,7 +31,7 @@ public class AppInitializer extends Application {
             @Override
             protected Scene call() throws Exception {
                 Parent parent = FXMLLoader.load(
-                        getClass().getResource("/view/Dashboard.fxml")
+                        getClass().getResource("/view/login.fxml")
                 );
 
                 return new Scene(parent);

@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.MailController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.MailController">
 
     <children>
-        <VBox alignment="CENTER" layoutX="163.0" layoutY="87.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <VBox alignment="CENTER" spacing="15.0" layoutX="50.0" layoutY="40.0"
+              AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+
             <children>
                 <TextField fx:id="txtTo" promptText="To:" />
                 <TextField fx:id="txtSubject" promptText="Subject" />
-                <TextArea fx:id="txtMessage" prefHeight="200.0" prefWidth="200.0" promptText="Message" />
-                <Button mnemonicParsing="false" onAction="#btnSendOnAction" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: #1B1464;" text="Send" textFill="WHITE" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font></Button>
+                <TextArea fx:id="txtMessage" promptText="Message" prefHeight="200.0" />
+                <Button text="Send" textFill="WHITE" onAction="#btnSendOnAction"
+                        style="-fx-background-color: #1B1464;" prefHeight="30.0" prefWidth="150.0">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
             </children>
         </VBox>
     </children>

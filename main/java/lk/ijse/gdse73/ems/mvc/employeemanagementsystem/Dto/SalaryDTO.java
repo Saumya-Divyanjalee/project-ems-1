@@ -11,6 +11,7 @@ import lombok.*;
 public class SalaryDTO {
     private String salaryId;
     private String employeeId;
+    private String employeeName;
     private double basicSalary;
     private double otPayment;
     private double deduction;

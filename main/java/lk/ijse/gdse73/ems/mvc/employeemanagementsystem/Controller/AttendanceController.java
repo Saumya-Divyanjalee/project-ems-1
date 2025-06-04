@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.AttendanceDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.AttendanceTM;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.AttendanceModel;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EmployeeModel;
 
 import java.net.URL;
 import java.sql.Date;
@@ -22,7 +23,6 @@ import java.util.ResourceBundle;
 public class AttendanceController implements Initializable {
 
     public Label lblAttendanceId;
-    public TextField txtEmployeeId;
     public TextField txtCheckIn;
     public TextField txtCheckOut;
     public ComboBox<String> comboboxStatus;
@@ -42,6 +42,7 @@ public class AttendanceController implements Initializable {
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
+    public ComboBox cmbEID;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,6 +63,14 @@ public class AttendanceController implements Initializable {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Oops!...Something went wrong.").show();
         }
+        try {
+            cmbEID.setItems(EmployeeModel.getAllEmployeeid());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void loadTableData() throws SQLException, ClassNotFoundException {
@@ -90,7 +99,7 @@ public class AttendanceController implements Initializable {
             btnDelete.setDisable(true);
             btnUpdate.setDisable(true);
 
-            txtEmployeeId.setText("");
+            cmbEID.getSelectionModel().clearSelection();
             datePickerDate.setValue(null);
             txtCheckIn.setText("");
             txtCheckOut.setText("");
@@ -105,7 +114,7 @@ public class AttendanceController implements Initializable {
     public void saveOnAction(ActionEvent actionEvent) {
         try {
             String attendanceId = lblAttendanceId.getText();
-            String employeeId = txtEmployeeId.getText();
+            String employeeId = cmbEID.getValue().toString();
             Date date = datePickerDate.getValue() != null ? Date.valueOf(datePickerDate.getValue()) : null;
             String checkIn = txtCheckIn.getText();
             String checkOut = txtCheckOut.getText();
@@ -129,7 +138,7 @@ public class AttendanceController implements Initializable {
     public void updateOnAction(ActionEvent actionEvent) {
         try {
             String attendanceId = lblAttendanceId.getText();
-            String employeeId = txtEmployeeId.getText();
+            String employeeId = cmbEID.getValue().toString();
             Date date = datePickerDate.getValue() != null ? Date.valueOf(datePickerDate.getValue()) : null;
             String checkIn = txtCheckIn.getText();
             String checkOut = txtCheckOut.getText();
@@ -185,7 +194,7 @@ public class AttendanceController implements Initializable {
         AttendanceTM selected = tblAttendance.getSelectionModel().getSelectedItem();
         if (selected != null) {
             lblAttendanceId.setText(selected.getAttendanceId());
-            txtEmployeeId.setText(selected.getEmployeeId());
+            cmbEID.setValue(selected.getEmployeeId());
             datePickerDate.setValue(LocalDate.parse(selected.getDate().toString()));
             txtCheckIn.setText(selected.getCheckIn());
             txtCheckOut.setText(selected.getCheckOut());

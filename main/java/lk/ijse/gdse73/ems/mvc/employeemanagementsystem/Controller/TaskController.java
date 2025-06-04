@@ -30,6 +30,9 @@ public class TaskController implements Initializable {
     public TableColumn<TaskTM, String> colDescription;
     public TableColumn<TaskTM, String>colDeadline;
     public TableColumn<TaskTM, String>colStatus;
+    public ComboBox cmbEID;
+    public DatePicker dateDeadline;
+    public ComboBox cmbStatus;
 
 
     TaskModel taskModel = new TaskModel();

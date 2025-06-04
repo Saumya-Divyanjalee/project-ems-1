@@ -121,9 +121,7 @@
                <TableColumn fx:id="colContact" text="Contact" />
                <TableColumn fx:id="colPositionId" text="Position ID" />
             </columns>
-            <cursor>
-               <Cursor fx:constant="CROSSHAIR" />
-            </cursor>
+
             <VBox.margin>
                <Insets left="10.0" right="5.0" />
             </VBox.margin>

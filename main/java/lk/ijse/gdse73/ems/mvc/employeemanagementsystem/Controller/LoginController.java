@@ -16,7 +16,7 @@ public class LoginController {
     public Button btnLogin;
     public Label lblError;
 
-    private User user = new User("sau", "1234");
+    private User user = new User("s", "1");
 
     public void loginOnAction(ActionEvent actionEvent) {
         String username = txtUsername.getText();

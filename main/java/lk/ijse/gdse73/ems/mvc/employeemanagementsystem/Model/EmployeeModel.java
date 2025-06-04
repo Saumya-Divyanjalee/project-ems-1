@@ -1,5 +1,7 @@
 package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.EmployeeDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Util.CrudUtil;
 
@@ -8,6 +10,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EmployeeModel {
+
+    public static ObservableList<String> getAllEmployeeid() throws SQLException, ClassNotFoundException {
+        ResultSet rs = CrudUtil.execute("select employee_id from Employee");
+        ObservableList<String> employeeid = FXCollections.observableArrayList();
+        while(rs.next()){
+            employeeid.add(rs.getString("employee_id"));
+        }
+        return employeeid;
+    }
 
     public String getNextEmployeeId() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT employee_id FROM Employee ORDER BY employee_id DESC LIMIT 1");
@@ -89,15 +100,7 @@ public class EmployeeModel {
         );
     }
 
-    public ArrayList<String> getAllEmployeeIds() throws SQLException, ClassNotFoundException {
-        ResultSet rst = CrudUtil.execute("SELECT employee_id FROM Employee");
-        ArrayList<String> list = new ArrayList<>();
-        while (rst.next()) {
-            String id = rst.getString(1);
-            list.add(id);
-        }
-        return list;
-    }
+
 
 
 
@@ -112,5 +115,18 @@ public class EmployeeModel {
             return rst.getString(1);
         }
         return null;
+    }
+
+    public ObservableList<String> getAllEmployeeIds() throws SQLException, ClassNotFoundException {
+        ResultSet rst = CrudUtil.execute("SELECT employee_id FROM Employee ORDER BY employee_id ");
+        ArrayList<String> list = new ArrayList<>();
+        while (rst.next()) {
+            String id = rst.getString(1);
+            list.add(id);
+        }
+
+        ObservableList<String> employeeIds = FXCollections.observableArrayList();
+        employeeIds.addAll(list);
+        return employeeIds;
     }
 }

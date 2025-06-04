@@ -293,7 +293,7 @@ public class EmployeeController implements Initializable {
 
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/view/MailForm.fxml")
+                    getClass().getResource("/view/Mail.fxml")
             );
             Parent load =loader.load();
 

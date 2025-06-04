@@ -2,6 +2,8 @@ package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM;
 
 import lombok.*;
 
+import java.sql.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -11,8 +13,8 @@ import lombok.*;
 public class LeavesTM {
     private String leaveId;
     private String leaveType;
-    private String startDate;
-    private String endDate;
+    private Date startDate;
+    private Date endDate;
     private String status;
     private String employeeId;
 }

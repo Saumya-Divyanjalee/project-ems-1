@@ -72,7 +72,6 @@
                 <TableColumn fx:id="colStatus" prefWidth="299.3333740234375" text="Status" />
             </columns>
         </TableView>
-          <TextField fx:id="txtEmployeeId" layoutX="558.0" layoutY="77.0" promptText="E001" />
 
           <Label layoutX="452.0" layoutY="81.0" style="-fx-font-weight: bold;" text="Employee ID:" textFill="#000000" />
 
@@ -81,6 +80,7 @@
 
               <Label layoutX="28.0" layoutY="14.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Attendance Management" textFill="#273c75" />
       <ComboBox fx:id="comboboxStatus" layoutX="558.0" layoutY="176.0" prefWidth="150.0" promptText=" " />
+      <ComboBox fx:id="cmbEID" layoutX="558.0" layoutY="77.0" prefWidth="150.0" />
 
     </children>
 </AnchorPane>

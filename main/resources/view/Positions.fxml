@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="631.0" prefWidth="1178.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.PositionsController">
 
@@ -31,7 +33,9 @@
             <GridPane hgap="10" vgap="15">
                 <columnConstraints>
                     <ColumnConstraints halignment="RIGHT" />
-                    <ColumnConstraints prefWidth="300" />
+                    <ColumnConstraints prefWidth="300.0" />
+               <ColumnConstraints prefWidth="300.0" />
+               <ColumnConstraints prefWidth="300.0" />
                 </columnConstraints>
 
                 <rowConstraints>
@@ -43,11 +47,20 @@
                 <Label prefHeight="17.0" prefWidth="82.0" style="-fx-text-fill: black; -fx-font-weight: bold;" text="Position ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                 <Label fx:id="lblPosition" style="-fx-text-fill: black; -fx-font-weight: bold;" text="1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Label prefHeight="17.0" prefWidth="83.0" style="-fx-text-fill: black; -fx-font-weight: bold;" text="Position Title:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label prefHeight="17.0" prefWidth="83.0" style="-fx-text-fill: black; -fx-font-weight: bold;" text="Position Title:" GridPane.rowIndex="1" />
                 <TextField fx:id="txtPositionTitle" prefHeight="25.0" prefWidth="397.0" promptText="e.g. Collection Assistant" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label prefHeight="17.0" prefWidth="84.0" style="-fx-text-fill: black; -fx-font-weight: bold;" text="Salary Grade:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label prefHeight="17.0" prefWidth="84.0" style="-fx-text-fill: black; -fx-font-weight: bold;" text="Salary Grade:" GridPane.rowIndex="2" />
                 <TextField fx:id="txtSalaryGrade" promptText="e.g. Grade A" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="lblBasic" text="Basic Salary" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="80.0" />
+               </padding>
+            </Label>
+            <ComboBox fx:id="cmbBasic" prefHeight="25.0" prefWidth="221.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             </GridPane>
 
             <!-- Button Panel -->
@@ -61,9 +74,10 @@
             <!-- Table -->
             <TableView fx:id="tblPositions" onMouseClicked="#onClickTable" prefHeight="358.0" prefWidth="1105.0">
                 <columns>
-                    <TableColumn fx:id="colPositionId" prefWidth="154.66" text="Position ID" />
-                    <TableColumn fx:id="colPositionTitle" prefWidth="519.3333740234375" text="Position Title" />
-                    <TableColumn fx:id="colSalaryGrade" prefWidth="431.333251953125" text="Salary Grade" />
+                    <TableColumn fx:id="colPositionId" prefWidth="114.66668319702148" text="Position ID" />
+                    <TableColumn fx:id="colPositionTitle" prefWidth="230.66661071777344" text="Position Title" />
+                    <TableColumn fx:id="colSalaryGrade" prefWidth="249.99990844726562" text="Salary Grade" />
+               <TableColumn fx:id="colBasicSalary" prefWidth="508.666748046875" text="Basic Salary" />
                 </columns>
             </TableView>
 

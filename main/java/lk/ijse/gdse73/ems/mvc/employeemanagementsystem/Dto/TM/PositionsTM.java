@@ -12,4 +12,5 @@ public class PositionsTM {
     private String positionId;
     private String pTitle;
     private String salaryGrade;
+    private String basicSalary;
 }
