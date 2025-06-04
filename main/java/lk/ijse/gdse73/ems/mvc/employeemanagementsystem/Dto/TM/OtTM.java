@@ -7,7 +7,6 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-
 public class OtTM {
     private String otId;
     private String employeeId;
@@ -16,7 +15,16 @@ public class OtTM {
     private String otDate;
     private String overtimePayment;
 
-
     public OtTM(String otId, String employeeId, String otHours, String ratePerHours, String otDate, double payment) {
+        this.otId = otId;
+        this.employeeId = employeeId;
+        this.otHours = otHours;
+        this.ratePerHours = ratePerHours;
+        this.otDate = otDate;
+        this.overtimePayment = String.valueOf(payment);
+    }
+
+    public String getRatePerHour() {
+        return ratePerHours;
     }
 }

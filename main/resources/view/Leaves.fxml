@@ -88,10 +88,10 @@
                 <columns>
                     <TableColumn fx:id="colLeaveId" prefWidth="100" text="Leave ID" />
                     <TableColumn fx:id="colEmployeeId" prefWidth="100" text="Employee ID" />
-                    <TableColumn fx:id="colStatus" prefWidth="196.0" text="Status" />
-                    <TableColumn fx:id="colLeaveType" prefWidth="318.0000305175781" text="Leave Type" />
-                    <TableColumn fx:id="colStartDate" prefWidth="201.99993896484375" text="Start Date" />
-                    <TableColumn fx:id="colEndDate" prefWidth="195.333251953125" text="End Date" />
+                    <TableColumn fx:id="colStatus" prefWidth="146.66664123535156" text="Status" />
+                    <TableColumn fx:id="colLeaveType" prefWidth="203.33331298828125" text="Leave Type" />
+                    <TableColumn fx:id="colStartDate" prefWidth="177.33331298828125" text="Start Date" />
+                    <TableColumn fx:id="colEndDate" prefWidth="386.666748046875" text="End Date" />
                 </columns>
             </TableView>
         </VBox>

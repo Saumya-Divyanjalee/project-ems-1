@@ -17,11 +17,12 @@ public class LeavesModel {
             LeavesDTO dto = new LeavesDTO(
                     resultSet.getString("leave_id"),
                     resultSet.getString("leave_type"),
-                    resultSet.getDate("start_date").toString(),
-                    resultSet.getDate("end_date").toString(),
+                    resultSet.getDate("start_date"),
+                    resultSet.getDate("end_date"),
                     resultSet.getString("status"),
                     resultSet.getString("employee_id")
             );
+
             leavesList.add(dto);
         }
         return leavesList;

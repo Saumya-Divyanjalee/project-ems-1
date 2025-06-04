@@ -50,12 +50,13 @@ public class TaskModel {
         return CrudUtil.execute(
                 "INSERT INTO Task VALUES (?, ?, ?, ?, ?)",
                 taskDTO.getTaskId(),
+                taskDTO.getEmployeeId(),
                 taskDTO.getDescription(),
                 taskDTO.getDeadline(),
-                taskDTO.getStatus(),
-                taskDTO.getEmployeeId()
+                taskDTO.getStatus()
         );
     }
+
 
     public String getNextTaskId() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT task_id FROM Task ORDER BY task_id DESC LIMIT 1");

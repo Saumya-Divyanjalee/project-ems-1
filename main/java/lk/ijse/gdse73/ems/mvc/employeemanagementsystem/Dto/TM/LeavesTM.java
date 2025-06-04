@@ -9,7 +9,6 @@ import java.sql.Date;
 @Getter
 @Setter
 @ToString
-
 public class LeavesTM {
     private String leaveId;
     private String leaveType;
@@ -17,4 +16,21 @@ public class LeavesTM {
     private Date endDate;
     private String status;
     private String employeeId;
+
+    // Optional: You can keep this if you want a custom constructor order
+    public LeavesTM(String leaveId, String employeeId, String leaveType, Date startDate, Date endDate, String status) {
+        this.leaveId = leaveId;
+        this.employeeId = employeeId;
+        this.leaveType = leaveType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+    }
+
+
+
+    // Remove this unless you specifically need it
+    // public Object getDate() {
+    //     return null;
+    // }
 }

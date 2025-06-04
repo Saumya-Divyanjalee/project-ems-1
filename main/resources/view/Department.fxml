@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="578.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DepartmentController">
+<AnchorPane prefHeight="633.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.DepartmentController">
 
-    <VBox alignment="TOP_CENTER" layoutX="-4.0" prefHeight="596.0" prefWidth="819.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="-51.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+    <VBox alignment="TOP_CENTER" layoutX="-4.0" prefHeight="633.0" prefWidth="798.0" spacing="15.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="0.0">
 
         <Label text="Department Management" textFill="#273c75">
             <font>
@@ -79,11 +79,11 @@
             </VBox.margin>
         </HBox>
 
-        <TableView fx:id="tblDepartment" onMouseClicked="#onClickTable" prefHeight="375.0" prefWidth="778.0">
+        <TableView fx:id="tblDepartment" onMouseClicked="#onClickTable" prefHeight="375.0" prefWidth="742.0">
             <columns>
                 <TableColumn fx:id="colDepartmentId" prefWidth="126.66" text="Department ID" />
                 <TableColumn fx:id="colEmployeeId" prefWidth="160.0" text="Employee ID" />
-                <TableColumn fx:id="colDepartmentName" prefWidth="498.0" text="Department Name" />
+                <TableColumn fx:id="colDepartmentName" prefWidth="470.6666259765625" text="Department Name" />
             </columns>
             <VBox.margin>
                 <Insets left="30.0" right="30.0" top="30.0" />

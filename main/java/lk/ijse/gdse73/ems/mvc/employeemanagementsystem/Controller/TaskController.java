@@ -9,37 +9,37 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TaskDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.TaskTM;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EmployeeModel;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.TaskModel;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class TaskController implements Initializable {
-    public TextField txtStatus;
-    public TextField txtDeadline;
+
     public Label lblTaskId;
-    public TextField txtEmployeeId;
     public TextField txtDescription;
+    public ComboBox<String> cmbEID;
+    public DatePicker dateDeadline;
+    public ComboBox<String> cmbStatus;
 
     public TableView<TaskTM> tblTask;
     public TableColumn<TaskTM, String> colTaskId;
     public TableColumn<TaskTM, String> colEmployeeId;
     public TableColumn<TaskTM, String> colDescription;
-    public TableColumn<TaskTM, String>colDeadline;
-    public TableColumn<TaskTM, String>colStatus;
-    public ComboBox cmbEID;
-    public DatePicker dateDeadline;
-    public ComboBox cmbStatus;
+    public TableColumn<TaskTM, String> colDeadline;
+    public TableColumn<TaskTM, String> colStatus;
 
-
-    TaskModel taskModel = new TaskModel();
     public Button btnSave;
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
+
+    TaskModel taskModel = new TaskModel();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,12 +49,17 @@ public class TaskController implements Initializable {
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colDeadline.setCellValueFactory(new PropertyValueFactory<>("deadline"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        cmbStatus.setItems(FXCollections.observableArrayList("Assigned", "In Progress", "Pending"));
+
         try {
-            resetPage();
+            cmbEID.setItems(EmployeeModel.getAllEmployeeid());
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Something went wrong").show();
+            new Alert(Alert.AlertType.ERROR, "Employee ID load කිරීමේදී Error එකක්!").show();
         }
+
+        resetPage(); // මුලදී load වෙනවා
     }
 
     private void loadTableData() throws SQLException, ClassNotFoundException {
@@ -62,14 +67,13 @@ public class TaskController implements Initializable {
         ObservableList<TaskTM> taskTMS = FXCollections.observableArrayList();
 
         for (TaskDTO dto : taskDTOArrayList) {
-            TaskTM tm = new TaskTM(
+            taskTMS.add(new TaskTM(
                     dto.getTaskId(),
                     dto.getEmployeeId(),
                     dto.getDescription(),
                     dto.getDeadline(),
                     dto.getStatus()
-            );
-            taskTMS.add(tm);
+            ));
         }
         tblTask.setItems(taskTMS);
     }
@@ -83,10 +87,10 @@ public class TaskController implements Initializable {
             btnDelete.setDisable(true);
             btnUpdate.setDisable(true);
 
-            txtEmployeeId.setText("");
-            txtDescription.setText("");
-            txtDeadline.setText("");
-            txtStatus.setText("");
+            cmbStatus.getSelectionModel().clearSelection();
+            cmbEID.getSelectionModel().clearSelection();
+            txtDescription.clear();
+            dateDeadline.setValue(null);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -116,23 +120,21 @@ public class TaskController implements Initializable {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Failed to delete task.").show();
+                new Alert(Alert.AlertType.ERROR, "Error occurred while deleting task.").show();
             }
         }
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
-         String taskId = lblTaskId.getText();
-         String employeeId = txtEmployeeId.getText();
-         String description = txtDescription.getText();
-         String deadline = txtDeadline.getText();
-         String status = txtStatus.getText();
-
-         TaskDTO taskDTO = new TaskDTO(
-                 taskId,employeeId,description,deadline,status
-         );
-
         try {
+            String taskId = lblTaskId.getText();
+            String employeeId = cmbEID.getValue();
+            String description = txtDescription.getText();
+            String deadline = dateDeadline.getValue().toString();
+            String status = cmbStatus.getValue();
+
+            TaskDTO taskDTO = new TaskDTO(taskId, employeeId, description, deadline, status);
+
             boolean isUpdated = taskModel.updateTask(taskDTO);
             if (isUpdated) {
                 resetPage();
@@ -140,33 +142,39 @@ public class TaskController implements Initializable {
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to update task.").show();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Failed to update task.").show();
+            new Alert(Alert.AlertType.ERROR, "Update error! Check input fields.").show();
         }
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
-        TaskDTO taskDTO = new TaskDTO(
-                lblTaskId.getText(),
-                txtEmployeeId.getText(),
-                txtDescription.getText(),
-                txtDeadline.getText(),
-                txtStatus.getText()
-        );
-
         try {
-            boolean isSaved = taskModel.saveTask(taskDTO);
+            String taskId = lblTaskId.getText();
+            String employeeId = cmbEID.getValue();
+            String description = txtDescription.getText();
+            LocalDate deadlineDate = dateDeadline.getValue();
+            String status = cmbStatus.getValue();
 
+            if (employeeId == null || description.isEmpty() || deadlineDate == null || status == null) {
+                new Alert(Alert.AlertType.WARNING, "Please fill all fields!").show();
+                return;
+            }
+
+            TaskDTO taskDTO = new TaskDTO(taskId, employeeId, description, deadlineDate.toString(), status);
+
+            boolean isSaved = taskModel.saveTask(taskDTO);
             if (isSaved) {
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "Task saved successfully!").show();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Task could not be saved!").show();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Oops!...Task could not be saved!").show();
+            new Alert(Alert.AlertType.ERROR, "Oops!...Task save error!").show();
         }
     }
 
@@ -175,10 +183,17 @@ public class TaskController implements Initializable {
 
         if (selectedItem != null) {
             lblTaskId.setText(selectedItem.getTaskId());
-            txtEmployeeId.setText(selectedItem.getEmployeeId());
+            cmbEID.setValue(selectedItem.getEmployeeId());
             txtDescription.setText(selectedItem.getDescription());
-            txtDeadline.setText(selectedItem.getDeadline());
-            txtStatus.setText(selectedItem.getStatus());
+
+            try {
+                LocalDate deadline = LocalDate.parse(selectedItem.getDeadline());
+                dateDeadline.setValue(deadline);
+            } catch (Exception e) {
+                dateDeadline.setValue(null);
+            }
+
+            cmbStatus.setValue(selectedItem.getStatus());
 
             btnSave.setDisable(true);
             btnUpdate.setDisable(false);
@@ -186,12 +201,8 @@ public class TaskController implements Initializable {
         }
     }
 
-
-
     private void loadNextId() throws SQLException, ClassNotFoundException {
         String nextId = taskModel.getNextTaskId();
         lblTaskId.setText(nextId);
     }
-
-
 }

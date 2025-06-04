@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.EquipmentDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.EquipmentTM;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EmployeeModel;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EquipmentModel;
 
 import java.net.URL;
@@ -34,6 +35,7 @@ public class EquipmentController implements Initializable {
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
+    public ComboBox cmbEId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,12 +43,15 @@ public class EquipmentController implements Initializable {
         colEqName.setCellValueFactory(new PropertyValueFactory<>("equipmentName"));
         colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
 
+
         try {
-            resetPage();
+            cmbEId.setItems(EmployeeModel.getAllEmployeeid());
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Something went wrong.").show();
+            new Alert(Alert.AlertType.ERROR, "Error loading employee IDs!").show();
         }
+
+        resetPage();
     }
 
     private void loadTableData() throws SQLException, ClassNotFoundException {
@@ -75,7 +80,7 @@ public class EquipmentController implements Initializable {
             btnDelete.setDisable(true);
 
             txtEquipmentName.setText("");
-            txtEmployeeId.setText("");
+            cmbEId.getSelectionModel().clearSelection();
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Something went wrong.").show();
@@ -86,7 +91,7 @@ public class EquipmentController implements Initializable {
     public void saveOnAction(ActionEvent actionEvent) {
         String id = lblEquipment.getText();
         String name = txtEquipmentName.getText();
-        String empId = txtEmployeeId.getText();
+        String empId = cmbEId.getValue().toString();
 
         EquipmentDTO dto = new EquipmentDTO(id, name, empId);
 
@@ -107,7 +112,7 @@ public class EquipmentController implements Initializable {
     public void updateOnAction(ActionEvent actionEvent) {
         String id = lblEquipment.getText();
         String name = txtEquipmentName.getText();
-        String empId = txtEmployeeId.getText();
+        String empId = cmbEId.getValue().toString();
 
         EquipmentDTO dto = new EquipmentDTO(id, name, empId);
 
@@ -168,7 +173,7 @@ public class EquipmentController implements Initializable {
         if (selectedItem != null) {
             lblEquipment.setText(selectedItem.getEquipmentId());
             txtEquipmentName.setText(selectedItem.getEquipmentName());
-            txtEmployeeId.setText(selectedItem.getEmployeeId());
+            cmbEId.setValue(selectedItem.getEmployeeId());
 
             btnSave.setDisable(true);
             btnUpdate.setDisable(false);
