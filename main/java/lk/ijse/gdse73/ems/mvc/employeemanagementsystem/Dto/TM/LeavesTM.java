@@ -17,7 +17,7 @@ public class LeavesTM {
     private String status;
     private String employeeId;
 
-    // Optional: You can keep this if you want a custom constructor order
+
     public LeavesTM(String leaveId, String employeeId, String leaveType, Date startDate, Date endDate, String status) {
         this.leaveId = leaveId;
         this.employeeId = employeeId;
@@ -29,8 +29,5 @@ public class LeavesTM {
 
 
 
-    // Remove this unless you specifically need it
-    // public Object getDate() {
-    //     return null;
-    // }
+
 }

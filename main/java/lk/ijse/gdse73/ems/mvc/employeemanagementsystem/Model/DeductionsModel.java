@@ -24,10 +24,16 @@ public class DeductionsModel {
 
     public static boolean saveDeduction(DeductionsDTO dto) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
-                "INSERT INTO deductions (dtype_id, employee_id, type_name, total_Deductions) VALUES (?, ?, ?, ?)",
-                dto.getDeductionId(), dto.getEmployeeId(), dto.getDeductionName(), dto.getTotalDeduction()
+                "INSERT INTO Deductions (deduction_id, employee_id, date, deduction_percentage, total_deduction, basic_salary) VALUES (?, ?, ?, ?, ?, ?)",
+                dto.getDeductionId(),
+                dto.getEmployeeId(),
+                dto.getDate(),
+                dto.getDeductionPercentage(),
+                dto.getTotalDeduction(),
+                dto.getBasicSalary()  // ← Set from position
         );
     }
+
 
     public static ArrayList<DeductionsDTO> getAllDeductions() throws SQLException, ClassNotFoundException {
         ResultSet rs = CrudUtil.execute("SELECT * FROM deductions");

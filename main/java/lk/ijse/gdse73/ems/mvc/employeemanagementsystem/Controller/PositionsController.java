@@ -128,7 +128,9 @@ public class PositionsController implements Initializable {
             return;
         }
 
-        PositionsDTO dto = new PositionsDTO(positionId, title, grade, basicSalary);
+        PositionsDTO dto = new PositionsDTO(
+                positionId, title, grade, basicSalary
+        );
 
         try {
             boolean isUpdated = positionsModel.updatePosition(dto);

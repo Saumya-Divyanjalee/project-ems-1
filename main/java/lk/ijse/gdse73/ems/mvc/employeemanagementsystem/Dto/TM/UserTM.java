@@ -10,7 +10,7 @@ import lombok.*;
 
 
 
-public class UserTM {
+public class  UserTM {
     private String user_id;
     private String user_name;
     private String u_mobile;

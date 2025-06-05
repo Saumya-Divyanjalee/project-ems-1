@@ -19,6 +19,5 @@ public class LeavesDTO {
     private String employeeId;
 
 
-    public LeavesDTO(String leaveId, String leaveType, String startDate, String endDate, String status, String employeeId) {
-    }
+
 }

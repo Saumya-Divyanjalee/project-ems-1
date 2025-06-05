@@ -21,21 +21,20 @@ import java.util.ResourceBundle;
 public class EquipmentController implements Initializable {
     public Label lblEquipment;
     public TextField txtEquipmentName;
-    public TextField txtEmployeeId;
+    public ComboBox cmbEId;
+
 
     public TableView<EquipmentTM> tblID;
     public TableColumn<EquipmentTM, String> colEqId;
     public TableColumn<EquipmentTM, String> colEqName;
     public TableColumn<EquipmentTM, String> colEmployeeId;
 
-
-
     private final EquipmentModel equipmentModel = new EquipmentModel();
     public Button btnSave;
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
-    public ComboBox cmbEId;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

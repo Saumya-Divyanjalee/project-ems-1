@@ -17,6 +17,9 @@ public class DeductionsDTO {
     private String totalDeduction;
 
 
-    public DeductionsDTO(String string, String string1, String string2, String string3, Object o, String string4, String string5) {
+
+
+    public Object getDate() {
+        return  null;
     }
 }

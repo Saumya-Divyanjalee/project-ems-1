@@ -56,10 +56,10 @@ public class TaskController implements Initializable {
             cmbEID.setItems(EmployeeModel.getAllEmployeeid());
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Employee ID load කිරීමේදී Error එකක්!").show();
+            new Alert(Alert.AlertType.ERROR, "Oops!...Something went wrong!").show();
         }
 
-        resetPage(); // මුලදී load වෙනවා
+        resetPage();
     }
 
     private void loadTableData() throws SQLException, ClassNotFoundException {

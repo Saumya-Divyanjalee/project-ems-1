@@ -15,7 +15,6 @@ import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.LeavesModel;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -26,6 +25,8 @@ public class LeavesController implements Initializable {
     public ComboBox<String> cmbEId;
     public ComboBox<String> cmbLeaveType;
     public ComboBox<String> cmbStatus;
+    public DatePicker dateStart;
+    public DatePicker dateEnd;
 
     public TableView<LeavesTM> tblLeaves;
     public TableColumn<LeavesTM, String> colLeaveId;
@@ -39,9 +40,6 @@ public class LeavesController implements Initializable {
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
-
-    public DatePicker dateStart;
-    public DatePicker dateEnd;
 
     private final LeavesModel leavesModel = new LeavesModel();
 

@@ -70,4 +70,16 @@ public class PositionsModel {
 
         return prefix + "001";
     }
+
+    // Get basic salary of an employee by their employee ID
+    public static double getBasicSalaryByEmployeeId(String employeeId) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT p.basic_salary FROM employee e JOIN Positions p ON e.position_id = p.position_id WHERE e.employee_id = ?";
+        ResultSet resultSet = CrudUtil.execute(sql, employeeId);
+
+        if (resultSet.next()) {
+            return resultSet.getDouble("basic_salary");
+        } else {
+            throw new SQLException("Basic salary not found for employee ID: " + employeeId);
+        }
+    }
 }
