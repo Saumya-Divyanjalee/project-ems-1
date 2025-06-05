@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.DeductionsDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.DeductionsTM;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.DeductionsModel;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EmployeeModel;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -21,32 +22,45 @@ public class DeductionsController implements Initializable {
 
     public Label lblId;
     public ComboBox<String> cmbDeductionName;
+    public ComboBox<String> cmbEmployeeId;
+    public TextField txtBasicSalary;           // Add these TextFields to your FXML!
+    public TextField txtDeductionPercentage;   // Add these TextFields to your FXML!
+    public TextField txtTotalDeduction;
 
     public TableView<DeductionsTM> tblDeductions;
     public TableColumn<DeductionsTM, String> colDeductionId;
     public TableColumn<DeductionsTM, String> colDeductionName;
+    public TableColumn<DeductionsTM, String> colTotalDeduction;
+    public TableColumn<DeductionsTM, String> colEmployeeId;
+    public TableColumn<DeductionsTM, String> colBasicSalary;
+    public TableColumn<DeductionsTM, String> colDeductionPercentage;
+
+    private final DeductionsModel deductionsModel = new DeductionsModel();
 
     public Button btnUpdate;
     public Button btnDelete;
     public Button btnReset;
     public Button btnSaveId;
 
-    private final DeductionsModel deductionsModel = new DeductionsModel();
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colDeductionId.setCellValueFactory(new PropertyValueFactory<>("deductionId"));
+        colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         colDeductionName.setCellValueFactory(new PropertyValueFactory<>("deductionName"));
+        colBasicSalary.setCellValueFactory(new PropertyValueFactory<>("basicSalary"));
+        colDeductionPercentage.setCellValueFactory(new PropertyValueFactory<>("deductionPercentage"));
+        colTotalDeduction.setCellValueFactory(new PropertyValueFactory<>("totalDeduction"));
 
-        cmbDeductionName.setItems(FXCollections.observableArrayList("ETF", "EPF"));
-        cmbDeductionName.setValue("ETF");
+        cmbDeductionName.setItems(FXCollections.observableArrayList("ETF+EPF", "Other"));
 
         try {
-            resetPage();
+            cmbEmployeeId.setItems(EmployeeModel.getAllEmployeeid());  // Make sure this method is static or create instance accordingly
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Oops!...Something went wrong!").show();
+            new Alert(Alert.AlertType.ERROR, "Error loading employee IDs!").show();
         }
+
+        resetPage();
     }
 
     private void loadTableData() throws SQLException, ClassNotFoundException {
@@ -54,7 +68,14 @@ public class DeductionsController implements Initializable {
         ObservableList<DeductionsTM> deductionsTMS = FXCollections.observableArrayList();
 
         for (DeductionsDTO dto : deductionsDTOArrayList) {
-            DeductionsTM tm = new DeductionsTM(dto.getDeductionId(), dto.getDeductionName());
+            DeductionsTM tm = new DeductionsTM(
+                    dto.getDeductionId(),
+                    dto.getEmployeeId(),
+                    dto.getDeductionName(),
+                    dto.getBasicSalary(),
+                    dto.getDeductionPercentage(),
+                    dto.getTotalDeduction()
+            );
             deductionsTMS.add(tm);
         }
 
@@ -70,7 +91,10 @@ public class DeductionsController implements Initializable {
             btnDelete.setDisable(true);
             btnUpdate.setDisable(true);
 
-            cmbDeductionName.setValue("ETF");
+            cmbDeductionName.setValue("ETF+EPF");
+            cmbEmployeeId.getSelectionModel().clearSelection();
+             ;
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,15 +105,17 @@ public class DeductionsController implements Initializable {
     public void saveOnAction(ActionEvent actionEvent) {
         String deductionId = lblId.getText();
         String deductionName = cmbDeductionName.getValue();
+        String employeeId = cmbEmployeeId.getValue();
+        String basicSalary = txtBasicSalary.getText();
+        String deductionPercentage = txtDeductionPercentage.getText();
+        String totalDeduction = txtTotalDeduction.getText();
 
-        if (deductionName == null || deductionName.isEmpty()) {
-            cmbDeductionName.setStyle("-fx-border-color: red;");
+        if (deductionName == null || employeeId == null || basicSalary.isEmpty() || deductionPercentage.isEmpty() || totalDeduction.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please fill all fields!").show();
             return;
         }
 
-        cmbDeductionName.setStyle("-fx-border-color: #7367F0;");
-
-        DeductionsDTO dto = new DeductionsDTO(deductionId, deductionName);
+        DeductionsDTO dto = new DeductionsDTO(deductionId, employeeId, deductionName, basicSalary, deductionPercentage, totalDeduction);
 
         try {
             boolean isSaved = DeductionsModel.saveDeduction(dto);
@@ -108,15 +134,17 @@ public class DeductionsController implements Initializable {
     public void updateOnAction(ActionEvent actionEvent) {
         String deductionId = lblId.getText();
         String deductionName = cmbDeductionName.getValue();
+        String employeeId = cmbEmployeeId.getValue();
+        String basicSalary = txtBasicSalary.getText();
+        String deductionPercentage = txtDeductionPercentage.getText();
+        String totalDeduction = txtTotalDeduction.getText();
 
-        if (deductionName == null || deductionName.isEmpty()) {
-            cmbDeductionName.setStyle("-fx-border-color: red;");
+        if (deductionName == null || employeeId == null || basicSalary.isEmpty() || deductionPercentage.isEmpty() || totalDeduction.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please fill all fields!").show();
             return;
         }
 
-        cmbDeductionName.setStyle("-fx-border-color: #7367F0;");
-
-        DeductionsDTO dto = new DeductionsDTO(deductionId, deductionName);
+        DeductionsDTO dto = new DeductionsDTO(deductionId, employeeId, deductionName, basicSalary, deductionPercentage, totalDeduction);
 
         try {
             boolean isUpdated = DeductionsModel.updateDeduction(dto);
@@ -168,11 +196,37 @@ public class DeductionsController implements Initializable {
 
         if (selected != null) {
             lblId.setText(selected.getDeductionId());
+            cmbEmployeeId.setValue(selected.getEmployeeId());
             cmbDeductionName.setValue(selected.getDeductionName());
+            txtBasicSalary.setText(selected.getBasicSalary());
+            txtDeductionPercentage.setText(selected.getDeductionPercentage());
+            txtTotalDeduction.setText(selected.getTotalDeduction());
 
             btnSaveId.setDisable(true);
             btnUpdate.setDisable(false);
             btnDelete.setDisable(false);
         }
     }
+
+    public void employeeIdSelected(ActionEvent actionEvent) {
+        String employeeId = cmbEmployeeId.getValue();
+
+        try {
+            double basicSalary = DeductionsModel.getBasicSalaryByEmployeeId(employeeId);
+            txtBasicSalary.setText(String.valueOf(basicSalary));
+
+            // Fixed 8% deduction
+            double deductionPercentage = 8.0;
+            txtDeductionPercentage.setText(String.valueOf(deductionPercentage));
+
+            // Calculate total deduction
+            double totalDeduction = basicSalary * deductionPercentage / 100;
+            txtTotalDeduction.setText(String.format("%.2f", totalDeduction));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Error loading salary!").show();
+        }
+    }
+
 }

@@ -18,6 +18,7 @@
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
+
         <VBox layoutX="20.0" layoutY="60.0" spacing="15.0">
             <children>
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
@@ -28,42 +29,50 @@
                         <font><Font name="System Bold" size="14.0" /></font>
                     </Label>
                 </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label minWidth="120" text="Employee ID" textFill="black">
+                        <font><Font name="System Bold" size="14.0" /></font>
+                    </Label>
+                    <ComboBox fx:id="cmbEmployeeId" prefHeight="25.0" prefWidth="219.0" />
+                </HBox>
+
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                     <Label minWidth="120" text="Deduction Name" textFill="black">
                         <font><Font name="System Bold" size="14.0" /></font>
                     </Label>
-               <ComboBox fx:id="cmbDeductionName" prefHeight="25.0" prefWidth="219.0" />
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutY="20.0" prefHeight="53.0" prefWidth="1474.0" spacing="10.0">
-                    <Button fx:id="btnSaveId" onAction="#saveOnAction" prefWidth="100.0" style="-fx-background-color: #44bd32;" text="Save" textFill="WHITE">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Button>
-                    <Button fx:id="btnUpdate" onAction="#updateOnAction" prefWidth="100.0" style="-fx-background-color: #2980b9;" text="Update" textFill="WHITE">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Button>
-                    <Button fx:id="btnDelete" onAction="#deleteOnAction" prefWidth="100.0" style="-fx-background-color: #e84118;" text="Delete" textFill="WHITE">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Button>
-                    <Button fx:id="btnReset" onAction="#resetOnAction" prefWidth="100.0" style="-fx-background-color: #8e44ad;" text="Reset" textFill="WHITE">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font></Button>
-               <padding>
-                  <Insets left="500.0" />
-               </padding>
+                    <ComboBox fx:id="cmbDeductionName" prefHeight="25.0" prefWidth="219.0" />
                 </HBox>
 
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Button fx:id="btnSaveId" onAction="#saveOnAction" prefWidth="100.0" style="-fx-background-color: #44bd32;" text="Save" textFill="WHITE">
+                        <font><Font name="System Bold" size="12.0" /></font>
+                    </Button>
+                    <Button fx:id="btnUpdate" onAction="#updateOnAction" prefWidth="100.0" style="-fx-background-color: #2980b9;" text="Update" textFill="WHITE">
+                        <font><Font name="System Bold" size="12.0" /></font>
+                    </Button>
+                    <Button fx:id="btnDelete" onAction="#deleteOnAction" prefWidth="100.0" style="-fx-background-color: #e84118;" text="Delete" textFill="WHITE">
+                        <font><Font name="System Bold" size="12.0" /></font>
+                    </Button>
+                    <Button fx:id="btnReset" onAction="#resetOnAction" prefWidth="100.0" style="-fx-background-color: #8e44ad;" text="Reset" textFill="WHITE">
+                        <font><Font name="System Bold" size="12.0" /></font>
+                    </Button>
+                    <padding>
+                        <Insets left="500.0" />
+                    </padding>
+                </HBox>
             </children>
         </VBox>
+
         <TableView fx:id="tblDeductions" layoutX="20.0" layoutY="219.0" onMouseClicked="#onClickTable" prefHeight="371.0" prefWidth="1180.0">
             <columns>
-                <TableColumn fx:id="colDeductionId" prefWidth="200.0" text="Deduction ID" />
-                <TableColumn fx:id="colDeductionName" prefWidth="600.0" text="Deduction Name" />
+                <TableColumn fx:id="colDeductionId" prefWidth="150.0" text="Deduction ID" />
+                <TableColumn fx:id="colEmployeeId" prefWidth="126.66668701171875" text="Employee ID" />
+                <TableColumn fx:id="colDeductionName" prefWidth="262.0000305175781" text="Deduction Name" />
+                <TableColumn fx:id="colBasicSalary" prefWidth="196.6666259765625" text="Basic Salary" />
+                <TableColumn fx:id="colDeductionPercentage" prefWidth="164.66668701171875" text="Deduction %" />
+                <TableColumn fx:id="colTotalDeduction" prefWidth="184.66668701171875" text="Total Deduction" />
             </columns>
         </TableView>
-
     </children>
 </AnchorPane>

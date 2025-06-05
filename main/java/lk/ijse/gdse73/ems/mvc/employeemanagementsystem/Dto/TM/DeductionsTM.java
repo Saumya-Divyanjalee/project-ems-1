@@ -11,6 +11,10 @@ import lombok.*;
 
 public class DeductionsTM {
     private String deductionId;
+    private String employeeId;
     private String deductionName;
+    private String basicSalary;
+    private String deductionPercentage;
+    private String totalDeduction;
 
 }
