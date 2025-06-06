@@ -22,6 +22,7 @@ public class EmployeeTM {
     private String email;
     private String contact;
     private String positionId;
+    private String status;
 
 
 }

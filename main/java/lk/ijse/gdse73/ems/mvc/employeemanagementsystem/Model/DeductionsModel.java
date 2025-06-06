@@ -2,7 +2,9 @@ package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model;
 
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.DeductionsDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Util.CrudUtil;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.DBConnection.DBConnection;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class DeductionsModel {
         char tableCharacter = 'D';
         if (rs.next()) {
             String lastId = rs.getString(1);
-            String lastIdNumberString = lastId.substring(1); // remove 'D'
+            String lastIdNumberString = lastId.substring(1);
             int lastIdNumber = Integer.parseInt(lastIdNumberString);
             int nextIdNumber = lastIdNumber + 1;
             return String.format(tableCharacter + "%03d", nextIdNumber);
@@ -23,17 +25,33 @@ public class DeductionsModel {
     }
 
     public static boolean saveDeduction(DeductionsDTO dto) throws SQLException, ClassNotFoundException {
-        return CrudUtil.execute(
-                "INSERT INTO Deductions (deduction_id, employee_id, date, deduction_percentage, total_deduction, basic_salary) VALUES (?, ?, ?, ?, ?, ?)",
-                dto.getDeductionId(),
-                dto.getEmployeeId(),
-                dto.getDate(),
-                dto.getDeductionPercentage(),
-                dto.getTotalDeduction(),
-                dto.getBasicSalary()  // ← Set from position
-        );
-    }
+        Connection con = DBConnection.getInstance().getConnection();
+        con.setAutoCommit(false);
+        try {
+            boolean isSaved = CrudUtil.execute(
+                    "INSERT INTO deductions (dtype_id, employee_id, date, deduction_percentage, total_deduction, basic_salary) VALUES (?, ?, ?, ?, ?, ?)",
+                    dto.getDeductionId(),
+                    dto.getEmployeeId(),
+                    dto.getDate(),
+                    dto.getDeductionPercentage(),
+                    dto.getTotalDeduction(),
+                    dto.getBasicSalary()
+            );
 
+            if (isSaved) {
+                con.commit();
+                return true;
+            } else {
+                con.rollback();
+                return false;
+            }
+        } catch (SQLException e) {
+            con.rollback();
+            throw e;
+        } finally {
+            con.setAutoCommit(true);
+        }
+    }
 
     public static ArrayList<DeductionsDTO> getAllDeductions() throws SQLException, ClassNotFoundException {
         ResultSet rs = CrudUtil.execute("SELECT * FROM deductions");
@@ -55,10 +73,31 @@ public class DeductionsModel {
     }
 
     public static boolean updateDeduction(DeductionsDTO dto) throws SQLException, ClassNotFoundException {
-        return CrudUtil.execute(
-                "UPDATE deductions SET employee_id = ?, type_name = ?, total_Deductions = ? WHERE dtype_id = ?",
-                dto.getEmployeeId(), dto.getDeductionName(), dto.getTotalDeduction(), dto.getDeductionId()
-        );
+        Connection con = DBConnection.getInstance().getConnection();
+        con.setAutoCommit(false);
+        try {
+            boolean isUpdated = CrudUtil.execute(
+                    "UPDATE deductions SET employee_id = ?, deduction_percentage = ?, total_deduction = ?, basic_salary = ? WHERE dtype_id = ?",
+                    dto.getEmployeeId(),
+                    dto.getDeductionPercentage(),
+                    dto.getTotalDeduction(),
+                    dto.getBasicSalary(),
+                    dto.getDeductionId()
+            );
+
+            if (isUpdated) {
+                con.commit();
+                return true;
+            } else {
+                con.rollback();
+                return false;
+            }
+        } catch (SQLException e) {
+            con.rollback();
+            throw e;
+        } finally {
+            con.setAutoCommit(true);
+        }
     }
 
     public static boolean deleteDeduction(String deductionId) throws SQLException, ClassNotFoundException {
@@ -94,6 +133,23 @@ public class DeductionsModel {
             return rs.getDouble("basic_salary");
         }
         return 0.0;
+    }
+
+    public DeductionsDTO getDeductionByEmployeeId(String employeeId) {
+        try {
+            ResultSet rs = CrudUtil.execute("SELECT dtype_id, employee_id, deduction_percentage, total_Deductions, basic_salary FROM deductions WHERE employee_id = ?", employeeId);
+            if (rs.next()) {
+                DeductionsDTO deductionsDTO = new DeductionsDTO();
+                deductionsDTO.setEmployeeId(rs.getString("employee_id"));
+                deductionsDTO.setDeductionPercentage(rs.getString("deduction_percentage"));
+                deductionsDTO.setTotalDeduction(rs.getString("total_Deductions"));
+                deductionsDTO.setBasicSalary(rs.getString("basic_salary"));
+                return deductionsDTO;
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

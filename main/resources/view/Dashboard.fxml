@@ -105,7 +105,7 @@
                   <Insets left="20.0" />
                </padding>
             </Button>
-            <Button fx:id="btnSetting" mnemonicParsing="false" onAction="#settingOnAction" prefHeight="29.0" prefWidth="127.0" style="-fx-background-color: #f5f6fa;" text=" Setting">
+            <Button fx:id="btnQR" mnemonicParsing="false" onAction="#qrCodeOnAction" prefHeight="29.0" prefWidth="127.0" style="-fx-background-color: #f5f6fa;" text="QR Code">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

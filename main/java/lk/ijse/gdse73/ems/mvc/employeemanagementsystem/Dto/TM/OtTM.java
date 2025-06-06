@@ -16,4 +16,6 @@ public class OtTM {
     private String overtimePayment;
 
 
+    public OtTM(String otId, String employeeId, String otHours, String ratePerHours, String string, double payment) {
+    }
 }

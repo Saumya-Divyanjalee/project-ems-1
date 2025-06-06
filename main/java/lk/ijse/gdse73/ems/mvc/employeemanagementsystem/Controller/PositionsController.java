@@ -36,6 +36,7 @@ public class PositionsController implements Initializable {
     public Button btnReset;
 
     private final PositionsModel positionsModel = new PositionsModel();
+    public Label lblBasic;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

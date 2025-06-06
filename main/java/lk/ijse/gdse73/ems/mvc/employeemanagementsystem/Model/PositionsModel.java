@@ -26,7 +26,7 @@ public class PositionsModel {
         return positionsDTOArrayList;
     }
 
-    // Delete a position by its ID
+
     public boolean deletePosition(String positionId) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
                 "DELETE FROM Positions WHERE position_id = ?",
@@ -34,7 +34,7 @@ public class PositionsModel {
         );
     }
 
-    // Update an existing position
+
     public boolean updatePosition(PositionsDTO dto) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
                 "UPDATE Positions SET p_title = ?, salary_grade = ?, basic_salary = ? WHERE position_id = ?",
@@ -45,7 +45,7 @@ public class PositionsModel {
         );
     }
 
-    // Save a new position to the database
+
     public boolean savePosition(PositionsDTO dto) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
                 "INSERT INTO Positions (position_id, p_title, salary_grade, basic_salary) VALUES (?, ?, ?, ?)",
@@ -80,6 +80,24 @@ public class PositionsModel {
             return resultSet.getDouble("basic_salary");
         } else {
             throw new SQLException("Basic salary not found for employee ID: " + employeeId);
+        }
+    }
+
+    public PositionsDTO getPositionById(String positionId) {
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Positions WHERE position_id = ?", positionId);
+            if (resultSet.next()) {
+                return new PositionsDTO(
+                        resultSet.getString("position_id"),
+                        resultSet.getString("p_title"),
+                        resultSet.getString("salary_grade"),
+                        resultSet.getString("basic_salary")
+                );
+            }
+            return null;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

@@ -12,15 +12,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.DBConnection.DBConnection;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.EmployeeDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.EmployeeTM;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EmployeeModel;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
@@ -44,6 +40,7 @@ public class EmployeeController implements Initializable {
     public DatePicker cmbDob;
     public DatePicker cmbJoinDate;
 
+
     public TableView<EmployeeTM> tblEmployees;
     public TableColumn<EmployeeTM, String> colEmpId;
     public TableColumn<EmployeeTM, String> colFirstName;
@@ -56,8 +53,7 @@ public class EmployeeController implements Initializable {
     public TableColumn<EmployeeTM, String> colEmail;
     public TableColumn<EmployeeTM, String> colContact;
     public TableColumn<EmployeeTM, String> colPositionId;
-
-    private final EmployeeModel employeeModel = new EmployeeModel();
+    public TableColumn<EmployeeTM, String> colStatus;
 
     public Button btnSave;
     public Button btnUpdate;
@@ -66,13 +62,15 @@ public class EmployeeController implements Initializable {
     public Button btnMail;
     public Button btnReport;
 
+    private final EmployeeModel employeeModel = new EmployeeModel();
+
     private final String namePattern = "^[A-Za-z ]+$";
     private final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-    private final String contactPattern = "^(\\d+)|(\\d+\\.\\d{2})$";
+    private final String contactPattern = "^\\d{10}$";
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         colEmpId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -94,11 +92,11 @@ public class EmployeeController implements Initializable {
     }
 
     private void loadTableData() throws SQLException, ClassNotFoundException {
-        ArrayList<EmployeeDTO> employeeDTOArrayList = employeeModel.getAllEmployees();
-        ObservableList<EmployeeTM> employeeTMS = FXCollections.observableArrayList();
+        ArrayList<EmployeeDTO> employeeDTOList = employeeModel.getAllEmployees();
+        ObservableList<EmployeeTM> tmList = FXCollections.observableArrayList();
 
-        for (EmployeeDTO dto : employeeDTOArrayList) {
-            EmployeeTM tm = new EmployeeTM(
+        for (EmployeeDTO dto : employeeDTOList) {
+            tmList.add(new EmployeeTM(
                     dto.getEmployeeId(),
                     dto.getFirstName(),
                     dto.getLastName(),
@@ -109,43 +107,37 @@ public class EmployeeController implements Initializable {
                     dto.getAge(),
                     dto.getEmail(),
                     dto.getContact(),
-                    dto.getPositionId()
-            );
-            employeeTMS.add(tm);
+                    dto.getPositionId(),
+                    dto.getStatus()
+            ));
         }
-
-        tblEmployees.setItems(employeeTMS);
+        tblEmployees.setItems(tmList);
     }
 
-    private void resetPage() {
-        try {
-            loadTableData();
-            loadNextId();
+    private void resetPage() throws Exception {
+        loadTableData();
+        loadNextId();
 
-            btnSave.setDisable(false);
-            btnUpdate.setDisable(true);
-            btnDelete.setDisable(true);
+        btnSave.setDisable(false);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
 
-            txtFirstName.clear();
-            txtLastName.clear();
-            txtDeptId.clear();
-            txtAddress.clear();
-            txtAge.clear();
-            txtEmail.clear();
-            txtContact.clear();
-            txtPositionId.clear();
-            cmbDob.setValue(null);
-            cmbJoinDate.setValue(null);
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Oops!...Something went wrong.").show();
-        }
+        txtFirstName.clear();
+        txtLastName.clear();
+        txtDeptId.clear();
+        txtAddress.clear();
+        txtAge.clear();
+        txtEmail.clear();
+        txtContact.clear();
+        txtPositionId.clear();
+        cmbDob.setValue(null);
+        cmbJoinDate.setValue(null);
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
         String id = lblEmployeeId.getText();
-        String firstname = txtFirstName.getText();
-        String lastname = txtLastName.getText();
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
         String deptId = txtDeptId.getText();
         String address = txtAddress.getText();
         String dob = cmbDob.getValue() != null ? cmbDob.getValue().toString() : "";
@@ -155,7 +147,7 @@ public class EmployeeController implements Initializable {
         String contact = txtContact.getText();
         String positionId = txtPositionId.getText();
 
-        boolean validName = firstname.matches(namePattern);
+        boolean validName = firstName.matches(namePattern);
         boolean validEmail = email.matches(emailPattern);
         boolean validContact = contact.matches(contactPattern);
 
@@ -167,12 +159,10 @@ public class EmployeeController implements Initializable {
         if (!validEmail) txtEmail.setStyle("-fx-border-color: red;");
         if (!validContact) txtContact.setStyle("-fx-border-color: red;");
 
-        EmployeeDTO dto = new EmployeeDTO(id, firstname, lastname, deptId, dob, address, joinDate, age, email, contact, positionId);
-
         if (validName && validEmail && validContact) {
+            EmployeeDTO dto = new EmployeeDTO(id, firstName, lastName, deptId, dob, address, joinDate, age, email, contact, positionId,colStatus);
             try {
-                boolean isSaved = employeeModel.saveEmployee(dto);
-                if (isSaved) {
+                if (employeeModel.saveEmployee(dto)) {
                     resetPage();
                     new Alert(Alert.AlertType.INFORMATION, "Employee saved successfully.").show();
                 } else {
@@ -186,23 +176,22 @@ public class EmployeeController implements Initializable {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
-        String employeeId = lblEmployeeId.getText();
-        String firstname = txtFirstName.getText();
-        String lastname = txtLastName.getText();
-        String deptId = txtDeptId.getText();
-        String address = txtAddress.getText();
-        String dob = cmbDob.getValue() != null ? cmbDob.getValue().toString() : "";
-        String joinDate = cmbJoinDate.getValue() != null ? cmbJoinDate.getValue().toString() : "";
-        String age = txtAge.getText();
-        String email = txtEmail.getText();
-        String contact = txtContact.getText();
-        String positionId = txtPositionId.getText();
-
-        EmployeeDTO employeeDTO = new EmployeeDTO(employeeId, firstname, lastname, deptId, dob, address, joinDate, age, email, contact, positionId);
-
+        EmployeeDTO dto = new EmployeeDTO(
+                lblEmployeeId.getText(),
+                txtFirstName.getText(),
+                txtLastName.getText(),
+                txtDeptId.getText(),
+                cmbDob.getValue() != null ? cmbDob.getValue().toString() : "",
+                txtAddress.getText(),
+                cmbJoinDate.getValue() != null ? cmbJoinDate.getValue().toString() : "",
+                txtAge.getText(),
+                txtEmail.getText(),
+                txtContact.getText(),
+                txtPositionId.getText(),
+                colStatus
+        );
         try {
-            boolean isUpdated = employeeModel.updateEmployee(employeeDTO);
-            if (isUpdated) {
+            if (employeeModel.updateEmployee(dto)) {
                 resetPage();
                 new Alert(Alert.AlertType.INFORMATION, "Employee updated successfully.").show();
             } else {
@@ -215,17 +204,11 @@ public class EmployeeController implements Initializable {
     }
 
     public void deleteOnAction(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Are you sure?",
-                ButtonType.YES,
-                ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure?", ButtonType.YES, ButtonType.NO);
         Optional<ButtonType> response = alert.showAndWait();
-
         if (response.isPresent() && response.get() == ButtonType.YES) {
-            String empId = lblEmployeeId.getText();
             try {
-                boolean isDeleted = employeeModel.deleteEmployee(empId);
-                if (isDeleted) {
+                if (employeeModel.deleteEmployee(lblEmployeeId.getText())) {
                     resetPage();
                     new Alert(Alert.AlertType.INFORMATION, "Employee deleted successfully.").show();
                 } else {
@@ -239,12 +222,15 @@ public class EmployeeController implements Initializable {
     }
 
     public void resetOnAction(ActionEvent actionEvent) {
-        resetPage();
+        try {
+            resetPage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadNextId() throws Exception {
-        String nextId = employeeModel.getNextEmployeeId();
-        lblEmployeeId.setText(nextId);
+        lblEmployeeId.setText(employeeModel.getNextEmployeeId());
     }
 
     public void onClickTable(MouseEvent mouseEvent) {
@@ -254,9 +240,9 @@ public class EmployeeController implements Initializable {
             txtFirstName.setText(selected.getFirstName());
             txtLastName.setText(selected.getLastName());
             txtDeptId.setText(selected.getDepartmentId());
-            cmbDob.setValue(LocalDate.parse((CharSequence) selected.getDob()));
+            cmbDob.setValue(LocalDate.parse(selected.getDob()));
             txtAddress.setText(selected.getEAddress());
-            cmbJoinDate.setValue(LocalDate.parse((CharSequence) selected.getJoinDate()));
+            cmbJoinDate.setValue(LocalDate.parse(selected.getJoinDate()));
             txtAge.setText(selected.getAge());
             txtEmail.setText(selected.getEmail());
             txtContact.setText(selected.getContact());
@@ -270,14 +256,12 @@ public class EmployeeController implements Initializable {
 
     public void reportOnAction(ActionEvent actionEvent) {
         try {
-            JasperReport report = JasperCompileManager.compileReport(
-                    getClass().getResourceAsStream("/report/employee.jrxml")
-            );
-            Connection connection = DBConnection.getInstance().getConnection();
-            Map<String, Object> parameters = new HashMap<>();
-            parameters.put("P_DATE", LocalDate.now().toString());
+            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/report/EmployeeDetails.jrxml"));
+            Connection conn = DBConnection.getInstance().getConnection();
+            Map<String, Object> params = new HashMap<>();
+            params.put("p_date", LocalDate.now().toString());
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, connection);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(report, params, conn);
             JasperViewer.viewReport(jasperPrint, false);
         } catch (Exception e) {
             e.printStackTrace();
@@ -287,32 +271,19 @@ public class EmployeeController implements Initializable {
     public void mailOnAction(ActionEvent actionEvent) {
         EmployeeTM selected = tblEmployees.getSelectionModel().getSelectedItem();
         if (selected == null) {
-
+            new Alert(Alert.AlertType.WARNING, "Please select an employee first.").show();
             return;
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/view/Mail.fxml")
-            );
-            Parent load =loader.load();
-
-            String email = selected.getEmail();
-            MailController sendMailController = loader.getController();
-            sendMailController.setEmployeeEmail(email);
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MailForm.fxml"));
+            Parent root = loader.load();
             Stage stage = new Stage();
-            stage.setScene(new Scene(load));
-            stage.setTitle("Send Mail");
             stage.initModality(Modality.APPLICATION_MODAL);
-
-            Window window = txtEmail.getScene().getWindow();
-            stage.initOwner(window);
-            stage.showAndWait();
-
+            stage.setScene(new Scene(root));
+            stage.setTitle("Send Email");
+            stage.show();
         } catch (IOException e) {
-
-            new Alert(Alert.AlertType.ERROR, "Failed to open mail window.").show();
             e.printStackTrace();
         }
     }

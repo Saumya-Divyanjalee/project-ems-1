@@ -5,6 +5,11 @@ module lk.ijse.gdse73.ems.mvc.employeemanagementsystem {
     requires static lombok;
     requires net.sf.jasperreports.core;
     requires javax.mail;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+    requires java.desktop;
+    requires javafx.swing;
+
 
 
     opens lk.ijse.gdse73.ems.mvc.employeemanagementsystem to javafx.fxml;

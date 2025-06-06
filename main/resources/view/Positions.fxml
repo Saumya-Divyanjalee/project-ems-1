@@ -23,13 +23,13 @@
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
-            <!-- Title -->
+
             <Label style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: black;" text="Manage Positions" textFill="#0d2667">
             <VBox.margin>
                <Insets right="600.0" />
             </VBox.margin></Label>
 
-            <!-- Input Fields Grid -->
+
             <GridPane hgap="10" vgap="15">
                 <columnConstraints>
                     <ColumnConstraints halignment="RIGHT" />
@@ -63,7 +63,7 @@
             <ComboBox fx:id="cmbBasic" prefHeight="25.0" prefWidth="221.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             </GridPane>
 
-            <!-- Button Panel -->
+
             <HBox alignment="CENTER" spacing="15">
                 <Button fx:id="btnSave" onAction="#saveOnAction" prefWidth="100" style="-fx-background-color: #2ecc71; -fx-font-weight: bold; -fx-text-fill: white;" text="Save" />
                 <Button fx:id="btnUpdate" onAction="#updateOnAction" prefWidth="100" style="-fx-background-color: #0984e3; -fx-font-weight: bold; -fx-text-fill: white;" text="Update" />
@@ -71,7 +71,7 @@
                 <Button fx:id="btnReset" onAction="#resetOnAction" prefWidth="100" style="-fx-background-color: #6c5ce7; -fx-font-weight: bold; -fx-text-fill: white;" text="Reset" />
             </HBox>
 
-            <!-- Table -->
+
             <TableView fx:id="tblPositions" onMouseClicked="#onClickTable" prefHeight="358.0" prefWidth="1105.0">
                 <columns>
                     <TableColumn fx:id="colPositionId" prefWidth="114.66668319702148" text="Position ID" />

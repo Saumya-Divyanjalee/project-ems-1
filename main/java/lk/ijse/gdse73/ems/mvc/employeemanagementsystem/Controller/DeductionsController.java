@@ -3,7 +3,7 @@ package lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -11,39 +11,54 @@ import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.DeductionsDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.DeductionsTM;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.DeductionsModel;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EmployeeModel;
-import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.PositionsModel;
 
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
-public class DeductionsController implements Initializable {
+public class DeductionsController {
 
-    public Label lblId;
-    public ComboBox<String> cmbDeductionName;
-    public ComboBox<String> cmbEmployeeId;
-    public TextField txtBasicSalary;
-    public TextField txtDeductionPercentage;
-    public TextField txtTotalDeduction;
+    @FXML
+    private Label lblId;
+    @FXML
+    private ComboBox<String> cmbDeductionName;
+    @FXML
+    private ComboBox<String> cmbEmployeeId;
+    @FXML
+    private TextField txtBasicSalary;
+    @FXML
+    private TextField txtDeductionPercentage;
+    @FXML
+    private TextField txtTotalDeduction;
 
-    public TableView<DeductionsTM> tblDeductions;
-    public TableColumn<DeductionsTM, String> colDeductionId;
-    public TableColumn<DeductionsTM, String> colDeductionName;
-    public TableColumn<DeductionsTM, String> colTotalDeduction;
-    public TableColumn<DeductionsTM, String> colEmployeeId;
-    public TableColumn<DeductionsTM, String> colBasicSalary;
-    public TableColumn<DeductionsTM, String> colDeductionPercentage;
+    @FXML
+    private TableView<DeductionsTM> tblDeductions;
+    @FXML
+    private TableColumn<DeductionsTM, String> colDeductionId;
+    @FXML
+    private TableColumn<DeductionsTM, String> colEmployeeId;
+    @FXML
+    private TableColumn<DeductionsTM, String> colDeductionName;
+    @FXML
+    private TableColumn<DeductionsTM, String> colBasicSalary;
+    @FXML
+    private TableColumn<DeductionsTM, String> colDeductionPercentage;
+    @FXML
+    private TableColumn<DeductionsTM, String> colTotalDeduction;
 
-    public Button btnUpdate;
-    public Button btnDelete;
-    public Button btnReset;
-    public Button btnSaveId;
+    @FXML
+    private Button btnUpdate;
+    @FXML
+    private Button btnDelete;
+    @FXML
+    private Button btnReset;
+    @FXML
+    private Button btnSaveId;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Set table column cell value factories
+    @FXML
+    public void initialize() {
+
         colDeductionId.setCellValueFactory(new PropertyValueFactory<>("deductionId"));
         colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         colDeductionName.setCellValueFactory(new PropertyValueFactory<>("deductionName"));
@@ -51,21 +66,24 @@ public class DeductionsController implements Initializable {
         colDeductionPercentage.setCellValueFactory(new PropertyValueFactory<>("deductionPercentage"));
         colTotalDeduction.setCellValueFactory(new PropertyValueFactory<>("totalDeduction"));
 
-        // Initialize deduction names
+
         cmbDeductionName.setItems(FXCollections.observableArrayList("ETF+EPF", "Other"));
 
-        // Load employee IDs into combo box
+
+        loadEmployeeIds();
+        resetPage();
+
+        cmbEmployeeId.setOnAction(this::employeeIdSelected);
+    }
+
+    private void loadEmployeeIds() {
         try {
-            cmbEmployeeId.setItems(EmployeeModel.getAllEmployeeid());
-        } catch (Exception e) {
+            List<String> employeeIds = EmployeeModel.getAllEmployeeIds();
+            cmbEmployeeId.getItems().addAll(employeeIds);
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Error loading employee IDs!").show();
         }
-
-        resetPage();
-
-        // Listen for employee selection changes to update salary and deductions automatically
-        cmbEmployeeId.setOnAction(this::employeeIdSelected);
     }
 
     private void loadTableData() {
@@ -93,25 +111,19 @@ public class DeductionsController implements Initializable {
     }
 
     private void resetPage() {
-        try {
-            loadTableData();
-            loadNextId();
+        loadTableData();
+        loadNextId();
 
-            btnSaveId.setDisable(false);
-            btnDelete.setDisable(true);
-            btnUpdate.setDisable(true);
+        btnSaveId.setDisable(false);
+        btnDelete.setDisable(true);
+        btnUpdate.setDisable(true);
 
-            cmbDeductionName.setValue("ETF+EPF");
-            cmbEmployeeId.getSelectionModel().clearSelection();
+        cmbDeductionName.setValue("ETF+EPF");
+        cmbEmployeeId.getSelectionModel().clearSelection();
 
-            txtBasicSalary.clear();
-            txtDeductionPercentage.clear();
-            txtTotalDeduction.clear();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Oops! Something went wrong during reset.").show();
-        }
+
+
     }
 
     private void loadNextId() {
@@ -130,17 +142,14 @@ public class DeductionsController implements Initializable {
             new Alert(Alert.AlertType.WARNING, "Please fill all fields!").show();
             return false;
         }
-
-        // Additional validation (e.g., numeric validation) can be added here if needed
-
         return true;
     }
 
+    @FXML
     public void saveOnAction(ActionEvent actionEvent) {
         if (!validateInputs()) return;
 
         try {
-            // Calculate total deduction dynamically for accuracy
             double basicSalary = Double.parseDouble(txtBasicSalary.getText());
             double deductionPercentage = Double.parseDouble(txtDeductionPercentage.getText());
             double totalDeduction = basicSalary * deductionPercentage / 100;
@@ -169,6 +178,7 @@ public class DeductionsController implements Initializable {
         }
     }
 
+    @FXML
     public void updateOnAction(ActionEvent actionEvent) {
         if (!validateInputs()) return;
 
@@ -201,6 +211,7 @@ public class DeductionsController implements Initializable {
         }
     }
 
+    @FXML
     public void deleteOnAction(ActionEvent actionEvent) {
         String deductionId = lblId.getText();
 
@@ -223,10 +234,12 @@ public class DeductionsController implements Initializable {
         }
     }
 
+    @FXML
     public void resetOnAction(ActionEvent actionEvent) {
         resetPage();
     }
 
+    @FXML
     public void onClickTable(MouseEvent mouseEvent) {
         DeductionsTM selected = tblDeductions.getSelectionModel().getSelectedItem();
 
@@ -244,6 +257,7 @@ public class DeductionsController implements Initializable {
         }
     }
 
+    @FXML
     public void employeeIdSelected(ActionEvent event) {
         String empId = cmbEmployeeId.getValue();
 
@@ -255,15 +269,14 @@ public class DeductionsController implements Initializable {
                 String deductionName = cmbDeductionName.getValue();
 
                 if ("ETF+EPF".equals(deductionName)) {
-                    // Example fixed percentage or retrieve from PositionsModel if available
-                    double percentage = 8.0; // or fetch from PositionsModel if required
+                    double percentage = 8.0;
                     txtDeductionPercentage.setText(String.valueOf(percentage));
 
-                    // Calculate total deduction
+
                     double totalDeduction = Double.parseDouble(basicSalary) * percentage / 100;
                     txtTotalDeduction.setText(String.format("%.2f", totalDeduction));
                 } else if ("Other".equals(deductionName)) {
-                    // Clear or allow manual input for other deductions
+
                     txtDeductionPercentage.clear();
                     txtTotalDeduction.clear();
                 }

@@ -7,16 +7,13 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-
 public class SalaryTM {
     private String salaryId;
     private String employeeId;
     private String employeeName;
     private double basicSalary;
-    private double otPayment;
+    private double otHours;
     private double deduction;
     private String deductionType;
     private double netSalary;
-
-
 }

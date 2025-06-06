@@ -6,27 +6,31 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.DeductionsDTO;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.EmployeeDTO;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.OtDTO;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.PositionsDTO;
 import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Dto.TM.SalaryTM;
-import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.EmployeeModel;
-import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.SalaryModel;
+import lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Model.*;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SalaryController implements Initializable {
 
     public Label lblSalaryId;
     public ComboBox<String> cmbEmployeeId;
-    public TextField txtEmployeeName;
-    public TextField txtBasicSalary;
-    public TextField txtOtHours;
-    public TextField txtDeduction;
-    public TextField txtDeductionType;
-    public TextField txtNetSalary;
+
+
+    public String txtEmployeeId;
+    public String txtEmployeeName;
+    public String txtBasicSalary;
+    public String txtOtHours;
+    public String txtDeduction;
+    public String txtDeductionType;
+    public String txtNetSalary;
 
     public TableView<SalaryTM> tblSalary;
     public TableColumn<SalaryTM, String> colSalaryId;
@@ -36,19 +40,22 @@ public class SalaryController implements Initializable {
     public TableColumn<SalaryTM, String> colDeduction;
     public TableColumn<SalaryTM, String> colDeductionType;
     public TableColumn<SalaryTM, String> colNetSalary;
+    public TableColumn<SalaryTM, String> colEmployeeName;
 
     public Button btnSave;
-    public Button btnUpdate;
-    public Button btnDelete;
     public Button btnReset;
 
     private final SalaryModel salaryModel = new SalaryModel();
+    private final PositionsModel positionsModel = new PositionsModel();
+    private final DeductionsModel deductionsModel = new DeductionsModel();
+    private final OtModel otModel = new OtModel();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         colSalaryId.setCellValueFactory(new PropertyValueFactory<>("salaryId"));
         colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        colEmployeeName.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
         colBasicSalary.setCellValueFactory(new PropertyValueFactory<>("basicSalary"));
         colOtHours.setCellValueFactory(new PropertyValueFactory<>("otHours"));
         colDeduction.setCellValueFactory(new PropertyValueFactory<>("deduction"));
@@ -57,7 +64,6 @@ public class SalaryController implements Initializable {
 
         try {
             resetPage();
-            loadEmployeeIds();
             loadTableData();
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,12 +79,6 @@ public class SalaryController implements Initializable {
         }
     }
 
-    private void loadEmployeeIds() throws SQLException {
-
-        ArrayList<String> employeeIds = salaryModel.getAllEmployeeIds();
-        cmbEmployeeId.getItems().clear();
-        cmbEmployeeId.getItems().addAll(employeeIds);
-    }
 
     private void loadTableData() throws SQLException {
         ArrayList<SalaryTM> salaryList = salaryModel.getAllSalaries();
@@ -94,16 +94,14 @@ public class SalaryController implements Initializable {
             generateNextSalaryId();
 
             btnSave.setDisable(false);
-            btnUpdate.setDisable(true);
-            btnDelete.setDisable(true);
 
             cmbEmployeeId.getSelectionModel().clearSelection();
-            txtEmployeeName.clear();
-            txtBasicSalary.clear();
-            txtOtHours.clear();
-            txtDeduction.clear();
-            txtDeductionType.clear();
-            txtNetSalary.clear();
+            txtEmployeeName = "";
+            txtBasicSalary = "";
+            txtOtHours = "";
+            txtDeduction = "";
+            txtDeductionType = "";
+            txtNetSalary = "";
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -111,7 +109,7 @@ public class SalaryController implements Initializable {
         }
     }
 
-    private void generateNextSalaryId() throws SQLException {
+    private void generateNextSalaryId() throws SQLException, ClassNotFoundException {
         String nextId = salaryModel.generateNextSalaryId();
         lblSalaryId.setText(nextId);
     }
@@ -121,24 +119,28 @@ public class SalaryController implements Initializable {
     }
 
     public void saveOnAction(ActionEvent actionEvent) {
+
+
+
         String salaryId = lblSalaryId.getText();
-        String employeeId = cmbEmployeeId.getValue();
-        String employeeName = txtEmployeeName.getText();
-        double basicSalary = Double.parseDouble(txtBasicSalary.getText());
-        double otHours = Double.parseDouble(txtOtHours.getText());
-        double deduction = Double.parseDouble(txtDeduction.getText());
-        String deductionType = txtDeductionType.getText();
-        double netSalary = Double.parseDouble(txtNetSalary.getText());
+        String employeeId = txtEmployeeId;
+        String employeeName = txtEmployeeName;
+        double basicSalary = Double.parseDouble(txtBasicSalary);
+        double otHours = Double.parseDouble(txtOtHours);
+        double deduction = Double.parseDouble(txtDeduction);
+        String deductionType = txtDeductionType;
+        double netSalary = Double.parseDouble(txtNetSalary);
 
 
 
         SalaryTM salary = new SalaryTM(salaryId, employeeId, employeeName, basicSalary, otHours, deduction, deductionType, netSalary);
 
         try {
+            System.out.println("Saving Salary: " + salary);
             boolean isSaved = salaryModel.saveSalary(salary);
 
             if (isSaved) {
-                resetPage();
+                loadTableData();
                 new Alert(Alert.AlertType.INFORMATION, "Salary saved successfully.").show();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to save salary.").show();
@@ -149,88 +151,57 @@ public class SalaryController implements Initializable {
         }
     }
 
-    public void updateOnAction(ActionEvent actionEvent) {
-        String salaryId = lblSalaryId.getText();
-        String employeeId = cmbEmployeeId.getValue();
-        String employeeName = txtEmployeeName.getText();
-        double basicSalary = Double.parseDouble(txtBasicSalary.getText());
-        double otHours = Double.parseDouble(txtOtHours.getText());
-        double deduction = Double.parseDouble(txtDeduction.getText());
-        String deductionType = txtDeductionType.getText();
-        double netSalary = Double.parseDouble(txtNetSalary.getText());
-
-        SalaryTM salary = new SalaryTM(salaryId, employeeId, employeeName,basicSalary, otHours, deduction, deductionType, netSalary);
-
-        try {
-            boolean isUpdated = salaryModel.updateSalary(salary);
-
-            if (isUpdated) {
-                resetPage();
-                new Alert(Alert.AlertType.INFORMATION, "Salary updated successfully.").show();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Failed to update salary.").show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Error while updating salary.").show();
-        }
-    }
-
-    public void deleteOnAction(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete?", ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> response = alert.showAndWait();
-
-        if (response.isPresent() && response.get() == ButtonType.YES) {
-            String salaryId = lblSalaryId.getText();
-
-            try {
-                boolean isDeleted = salaryModel.deleteSalary(salaryId);
-
-                if (isDeleted) {
-                    resetPage();
-                    new Alert(Alert.AlertType.INFORMATION, "Salary deleted successfully.").show();
-                } else {
-                    new Alert(Alert.AlertType.ERROR, "Failed to delete salary.").show();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Error while deleting salary.").show();
-            }
-        }
-    }
-
-    public void onClickTable(MouseEvent mouseEvent) {
-        SalaryTM selected = tblSalary.getSelectionModel().getSelectedItem();
-
-        if (selected != null) {
-            lblSalaryId.setText(selected.getSalaryId());
-            cmbEmployeeId.setValue(selected.getEmployeeId());
-            txtBasicSalary.setText(String.valueOf(selected.getBasicSalary()));
-            txtOtHours.setText(String.valueOf(selected.getOtPayment()));
-            txtDeduction.setText(String.valueOf(selected.getDeduction()));
-            txtDeductionType.setText(selected.getDeductionType());
-            txtNetSalary.setText(String.valueOf(selected.getNetSalary()));
-
-            btnSave.setDisable(true);
-            btnUpdate.setDisable(false);
-            btnDelete.setDisable(false);
-        }
-    }
 
     public void cmbEIDOnAction(ActionEvent actionEvent) {
-
         String employeeId = cmbEmployeeId.getValue();
+
+        if (employeeId == null || employeeId.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please select an employee ID. "+ employeeId).show();
+            return;
+        }else {
+            txtEmployeeId = employeeId;
+        }
+        System.out.println("Selected Employee ID: " + employeeId);
 
         try {
             String employeeName = salaryModel.getEmployeeNameById(employeeId);
-            txtEmployeeName.setText(employeeName);
+            EmployeeDTO employeeDTO = EmployeeModel.getEmployeeById(employeeId);
+            if (employeeDTO == null) {
+
+                new Alert(Alert.AlertType.ERROR, "Employee not found 3333").show();
+                return;
+            }else {
+                txtEmployeeName = employeeDTO.getFirstName();
+
+                PositionsDTO positionsDTO = positionsModel.getPositionById(employeeDTO.getPositionId());
+                System.out.println(positionsDTO);
+                if (positionsDTO != null) {
+                    txtBasicSalary = String.valueOf(positionsDTO.getBasicSalary());
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Position not found for employee").show();
+                    return;
+                }
+
+                OtDTO otDTO = otModel.getOtByEmployeeId(employeeDTO.getEmployeeId());
+                txtOtHours = String.valueOf(otDTO.getOvertimePayment());
+
+                DeductionsDTO deductionsDTO = deductionsModel.getDeductionByEmployeeId(employeeDTO.getEmployeeId());
+                txtDeduction = deductionsDTO.getTotalDeduction();
+
+                txtDeductionType = "ETF"; // Default value for deduction type
+
+                txtNetSalary = String.valueOf(Double.parseDouble(txtBasicSalary) + Double.parseDouble(txtOtHours) - Double.parseDouble(txtDeduction));
+            }
+
+
+
+
+
+
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Failed to load employee name").show();
         }
     }
 
-    public void txtEmployeeNameOnAction(ActionEvent actionEvent) {
-
-    }
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse73.ems.mvc.employeemanagementsystem.Controller.QRCodeController">
+
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <TextField fx:id="txtEmpId" maxWidth="300" promptText="Employee ID" />
+    <TextField fx:id="txtMonth" maxWidth="300" promptText="Month (e.g. 2025-05)" />
+    <TextField fx:id="txtNetSalary" maxWidth="300" promptText="Net Salary" />
+
+    <Button maxWidth="200" onAction="#generateQRCodeOnAction" style="-fx-background-color: #0d0398;" text="Generate QR Code" textFill="WHITE">
+        <font>
+            <Font name="System Bold" size="12.0" />
+        </font>
+    </Button>
+
+    <ImageView fx:id="imgQRCode" fitHeight="200" fitWidth="200" preserveRatio="true" />
+
+    <Button maxWidth="200" onAction="#scanQRCodeOnAction" style="-fx-background-color: #0d0398;" text="Scan QR Code" textFill="WHITE">
+        <font>
+            <Font name="System Bold" size="12.0" />
+        </font>
+    </Button>
+
+    <TextArea fx:id="txtReport" maxWidth="300" prefRowCount="6" promptText="Report from scanned QR code" wrapText="true" />
+
+</VBox>

@@ -52,6 +52,32 @@ public class EmployeeModel {
         return employeeIds;
     }
 
+    public static EmployeeDTO getEmployeeById(String employeeId) {
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Employee WHERE employee_id = ?", employeeId);
+            if (resultSet.next()) {
+                return new EmployeeDTO(
+                        resultSet.getString(1),  // employee_id
+                        resultSet.getString(2),  // first_name
+                        resultSet.getString(3),  // last_name
+                        resultSet.getString(4),  // department_id
+                        resultSet.getString(5),  // dob
+                        resultSet.getString(6),  // e_address
+                        resultSet.getString(7),  // join_date
+                        resultSet.getString(8),  // age
+                        resultSet.getString(9),  // email
+                        resultSet.getString(10), // contact
+                        resultSet.getString(11),
+                        resultSet.getString(12)
+                );
+            }
+            return null;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     // Save new employee
     public boolean saveEmployee(EmployeeDTO dto) throws SQLException, ClassNotFoundException {
@@ -87,7 +113,8 @@ public class EmployeeModel {
                     resultSet.getString(8),
                     resultSet.getString(9),
                     resultSet.getString(10),
-                    resultSet.getString(11)
+                    resultSet.getString(11),
+                    resultSet.getString(12)
             );
             employeeList.add(dto);
         }

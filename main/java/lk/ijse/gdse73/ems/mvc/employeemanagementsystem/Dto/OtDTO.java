@@ -16,4 +16,7 @@ public class OtDTO {
     private double overtimePayment;
 
 
+    public Object getRatePerHour() {
+        return ratePerHours;
+    }
 }
